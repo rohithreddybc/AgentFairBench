@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.DS_Store
+results/raw/*.tmp
+
+# LaTeX build intermediates (PDF is built via scripts/build_pdf.py)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.log
+
+# session + local tooling (never publish)
+.claude/
+*.zip
+AgentFairBench_overleaf.zip
+ARCHITECTURE_TRIAL.md
+BUILD_PLAN.md
+ARXIV_CHECKLIST.md
+CODEX_REVIEW_PROMPT.md
+DECISIONS.md
+VERIFICATION_LOG.md
+CLAIM_PROVENANCE.md
+NOTES_FOR_AUTHORS.md

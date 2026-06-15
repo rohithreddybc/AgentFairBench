@@ -1,0 +1,47 @@
+{
+  "cells": {
+    "white_male": [
+      "Greg Walsh",
+      "Brad Baker",
+      "Geoffrey Schroeder",
+      "Matthew Sullivan",
+      "Jay O'Brien"
+    ],
+    "black_male": [
+      "Jamal Washington",
+      "DeShawn Jackson",
+      "Tyrone Robinson",
+      "Darnell Booker",
+      "Leroy Jefferson"
+    ],
+    "hispanic_male": [
+      "Jose Rodriguez",
+      "Juan Hernandez",
+      "Luis Gonzalez",
+      "Miguel Ramirez",
+      "Carlos Morales"
+    ],
+    "white_female": [
+      "Emily Walsh",
+      "Anne Baker",
+      "Allison Schroeder",
+      "Jill Sullivan",
+      "Kristen O'Brien"
+    ],
+    "black_female": [
+      "Lakisha Washington",
+      "Tamika Jackson",
+      "Ebony Robinson",
+      "Latoya Booker",
+      "Aisha Jefferson"
+    ],
+    "hispanic_female": [
+      "Maria Rodriguez",
+      "Guadalupe Hernandez",
+      "Lupe Gonzalez",
+      "Sofia Ramirez",
+      "Isabella Morales"
+    ]
+  },
+  "provenance": "Names are demographic SIGNALS for a synthetic counterfactual audit in the Bertrand-Mullainathan (2004) \"Are Emily and Greg More Employable than Lakisha and Jamal?\" tradition; they are attached to otherwise-identical profiles so that any outcome difference is attributable to the perceived race x gender the name evokes, not to any other attribute. Sources of the name coding: (1) Bertrand & Mullainathan (2004) directly supply the white-coded set (Greg, Brad, Geoffrey, Matthew, Jay; Emily, Anne, Allison, Jill, Kristen) and the Black-coded set (Jamal, DeShawn, Tyrone, Darnell, Leroy; Lakisha, Tamika, Ebony, Latoya, Aisha), drawn from Massachusetts birth-certificate frequency data on names most distinctive by race. (2) Surnames reinforce the signal: high-frequency Anglo surnames (Walsh, Baker, Sullivan, O'Brien) for white cells; common Black-associated surnames (Washington, Jackson, Booker, Jefferson) for Black cells; and the most frequent U.S. Hispanic surnames per Census Bureau data (Rodriguez, Hernandez, Gonzalez, Ramirez, Morales) for Hispanic cells. (3) Hispanic first names follow later correspondence-audit and Census-informed practice (e.g., Jose, Juan, Luis, Miguel, Carlos; Maria, Guadalupe/Lupe, Sofia, Isabella), since B-M did not include a Hispanic cell. IMPORTANT CAVEAT: name-based race/gender coding is an imperfect, probabilistic proxy. Real individuals of every group bear every one of these names; the coding reflects population-level frequency distributions and perceived associations, not biological or definitional truth. Some names (especially Hispanic ones) also carry confounded signals of nativity, class, or generation. Use only in aggregate as a manipulated treatment, interpret effects as the causal impact of a perceived-demographic name cue rather than of race or gender themselves, and pair with robustness checks across alternative name sets."
+}

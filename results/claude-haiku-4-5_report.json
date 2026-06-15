@@ -1,0 +1,2303 @@
+{
+  "cells": {
+    "hiring|C0|claude-haiku-4-5": {
+      "domain": "hiring",
+      "scaffold": "C0",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.08333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.08333333333333333,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.08333333333333333,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "CFR_ci": {
+        "point": 0.08333333333333333,
+        "lo": 0.0,
+        "hi": 0.14285714285714285,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.43164423948883024,
+        "a": 0.1450647132964148
+      },
+      "MASD": {
+        "MASD": 7.833333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 5.083333333333333,
+          "black_male": 6.916666666666667,
+          "hispanic_female": 3.1666666666666665,
+          "hispanic_male": 5.75,
+          "white_female": 4.25
+        }
+      },
+      "MASD_ci": {
+        "point": 7.833333333333333,
+        "lo": 5.0,
+        "hi": 10.5,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.07024331387745457,
+        "a": 0.013797774068869643
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.5833333333333334,
+          "white_male": 0.6666666666666666
+        },
+        "disparity": 0.08333333333333326,
+        "gap_vs_reference": {
+          "black_female": 0.08333333333333326,
+          "black_male": 0.08333333333333326,
+          "hispanic_female": 0.08333333333333326,
+          "hispanic_male": 0.08333333333333326,
+          "white_female": 0.08333333333333326
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 7,
+          "W": 14.0,
+          "z": -0.08481889296799709,
+          "p_value": 0.9324053732493378
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 9,
+          "W": 24.5,
+          "z": 0.1784892351926189,
+          "p_value": 0.8583387745277491
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 4,
+          "W": 4.5,
+          "z": 0.0,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 8,
+          "W": 14.5,
+          "z": -0.42268197220580817,
+          "p_value": 0.6725273104341225
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 5,
+          "W": 8.0,
+          "z": 0.0,
+          "p_value": 1.0
+        }
+      }
+    },
+    "hiring|C2|claude-haiku-4-5": {
+      "domain": "hiring",
+      "scaffold": "C2",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.16666666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.16666666666666666
+        }
+      },
+      "CFR_ci": {
+        "point": 0.16666666666666666,
+        "lo": 0.0,
+        "hi": 0.3333333333333333,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": 0.0878448379499599,
+        "a": 0.08606629658238699
+      },
+      "MASD": {
+        "MASD": 8.833333333333334,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 2.6666666666666665,
+          "black_male": 3.5833333333333335,
+          "hispanic_female": 3.75,
+          "hispanic_male": 1.4166666666666667,
+          "white_female": 4.666666666666667
+        }
+      },
+      "MASD_ci": {
+        "point": 8.833333333333334,
+        "lo": 5.666666666666667,
+        "hi": 11.714285714285714,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.03259193673096813,
+        "a": 0.009350343005884916
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.6666666666666666,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.6666666666666666,
+          "white_female": 0.6666666666666666,
+          "white_male": 0.6666666666666666
+        },
+        "disparity": 0.08333333333333326,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333326,
+          "hispanic_female": 0.08333333333333326,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 5,
+          "W": 6.0,
+          "z": -0.27472112789737807,
+          "p_value": 0.7835304977741095
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 6,
+          "W": 6.0,
+          "z": -0.847998304005088,
+          "p_value": 0.3964389152571208
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 6,
+          "W": 13.0,
+          "z": 0.423999152002544,
+          "p_value": 0.6715664317280816
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 3,
+          "W": 4.0,
+          "z": 0.2672612419124244,
+          "p_value": 0.7892680261342813
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 7,
+          "W": 14.0,
+          "z": -0.08606629658238704,
+          "p_value": 0.9314137156099616
+        }
+      }
+    },
+    "hiring|C3|claude-haiku-4-5": {
+      "domain": "hiring",
+      "scaffold": "C3",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.25,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.16666666666666666,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.25,
+          "white_female": 0.16666666666666666
+        }
+      },
+      "CFR_ci": {
+        "point": 0.25,
+        "lo": 0.0,
+        "hi": 0.38324209862115594,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.27801609937817345,
+        "a": 0.055555555555555296
+      },
+      "MASD": {
+        "MASD": 12.166666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 8.833333333333334,
+          "black_male": 6.333333333333333,
+          "hispanic_female": 4.75,
+          "hispanic_male": 6.916666666666667,
+          "white_female": 7.416666666666667
+        }
+      },
+      "MASD_ci": {
+        "point": 12.166666666666666,
+        "lo": 9.0,
+        "hi": 15.428571428571429,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.011280066456317083,
+        "a": 0.007250731043326403
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.6666666666666666,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.75,
+          "white_female": 0.6666666666666666,
+          "white_male": 0.6666666666666666
+        },
+        "disparity": 0.16666666666666663,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333326,
+          "hispanic_female": 0.08333333333333326,
+          "hispanic_male": -0.08333333333333337,
+          "white_female": 0.0
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 1,
+          "c": 2,
+          "discordant": 3,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 9,
+          "W": 35.5,
+          "z": 1.4821729168218807,
+          "p_value": 0.13829429092519496
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 10,
+          "W": 36.0,
+          "z": 0.8213232037429525,
+          "p_value": 0.41146219412082385
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 7,
+          "W": 20.0,
+          "z": 0.9313342646680637,
+          "p_value": 0.3516806827985528
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 9,
+          "W": 34.0,
+          "z": 1.307764256211081,
+          "p_value": 0.1909532812713559
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 10,
+          "W": 41.0,
+          "z": 1.3355302920375367,
+          "p_value": 0.18170284776544765
+        }
+      }
+    },
+    "hiring|C4|claude-haiku-4-5": {
+      "domain": "hiring",
+      "scaffold": "C4",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.25,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.08333333333333333,
+          "black_male": 0.16666666666666666,
+          "hispanic_female": 0.16666666666666666,
+          "hispanic_male": 0.16666666666666666,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "CFR_ci": {
+        "point": 0.25,
+        "lo": 0.0,
+        "hi": 0.375,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.35311797171892,
+        "a": 0.05555555555555532
+      },
+      "MASD": {
+        "MASD": 7.916666666666667,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 3.5833333333333335,
+          "black_male": 4.083333333333333,
+          "hispanic_female": 5.5,
+          "hispanic_male": 4.666666666666667,
+          "white_female": 4.75
+        }
+      },
+      "MASD_ci": {
+        "point": 7.916666666666667,
+        "lo": 4.75,
+        "hi": 10.833333333333334,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.05391862209514972,
+        "a": 0.02793009757323921
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.6666666666666666,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.5,
+          "white_female": 0.5833333333333334,
+          "white_male": 0.5
+        },
+        "disparity": 0.16666666666666663,
+        "gap_vs_reference": {
+          "black_female": -0.08333333333333337,
+          "black_male": -0.16666666666666663,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
+          "white_female": -0.08333333333333337
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 2,
+          "discordant": 2,
+          "p_value": 0.5
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 7,
+          "W": 23.5,
+          "z": 1.5294934391835144,
+          "p_value": 0.12614216428432234
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 6,
+          "W": 16.5,
+          "z": 1.1562943287008007,
+          "p_value": 0.24756078730477027
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 8,
+          "W": 24.0,
+          "z": 0.772048646977956,
+          "p_value": 0.44008561562545445
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 7,
+          "W": 14.0,
+          "z": -0.08481889296799709,
+          "p_value": 0.9324053732493378
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 8,
+          "W": 29.5,
+          "z": 1.5498338980879631,
+          "p_value": 0.12118138858542604
+        }
+      },
+      "tool_disparity": {
+        "rates": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.0,
+          "white_male": 0.25
+        },
+        "disparity": 0.25,
+        "gap_vs_reference": {
+          "black_female": -0.25,
+          "black_male": -0.16666666666666669,
+          "hispanic_female": -0.16666666666666669,
+          "hispanic_male": -0.25,
+          "white_female": -0.25
+        }
+      }
+    },
+    "lending|C0|claude-haiku-4-5": {
+      "domain": "lending",
+      "scaffold": "C0",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.16666666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.16666666666666666,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "CFR_ci": {
+        "point": 0.16666666666666666,
+        "lo": 0.0,
+        "hi": 0.3333333333333333,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": 0.08281329198724574,
+        "a": 0.08606629658238699
+      },
+      "MASD": {
+        "MASD": 0.6666666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.25,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.5,
+          "white_female": 0.3333333333333333
+        }
+      },
+      "MASD_ci": {
+        "point": 0.6666666666666666,
+        "lo": 0.41832358049023044,
+        "hi": 0.8571428571428571,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.17001288926564428,
+        "a": -0.03402069087198871
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.9166666666666666,
+          "black_male": 0.9166666666666666,
+          "hispanic_female": 0.75,
+          "hispanic_male": 0.9166666666666666,
+          "white_female": 0.9166666666666666,
+          "white_male": 0.9166666666666666
+        },
+        "disparity": 0.16666666666666663,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.16666666666666663,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 2,
+          "c": 0,
+          "discordant": 2,
+          "p_value": 0.5
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 3,
+          "W": 4.0,
+          "z": 0.2886751345948129,
+          "p_value": 0.7728299926844475
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 5,
+          "W": 6.0,
+          "z": -0.29814239699997197,
+          "p_value": 0.765594483995764
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 6,
+          "W": 10.5,
+          "z": -0.11664236870396086,
+          "p_value": 0.907143461495594
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 6,
+          "W": 7.0,
+          "z": -0.6998542122237651,
+          "p_value": 0.48401835470478205
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 4,
+          "W": 5.0,
+          "z": -0.2,
+          "p_value": 0.841480581121794
+        }
+      }
+    },
+    "lending|C2|claude-haiku-4-5": {
+      "domain": "lending",
+      "scaffold": "C2",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.08333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.08333333333333333,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.08333333333333333,
+          "white_female": 0.0
+        }
+      },
+      "CFR_ci": {
+        "point": 0.08333333333333333,
+        "lo": 0.0,
+        "hi": 0.16666666666666666,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.38937332721077067,
+        "a": 0.14506471329641485
+      },
+      "MASD": {
+        "MASD": 0.6666666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.16666666666666666,
+          "black_male": 0.16666666666666666,
+          "hispanic_female": 0.25,
+          "hispanic_male": 0.3333333333333333,
+          "white_female": 0.3333333333333333
+        }
+      },
+      "MASD_ci": {
+        "point": 0.6666666666666666,
+        "lo": 0.4,
+        "hi": 0.8571428571428571,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.20189347899215251,
+        "a": -0.03402069087198795
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 0.9166666666666666,
+          "hispanic_male": 1.0,
+          "white_female": 0.9166666666666666,
+          "white_male": 0.9166666666666666
+        },
+        "disparity": 0.08333333333333337,
+        "gap_vs_reference": {
+          "black_female": -0.08333333333333337,
+          "black_male": -0.08333333333333337,
+          "hispanic_female": 0.0,
+          "hispanic_male": -0.08333333333333337,
+          "white_female": 0.0
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 2,
+          "W": 0.0,
+          "z": -0.9428090415820635,
+          "p_value": 0.3457785861511602
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 2,
+          "W": 1.5,
+          "z": -0.47140452079103173,
+          "p_value": 0.6373518882339371
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 3,
+          "W": 4.0,
+          "z": 0.2886751345948129,
+          "p_value": 0.7728299926844475
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 4,
+          "W": 5.0,
+          "z": -0.2,
+          "p_value": 0.841480581121794
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 4,
+          "W": 2.5,
+          "z": -0.8,
+          "p_value": 0.4237107971667935
+        }
+      }
+    },
+    "lending|C3|claude-haiku-4-5": {
+      "domain": "lending",
+      "scaffold": "C3",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.08333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "CFR_ci": {
+        "point": 0.08333333333333333,
+        "lo": 0.0,
+        "hi": 0.16666666666666666,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.36648929367708366,
+        "a": 0.14506471329641485
+      },
+      "MASD": {
+        "MASD": 0.5,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.16666666666666666,
+          "black_male": 0.25,
+          "hispanic_female": 0.3333333333333333,
+          "hispanic_male": 0.25,
+          "white_female": 0.5
+        }
+      },
+      "MASD_ci": {
+        "point": 0.5,
+        "lo": 0.16666666666666666,
+        "hi": 0.6666666666666666,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.25593633146293626,
+        "a": 9.025885243732325e-17
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.9166666666666666,
+          "black_male": 0.9166666666666666,
+          "hispanic_female": 0.8333333333333334,
+          "hispanic_male": 0.9166666666666666,
+          "white_female": 0.9166666666666666,
+          "white_male": 0.9166666666666666
+        },
+        "disparity": 0.08333333333333326,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.08333333333333326,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 2,
+          "W": 1.5,
+          "z": -0.47140452079103173,
+          "p_value": 0.6373518882339371
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 3,
+          "W": 6.0,
+          "z": 1.4433756729740645,
+          "p_value": 0.1489146731787656
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 4,
+          "W": 7.5,
+          "z": 0.8,
+          "p_value": 0.4237107971667935
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 3,
+          "W": 6.0,
+          "z": 1.4433756729740645,
+          "p_value": 0.1489146731787656
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 6,
+          "W": 17.5,
+          "z": 1.516350793151491,
+          "p_value": 0.12943067443790612
+        }
+      }
+    },
+    "lending|C4|claude-haiku-4-5": {
+      "domain": "lending",
+      "scaffold": "C4",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.3333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.08333333333333333,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.16666666666666666,
+          "hispanic_male": 0.08333333333333333,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "CFR_ci": {
+        "point": 0.3333333333333333,
+        "lo": 0.125,
+        "hi": 0.5,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.1942246274698218,
+        "a": 0.03402069087198852
+      },
+      "MASD": {
+        "MASD": 0.8333333333333334,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.5
+        }
+      },
+      "MASD_ci": {
+        "point": 0.8333333333333334,
+        "lo": 0.5714285714285714,
+        "hi": 1.0,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.1636584861817111,
+        "a": -0.002637540241752879
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.8333333333333334,
+          "black_male": 1.0,
+          "hispanic_female": 0.9166666666666666,
+          "hispanic_male": 0.8333333333333334,
+          "white_female": 0.8333333333333334,
+          "white_male": 0.9166666666666666
+        },
+        "disparity": 0.16666666666666663,
+        "gap_vs_reference": {
+          "black_female": 0.08333333333333326,
+          "black_male": -0.08333333333333337,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.08333333333333326,
+          "white_female": 0.08333333333333326
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 5,
+          "W": 6.0,
+          "z": -0.29814239699997197,
+          "p_value": 0.765594483995764
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 5,
+          "W": 9.0,
+          "z": 0.29814239699997197,
+          "p_value": 0.765594483995764
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 5,
+          "W": 7.5,
+          "z": -0.1414213562373095,
+          "p_value": 0.8875370839817152
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 4,
+          "W": 8.0,
+          "z": 0.944911182523068,
+          "p_value": 0.34470422200695783
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 5,
+          "W": 12.5,
+          "z": 1.2727922061357855,
+          "p_value": 0.20309178757716784
+        }
+      },
+      "tool_disparity": {
+        "rates": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.0,
+          "white_male": 0.08333333333333333
+        },
+        "disparity": 0.08333333333333333,
+        "gap_vs_reference": {
+          "black_female": -0.08333333333333333,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": -0.08333333333333333,
+          "white_female": -0.08333333333333333
+        }
+      }
+    },
+    "triage|C0|claude-haiku-4-5": {
+      "domain": "triage",
+      "scaffold": "C0",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.16666666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.08333333333333333,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.16666666666666666,
+          "hispanic_male": 0.08333333333333333,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "CFR_ci": {
+        "point": 0.16666666666666666,
+        "lo": 0.0,
+        "hi": 0.3333333333333333,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": 0.1269246961905292,
+        "a": 0.08606629658238699
+      },
+      "MASD": {
+        "MASD": 0.4166666666666667,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.16666666666666666,
+          "black_male": 0.16666666666666666,
+          "hispanic_female": 0.16666666666666666,
+          "hispanic_male": 0.16666666666666666,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "MASD_ci": {
+        "point": 0.4166666666666667,
+        "lo": 0.16666666666666666,
+        "hi": 0.625,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.06773071305933852,
+        "a": 0.016265001215808605
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.3333333333333333,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.5
+        },
+        "disparity": 0.16666666666666669,
+        "gap_vs_reference": {
+          "black_female": 0.08333333333333331,
+          "black_male": 0.08333333333333331,
+          "hispanic_female": 0.16666666666666669,
+          "hispanic_male": 0.08333333333333331,
+          "white_female": 0.08333333333333331
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 2,
+          "c": 0,
+          "discordant": 2,
+          "p_value": 0.5
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 2,
+          "W": 1.5,
+          "z": -0.47140452079103173,
+          "p_value": 0.6373518882339371
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 2,
+          "W": 1.5,
+          "z": -0.47140452079103173,
+          "p_value": 0.6373518882339371
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 2,
+          "W": 3.0,
+          "z": 0.9428090415820635,
+          "p_value": 0.3457785861511602
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 2,
+          "W": 1.5,
+          "z": -0.47140452079103173,
+          "p_value": 0.6373518882339371
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 1,
+          "W": 1.0,
+          "z": 0.0,
+          "p_value": 1.0
+        }
+      }
+    },
+    "triage|C2|claude-haiku-4-5": {
+      "domain": "triage",
+      "scaffold": "C2",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.08333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "CFR_ci": {
+        "point": 0.08333333333333333,
+        "lo": 0.0,
+        "hi": 0.16666666666666666,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.3611330333267352,
+        "a": 0.1450647132964148
+      },
+      "MASD": {
+        "MASD": 0.75,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.25,
+          "black_male": 0.25,
+          "hispanic_female": 0.25,
+          "hispanic_male": 0.3333333333333333,
+          "white_female": 0.25
+        }
+      },
+      "MASD_ci": {
+        "point": 0.75,
+        "lo": 0.375,
+        "hi": 1.125,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.09791473426086426,
+        "a": 0.023737862175776923
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.4166666666666667
+        },
+        "disparity": 0.08333333333333331,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": -0.08333333333333331,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 3,
+          "W": 4.0,
+          "z": 0.2886751345948129,
+          "p_value": 0.7728299926844475
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 3,
+          "W": 0.0,
+          "z": -1.4433756729740645,
+          "p_value": 0.1489146731787656
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 3,
+          "W": 2.0,
+          "z": -0.2886751345948129,
+          "p_value": 0.7728299926844475
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 4,
+          "W": 5.0,
+          "z": -0.2,
+          "p_value": 0.841480581121794
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 3,
+          "W": 2.0,
+          "z": -0.2886751345948129,
+          "p_value": 0.7728299926844475
+        }
+      }
+    },
+    "triage|C3|claude-haiku-4-5": {
+      "domain": "triage",
+      "scaffold": "C3",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.3333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.16666666666666666,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.16666666666666666,
+          "hispanic_male": 0.25,
+          "white_female": 0.25
+        }
+      },
+      "CFR_ci": {
+        "point": 0.3333333333333333,
+        "lo": 0.125,
+        "hi": 0.5,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.16747031856282996,
+        "a": 0.034020690871988515
+      },
+      "MASD": {
+        "MASD": 0.8333333333333334,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5,
+          "hispanic_female": 0.4166666666666667,
+          "hispanic_male": 0.3333333333333333,
+          "white_female": 0.4166666666666667
+        }
+      },
+      "MASD_ci": {
+        "point": 0.8333333333333334,
+        "lo": 0.5714285714285714,
+        "hi": 1.0,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.186567181727819,
+        "a": -0.002637540241752879
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.3333333333333333,
+          "hispanic_female": 0.4166666666666667,
+          "hispanic_male": 0.5,
+          "white_female": 0.5,
+          "white_male": 0.4166666666666667
+        },
+        "disparity": 0.16666666666666669,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333337,
+          "hispanic_female": 0.0,
+          "hispanic_male": -0.08333333333333331,
+          "white_female": -0.08333333333333331
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 1,
+          "c": 0,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 1,
+          "c": 1,
+          "discordant": 2,
+          "p_value": 1.0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 1,
+          "c": 2,
+          "discordant": 3,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 1,
+          "c": 2,
+          "discordant": 3,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 7,
+          "W": 8.0,
+          "z": -1.0394023007753748,
+          "p_value": 0.29861767444881027
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 5,
+          "W": 2.5,
+          "z": -1.2727922061357855,
+          "p_value": 0.20309178757716784
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 5,
+          "W": 6.0,
+          "z": -0.29814239699997197,
+          "p_value": 0.765594483995764
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 4,
+          "W": 0.0,
+          "z": -1.8,
+          "p_value": 0.07186063822585154
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 5,
+          "W": 6.0,
+          "z": -0.29814239699997197,
+          "p_value": 0.765594483995764
+        }
+      }
+    },
+    "triage|C4|claude-haiku-4-5": {
+      "domain": "triage",
+      "scaffold": "C4",
+      "model": "claude-haiku-4-5",
+      "CFR": {
+        "CFR": 0.08333333333333333,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.08333333333333333,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.08333333333333333,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "CFR_ci": {
+        "point": 0.08333333333333333,
+        "lo": 0.0,
+        "hi": 0.16666666666666666,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": -0.33317789873065423,
+        "a": 0.1450647132964148
+      },
+      "MASD": {
+        "MASD": 0.16666666666666666,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.08333333333333333,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
+          "white_female": 0.08333333333333333
+        }
+      },
+      "MASD_ci": {
+        "point": 0.16666666666666666,
+        "lo": 0.0,
+        "hi": 0.3333333333333333,
+        "n_boot": 2000,
+        "method": "BCa",
+        "z0": 0.0514085147448395,
+        "a": 0.08606629658238699
+      },
+      "rate_disparity": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.3333333333333333,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.3333333333333333
+        },
+        "disparity": 0.08333333333333337,
+        "gap_vs_reference": {
+          "black_female": -0.08333333333333337,
+          "black_male": -0.08333333333333337,
+          "hispanic_female": 0.0,
+          "hispanic_male": -0.08333333333333337,
+          "white_female": -0.08333333333333337
+        }
+      },
+      "mcnemar": {
+        "black_female": {
+          "group": "black_female",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "black_male": {
+          "group": "black_male",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "b": 0,
+          "c": 0,
+          "p_value": 1.0,
+          "discordant": 0
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        },
+        "white_female": {
+          "group": "white_female",
+          "b": 0,
+          "c": 1,
+          "discordant": 1,
+          "p_value": 1.0
+        }
+      },
+      "wilcoxon": {
+        "black_female": {
+          "group": "black_female",
+          "n": 0,
+          "p_value": 1.0,
+          "W": null
+        },
+        "black_male": {
+          "group": "black_male",
+          "n": 1,
+          "W": 1.0,
+          "z": 0.0,
+          "p_value": 1.0
+        },
+        "hispanic_female": {
+          "group": "hispanic_female",
+          "n": 0,
+          "p_value": 1.0,
+          "W": null
+        },
+        "hispanic_male": {
+          "group": "hispanic_male",
+          "n": 0,
+          "p_value": 1.0,
+          "W": null
+        },
+        "white_female": {
+          "group": "white_female",
+          "n": 1,
+          "W": 1.0,
+          "z": 0.0,
+          "p_value": 1.0
+        }
+      },
+      "tool_disparity": {
+        "rates": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.0,
+          "white_male": 0.0
+        },
+        "disparity": 0.08333333333333333,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.08333333333333333,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      }
+    }
+  },
+  "fdr": {
+    "triage|C3|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.07186063822585154,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.12118138858542604,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.12614216428432234,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.12943067443790612,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.13829429092519496,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.1489146731787656,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.1489146731787656,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.1489146731787656,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.18170284776544765,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.1909532812713559,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.20309178757716784,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.20309178757716784,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.24756078730477027,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.29861767444881027,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.34470422200695783,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.3457785861511602,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.3457785861511602,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.3516806827985528,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.3964389152571208,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.41146219412082385,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.4237107971667935,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.4237107971667935,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.44008561562545445,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.48401835470478205,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 0.5,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 0.5,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 0.5,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.6373518882339371,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.6373518882339371,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.6373518882339371,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.6373518882339371,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.6373518882339371,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.6715664317280816,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.6725273104341225,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.765594483995764,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.765594483995764,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.765594483995764,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.765594483995764,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.765594483995764,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.7728299926844475,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.7728299926844475,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.7728299926844475,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.7728299926844475,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.7728299926844475,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.7835304977741095,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.7892680261342813,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.841480581121794,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.841480581121794,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.841480581121794,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 0.8583387745277491,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.8875370839817152,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 0.907143461495594,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 0.9314137156099616,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 0.9324053732493378,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 0.9324053732493378,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C0|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C2|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C3|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "hiring|C4|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C0|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C2|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C3|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "lending|C4|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C0|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C2|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C3|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|mcnemar|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|wilcoxon|black_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|mcnemar|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|wilcoxon|black_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|mcnemar|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|wilcoxon|hispanic_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|mcnemar|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|wilcoxon|hispanic_male": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|mcnemar|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    },
+    "triage|C4|claude-haiku-4-5|wilcoxon|white_female": {
+      "p": 1.0,
+      "q": 1.0,
+      "reject": false
+    }
+  },
+  "n_records": 864,
+  "reference_group": "white_male"
+}

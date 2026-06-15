@@ -1,0 +1,8 @@
+# Treat IEEE Access binary template assets as binary so Git never applies CRLF/EOL conversion
+# (which would corrupt the Type-1 font programs and TeX font metrics).
+*.pfb binary
+*.tfm binary
+*.png binary
+*.pdf binary
+*.bst binary
+*.cls binary

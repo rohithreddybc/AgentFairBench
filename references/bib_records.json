@@ -1,0 +1,222 @@
+[
+  {
+    "key": "parrish2022bbq",
+    "title": "BBQ: A Hand-Built Bias Benchmark for Question Answering",
+    "authors": "Parrish, A. and Chen, A. and Nangia, N. and Padmakumar, V. and Phang, J. and Thompson, J. and Htut, P. M. and Bowman, S. R.",
+    "year": "2022",
+    "venue": "Findings of the Association for Computational Linguistics: ACL 2022",
+    "id": "arXiv:2110.08193",
+    "url": "https://arxiv.org/abs/2110.08193",
+    "relevance": "Grades whether a model's selected ANSWER to a multiple-choice QA item reflects social bias under (in)formative contexts; it scores answer choices, not multi-step agent ACTIONS or tool-use trajectories as AgentFairBench does.",
+    "verified": true
+  },
+  {
+    "key": "nadeem2021stereoset",
+    "title": "StereoSet: Measuring Stereotypical Bias in Pretrained Language Models",
+    "authors": "Nadeem, M. and Bethke, A. and Reddy, S.",
+    "year": "2021",
+    "venue": "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL-IJCNLP 2021)",
+    "id": "arXiv:2004.09456",
+    "url": "https://arxiv.org/abs/2004.09456",
+    "relevance": "Grades a model's preference among stereotype/anti-stereotype/unrelated answer completions via likelihood scoring of static text; it measures bias in ANSWERS, not in sequential agent ACTIONS.",
+    "verified": true
+  },
+  {
+    "key": "nangia2020crowspairs",
+    "title": "CrowS-Pairs: A Challenge Dataset for Measuring Social Biases in Masked Language Models",
+    "authors": "Nangia, N. and Vania, C. and Bhalerao, R. and Bowman, S. R.",
+    "year": "2020",
+    "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP 2020)",
+    "id": "arXiv:2010.00133",
+    "url": "https://arxiv.org/abs/2010.00133",
+    "relevance": "Grades which of a paired stereotyping/less-stereotyping sentence a masked LM scores higher; an answer-level/likelihood metric over static sentence pairs, not an evaluation of agent ACTIONS.",
+    "verified": true
+  },
+  {
+    "key": "jiang2025medagentbench",
+    "title": "MedAgentBench: A Realistic Virtual EHR Environment to Benchmark Medical LLM Agents",
+    "authors": "Jiang, Y. and Black, K. C. and Geng, G. and Park, D. and Zou, J. and Ng, A. Y. and Chen, J. H.",
+    "year": "2025",
+    "venue": "arXiv preprint (also NEJM AI)",
+    "id": "arXiv:2501.14654",
+    "url": "https://arxiv.org/abs/2501.14654",
+    "relevance": "Single-domain (medical) agent benchmark on a FHIR/EHR environment measuring task success; AgentFairBench is multi-domain and evaluates fairness at the action level rather than medical task accuracy.",
+    "verified": true
+  },
+  {
+    "key": "adappanavar2025mfarm",
+    "title": "mFARM: Towards Multi-Faceted Fairness Assessment based on HARMs in Clinical Decision Support",
+    "authors": "Adappanavar, S. and Shailya, K. and Krishnan, G. S. and Natarajan, S. and Ravindran, B.",
+    "year": "2025",
+    "venue": "arXiv preprint",
+    "id": "arXiv:2509.02007",
+    "url": "https://arxiv.org/abs/2509.02007",
+    "relevance": "Single-domain (clinical decision support) fairness benchmark auditing allocational/stability/latent harms on MIMIC-IV prompts; AgentFairBench is multi-domain and measures action-level fairness across agentic tasks.",
+    "verified": true
+  },
+  {
+    "key": "xiao2025fairmedqa",
+    "title": "FairMedQA: Benchmarking Bias in Large Language Models for Medical Question Answering",
+    "authors": "Xiao, Y. and Huang, J. and He, R. and Xiao, J. and Mousavi, M. R. and Liu, Y. and Li, K. and Chen, Z. and Zhang, J. M.",
+    "year": "2025",
+    "venue": "arXiv preprint",
+    "id": "arXiv:2505.19562",
+    "url": "https://arxiv.org/abs/2505.19562",
+    "relevance": "Single-domain (medical QA) counterfactual bias benchmark over demographic attributes measuring accuracy disparity; AgentFairBench is multi-domain and evaluates fairness of agent actions rather than QA accuracy.",
+    "verified": true
+  },
+  {
+    "key": "mayilvaghanan2026counterfactual",
+    "title": "Counterfactual Fairness Evaluation of LLM-Based Contact Center Agent Quality Assurance System",
+    "authors": "Mayilvaghanan, K. and Gupta, S. and Kumar, A.",
+    "year": "2026",
+    "venue": "arXiv preprint",
+    "id": "arXiv:2602.14970",
+    "url": "https://arxiv.org/abs/2602.14970",
+    "relevance": "Single-domain (contact-center QA) counterfactual fairness evaluation using CFR (Counterfactual Flip Rate) and MASD (Mean Absolute Score Difference); AgentFairBench generalizes fairness evaluation to multiple domains at the action level rather than one QA scoring task.",
+    "verified": true
+  },
+  {
+    "key": "liu2024agentbench",
+    "title": "AgentBench: Evaluating LLMs as Agents",
+    "authors": "Liu, X. and Yu, H. and Zhang, H. and Xu, Y. and Lei, X. and Lai, H. and Gu, Y. and Ding, H. and Men, K. and Yang, K. and Zhang, S. and Deng, X. and Zeng, A. and Du, Z. and Zhang, C. and Shen, S. and Zhang, T. and Su, Y. and Sun, H. and Huang, M. and Dong, Y. and Tang, J.",
+    "year": "2024",
+    "venue": "ICLR 2024 (International Conference on Learning Representations); arXiv:2308.03688",
+    "id": "arXiv:2308.03688",
+    "url": "https://arxiv.org/abs/2308.03688",
+    "relevance": "Agent capability benchmark (8 interactive environments testing reasoning/decision-making of LLMs as agents); AgentFairBench can use it as a capability backbone but it is NOT demographically instrumented and measures task success, not fairness across demographic groups.",
+    "verified": true
+  },
+  {
+    "key": "zhou2024webarena",
+    "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+    "authors": "Zhou, S. and Xu, F. F. and Zhu, H. and Zhou, X. and Lo, R. and Sridhar, A. and Cheng, X. and Ou, T. and Bisk, Y. and Fried, D. and Alon, U. and Neubig, G.",
+    "year": "2024",
+    "venue": "ICLR 2024 (International Conference on Learning Representations); arXiv:2307.13854",
+    "id": "arXiv:2307.13854",
+    "url": "https://arxiv.org/abs/2307.13854",
+    "relevance": "Agent capability benchmark (reproducible web environment across e-commerce, forums, software dev, CMS for functional task correctness); useful as an interaction substrate for AgentFairBench, but evaluates task completion only and is NOT demographically instrumented for fairness.",
+    "verified": true
+  },
+  {
+    "key": "jimenez2024swebench",
+    "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+    "authors": "Jimenez, C. E. and Yang, J. and Wettig, A. and Yao, S. and Pei, K. and Press, O. and Narasimhan, K.",
+    "year": "2024",
+    "venue": "ICLR 2024 (International Conference on Learning Representations); arXiv:2310.06770",
+    "id": "arXiv:2310.06770",
+    "url": "https://arxiv.org/abs/2310.06770",
+    "relevance": "Agent capability benchmark (2,294 real GitHub issue-resolution tasks across 12 Python repos requiring multi-file code edits); a coding-capability reference point for AgentFairBench, but measures issue-resolution success and is NOT demographically instrumented for fairness.",
+    "verified": true
+  },
+  {
+    "key": "deng2023mind2web",
+    "title": "Mind2Web: Towards a Generalist Agent for the Web",
+    "authors": "Deng, X. and Gu, Y. and Zheng, B. and Chen, S. and Stevens, S. and Wang, B. and Sun, H. and Su, Y.",
+    "year": "2023",
+    "venue": "NeurIPS 2023 Datasets and Benchmarks Track (Spotlight); arXiv:2306.06070",
+    "id": "arXiv:2306.06070",
+    "url": "https://arxiv.org/abs/2306.06070",
+    "relevance": "Agent capability benchmark (2,000+ open-ended tasks over 137 real websites across 31 domains for generalist web agents); a generalist web-action capability reference for AgentFairBench, but evaluates action-prediction/task success and is NOT demographically instrumented for fairness.",
+    "verified": true
+  },
+  {
+    "key": "bertrand2004emily",
+    "title": "Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination",
+    "authors": "Bertrand, M. and Mullainathan, S.",
+    "year": "2004",
+    "venue": "American Economic Review, 94(4), 991-1013",
+    "id": "10.1257/0002828042002561",
+    "url": "https://www.aeaweb.org/articles?id=10.1257/0002828042002561",
+    "relevance": "Seminal field experiment quantifying racial discrimination in hiring via name-based resume audits; AgentFairBench draws on this paradigm to motivate name/identity-based bias probes for LLM agents in employment-relevant tasks.",
+    "verified": true
+  },
+  {
+    "key": "dwork2012fairness",
+    "title": "Fairness Through Awareness",
+    "authors": "Dwork, C., Hardt, M., Pitassi, T., Reingold, O. and Zemel, R.",
+    "year": "2012",
+    "venue": "Proceedings of the 3rd Innovations in Theoretical Computer Science Conference (ITCS '12), 214-226",
+    "id": "10.1145/2090236.2090255",
+    "url": "https://dl.acm.org/doi/10.1145/2090236.2090255",
+    "relevance": "Introduces individual fairness (treat similar individuals similarly via a task metric); AgentFairBench references it as the foundational individual-fairness criterion against which agent behavior consistency is contrasted.",
+    "verified": true
+  },
+  {
+    "key": "hardt2016equality",
+    "title": "Equality of Opportunity in Supervised Learning",
+    "authors": "Hardt, M., Price, E. and Srebro, N.",
+    "year": "2016",
+    "venue": "Advances in Neural Information Processing Systems 29 (NIPS 2016), 3315-3323",
+    "id": "arXiv:1610.02413",
+    "url": "https://arxiv.org/abs/1610.02413",
+    "relevance": "Defines equalized odds / equal opportunity group-fairness criteria; AgentFairBench adapts these group-parity metrics to evaluate disparate outcomes across demographic groups in agent decisions.",
+    "verified": true
+  },
+  {
+    "key": "kusner2017counterfactual",
+    "title": "Counterfactual Fairness",
+    "authors": "Kusner, M. J., Loftus, J. R., Russell, C. and Silva, R.",
+    "year": "2017",
+    "venue": "Advances in Neural Information Processing Systems 30 (NIPS 2017), 4066-4076",
+    "id": "arXiv:1703.06856",
+    "url": "https://arxiv.org/abs/1703.06856",
+    "relevance": "Introduces causal counterfactual fairness (decision unchanged when sensitive attribute is counterfactually altered); AgentFairBench uses this notion to design counterfactual identity-swap perturbations for agent fairness testing.",
+    "verified": true
+  },
+  {
+    "key": "eeoc2023adverseimpact",
+    "title": "Assessing Adverse Impact in Software, Algorithms, and Artificial Intelligence Used in Employment Selection Procedures Under Title VII of the Civil Rights Act of 1964",
+    "authors": "U.S. Equal Employment Opportunity Commission (EEOC)",
+    "year": "2023",
+    "venue": "U.S. Equal Employment Opportunity Commission, Technical Assistance Document (issued May 18, 2023), AI and Algorithmic Fairness Initiative",
+    "id": "",
+    "url": "https://www.eeoc.gov/laws/guidance/select-issues-assessing-adverse-impact-software-algorithms-and-artificial",
+    "relevance": "Federal anchor for disparate/adverse-impact testing of automated hiring tools; AgentFairBench operationalizes Title VII adverse-impact (e.g., four-fifths rule) checks for agentic employment decisions.",
+    "verified": true
+  },
+  {
+    "key": "nyc2023locallaw144",
+    "title": "Local Law 144 of 2021: Automated Employment Decision Tools (AEDT) - Final Rule (DCWP), Subchapter 25 of Title 6 of the Rules of the City of New York",
+    "authors": "New York City Council; NYC Department of Consumer and Worker Protection (DCWP)",
+    "year": "2023",
+    "venue": "New York City Administrative Code 20-870 et seq.; effective Jan 1, 2023, enforcement began July 5, 2023",
+    "id": "NYC Local Law 144 of 2021",
+    "url": "https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-2/",
+    "relevance": "Mandates independent annual bias audits and candidate notice for AEDTs; AgentFairBench adopts its bias-audit framing and protected-category disparity reporting for hiring agents.",
+    "verified": true
+  },
+  {
+    "key": "ecoa1974regb",
+    "title": "Equal Credit Opportunity Act (Regulation B), 12 CFR Part 1002",
+    "authors": "U.S. Consumer Financial Protection Bureau (CFPB)",
+    "year": "1974",
+    "venue": "15 U.S.C. 1691 et seq. (ECOA, enacted 1974); implemented by Regulation B, 12 CFR Part 1002 (CFPB)",
+    "id": "12 CFR Part 1002",
+    "url": "https://www.consumerfinance.gov/rules-policy/regulations/1002/",
+    "relevance": "Prohibits credit discrimination on protected bases and requires adverse-action reasons; AgentFairBench grounds its credit/lending fairness scenarios and explanation-quality checks in ECOA/Reg B.",
+    "verified": true
+  },
+  {
+    "key": "euaiact2024",
+    "title": "Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)",
+    "authors": "European Parliament and Council of the European Union",
+    "year": "2024",
+    "venue": "Official Journal of the European Union, L series, published 12 July 2024",
+    "id": "Regulation (EU) 2024/1689",
+    "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+    "relevance": "Risk-tiered AI regulation classifying employment and credit-scoring AI as high-risk; AgentFairBench maps its evaluation dimensions to the Act's high-risk obligations (bias monitoring, transparency, human oversight).",
+    "verified": true
+  },
+  {
+    "key": "nist2023airmf",
+    "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+    "authors": "National Institute of Standards and Technology (NIST)",
+    "year": "2023",
+    "venue": "NIST, U.S. Department of Commerce (published January 26, 2023)",
+    "id": "NIST AI 100-1",
+    "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+    "relevance": "Voluntary Govern/Map/Measure/Manage framework for trustworthy AI; AgentFairBench aligns its fairness measurement and harm-management taxonomy with the AI RMF Measure and Manage functions.",
+    "verified": true
+  }
+]

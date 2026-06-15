@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use AgentFairBench, please cite this software."
+title: "AgentFairBench: a benchmark for demographic disparity in the actions of LLM agents"
+abstract: "A reproducible, multi-domain benchmark and harness that measures demographic disparity in the actions of LLM agents (hiring, lending, medical triage), with an arity-matched noise floor and an omnibus group test. A companion paper is under review."
+version: 0.1.0
+date-released: 2026-06-15
+license: Apache-2.0
+type: software
+repository-code: "https://github.com/rohithreddybc/AgentFairBench"
+url: "https://rohithreddybc.github.io/AgentFairBench/"
+authors:
+  - given-names: Rohith Reddy
+    family-names: Bellibaltu
+keywords:
+  - fairness
+  - LLM agents
+  - benchmark
+  - counterfactual fairness
+  - bias conduction framework
+  - responsible AI

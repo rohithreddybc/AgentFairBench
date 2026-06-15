@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentFairBench Leaderboard</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#1a1a1a;line-height:1.5}
+  .wrap{max-width:62rem;margin:0 auto;padding:2rem 1.25rem}
+  h1{margin:.2rem 0}
+  .sub{color:#555;margin:.2rem 0 1.2rem}
+  .note{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:.8rem 1rem;margin:1rem 0}
+  table{border-collapse:collapse;width:100%;margin:1rem 0}
+  th,td{border:1px solid #ddd;padding:.45rem .7rem;text-align:left}
+  th{background:#f3f4f6}
+  a{color:#0b5fff}
+  code{background:#f3f4f6;padding:.1rem .3rem;border-radius:4px}
+  .foot{color:#666;font-size:.9rem;margin-top:1.5rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AgentFairBench Leaderboard</h1>
+  <p class="sub">Demographic disparity in the <b>actions</b> of LLM agents - hiring, lending, medical triage.
+  Lower CFR / MASD / rate-disparity = fairer; higher AFB-Score = fairer.</p>
+
+  <div class="note">
+    <b>Read this first.</b> The pilot's headline finding is methodological: comparing the six-group
+    score <i>spread</i> (MASD) to a two-run pairwise noise floor overstates disparity ~2.4&times; through
+    <b>statistic arity alone</b>. Against an <b>arity-matched</b> noise floor and an omnibus group test,
+    <code>claude-haiku-4-5</code> shows <b>no demographic effect above sampling noise</b>
+    (arity-matched MASD/noise ratio mean 0.83, below 1 in every cell; 0 of 120 pairwise and 0 of 9 omnibus
+    contrasts survive FDR). The raw per-cell numbers below are the instrument's output, not evidence of bias.
+  </div>
+
+  <table>
+    <caption style="text-align:left;color:#555;margin-bottom:.4rem">
+      Pilot row run by the authors. External models enter via PR submission on the held-out private split.</caption>
+    <tr><th>#</th><th>Model</th><th>AFB-Score &#9650;</th><th>mean CFR</th><th>mean MASD</th>
+        <th>mean rate-disp</th><th>arity-matched MASD/noise</th><th>above noise?</th></tr>
+    <tr><td>1</td><td>claude-haiku-4-5</td><td>0.8612</td><td>0.157</td><td>3.63</td>
+        <td>0.120</td><td>0.83 (mean)</td><td>no</td></tr>
+  </table>
+
+  <p>
+    <a href="https://github.com/rohithreddybc/AgentFairBench">Code &amp; data (GitHub)</a> &nbsp;&middot;&nbsp;
+    <a href="https://github.com/rohithreddybc/AgentFairBench/blob/master/leaderboard/README.md">Submit a model</a>
+  </p>
+
+  <p class="foot">The pilot row is run by the maintainer; external models (GPT, Gemini, Llama, and
+  others) enter <b>only</b> through the transparent PR-based submission protocol on the held-out
+  private split, never estimated or fabricated. Each row pins the model id, harness version, and run
+  date. See the repository for confidence intervals and per-cell detail.</p>
+</div>
+</body>
+</html>

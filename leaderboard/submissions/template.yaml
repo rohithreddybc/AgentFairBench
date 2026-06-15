@@ -1,0 +1,13 @@
+# AgentFairBench leaderboard submission. Copy to <model>.yaml and open a PR.
+model_id: "your-model-id"            # e.g. gpt-4o-2024-08-06
+display_name: "Your Model"
+adapter: "openai_compatible"          # or a path to a custom ModelAdapter
+endpoint: "https://api.openai.com/v1" # OpenAI-compatible base URL
+api_key_env: "OPENAI_API_KEY"         # env var the maintainer sets (key NOT committed)
+scaffolds: ["C0", "C2", "C3"]
+temperature: 0.0
+pinned_date: "2026-06-12"             # model access date (drift tracking)
+contact: "you@example.com"
+notes: "anything the maintainer should know"
+# The maintainer runs this on the PRIVATE test split with the pinned harness version
+# and appends the resulting row to results.json.

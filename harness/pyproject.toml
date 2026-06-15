@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentfairbench"
+version = "0.1.0"
+description = "A multi-domain benchmark for demographic disparity in the actions of LLM agents (Bias Conduction Framework, action-level)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Triveni" },
+  { name = "Rohith" },
+]
+keywords = ["fairness", "LLM agents", "benchmark", "counterfactual", "bias conduction framework"]
+dependencies = ["numpy>=1.23"]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+agentfairbench = "agentfairbench.cli:main"
+
+[tool.setuptools]
+packages = ["agentfairbench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

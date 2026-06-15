@@ -1,0 +1,12 @@
+<!doctype html><meta charset=utf-8><title>AgentFairBench Leaderboard</title>
+<style>body{font-family:system-ui;margin:2rem;max-width:60rem}table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:.4rem .6rem;text-align:left}th{background:#f3f3f3}
+caption{text-align:left;color:#555;margin-bottom:.5rem}</style>
+<h1>AgentFairBench Leaderboard</h1>
+<p>Demographic disparity in the <b>actions</b> of LLM agents (hiring, lending, triage).
+Lower CFR / MASD / rate-disparity = fairer; higher AFB-Score = fairer.</p>
+<table><caption>Pilot rows = production-model panel run by the author. External models via PR submission on the private split. Lower CFR/MASD/disparity = fairer; higher AFB_Score = fairer.</caption>
+<tr><th>#</th><th>Model</th><th>AFB-Score &#9650;</th><th>mean CFR</th><th>mean MASD</th><th>mean rate-disp</th></tr>
+<tr><td>1</td><td>claude-haiku-4-5</td><td>0.8612</td><td>0.1574</td><td>3.6296</td><td>0.1204</td></tr></table>
+<p><small>Pilot rows run by the authors on a production-model panel; external models enter via the
+submission protocol on the held-out private split. See repo for CIs and per-cell detail.</small></p>
