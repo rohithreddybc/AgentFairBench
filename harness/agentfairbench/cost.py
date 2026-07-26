@@ -1,4 +1,4 @@
-"""Cost estimator. Pinned per-model prices (USD per 1M tokens) — update at release.
+"""Cost estimator. Pinned per-model prices (USD per 1M tokens) - update at release.
 
 Used to report the cost envelope: AgentFairBench's public split is designed to run
 under $20/model at Haiku/Sonnet tier. Token counts are estimated; actual usage is

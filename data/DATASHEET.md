@@ -1,4 +1,4 @@
-# Datasheet — AgentFairBench v1 (public dev split)
+# Datasheet - AgentFairBench v1 (public dev split)
 
 Following Gebru et al. (2021) *Datasheets for Datasets*. For the HuggingFace dataset card,
 this doubles as the README.
@@ -14,10 +14,10 @@ this doubles as the README.
   each rendered under 6 race×gender identity conditions × 3 scaffolds = the evaluation grid.
 - **Synthetic.** All profiles are author-written synthetic vignettes. **No real persons, no
   PHI, no scraped data.** Triage cases are synthetic teaching vignettes.
-- **Demographic signal.** Injected via name only (race×gender), Bertrand–Mullainathan (2004)
+- **Demographic signal.** Injected via name only (race×gender), Bertrand-Mullainathan (2004)
   lineage; name pools in `names/name_pools.json` with full provenance + caveats.
 - **Labels.** Each profile has a `difficulty` tag (borderline / clear-yes / clear-no);
-  borderline items are most diagnostic. There is **no ground-truth "correct" decision** — the
+  borderline items are most diagnostic. There is **no ground-truth "correct" decision** - the
   benchmark measures *consistency across demographics*, not accuracy.
 - **Splits.** `public_dev.jsonl` (released, 36 profiles) + a held-out **private test split**
   (maintainer-held; used for leaderboard ranking and anti-gaming).
@@ -33,7 +33,7 @@ consistent) and reviewed by the authors. No human subjects; no consent issues.
   research on agent fairness; the AgentFairBench leaderboard.
 - **Out of scope.** Not a clinical, hiring, or lending decision tool. Not a measure of
   decision *accuracy*. Name-coding is a probabilistic proxy for perceived demographics, not
-  ground-truth identity — interpret effects as the causal impact of a perceived-demographic
+  ground-truth identity - interpret effects as the causal impact of a perceived-demographic
   **name cue**, not of race/gender per se.
 
 ## Distribution & licensing
@@ -48,4 +48,4 @@ split. Maintainer: Triveni. Issues/PRs via the repo.
 Synthetic-only design avoids IRB/PHI. The benchmark is **defensive/auditing** in purpose.
 Name-coding limitations and intersectional coverage are documented as limitations. Releasing
 disparity probes could in principle be misused to tune a model to *appear* fair on released
-items — mitigated by the held-out private split and the contamination canary.
+items - mitigated by the held-out private split and the contamination canary.

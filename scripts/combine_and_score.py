@@ -39,7 +39,7 @@ def main(run1, c4):
         json.dumps(rep, indent=2), encoding="utf-8")
 
     # Delta_tool summary (C4 cells)
-    md = ["# C4 tool-invocation disparity (Delta_tool) — claude-haiku-4-5", "",
+    md = ["# C4 tool-invocation disparity (Delta_tool) - claude-haiku-4-5", "",
           "Tool scaffold C4: the agent may invoke an info-gathering tool (request_more_info) before",
           "deciding. Delta_tool = disparity in tool-invocation rate across the 6 race x gender groups.",
           "Reference group white_male. 216 C4 decisions (36 profiles x 6 groups).", "",

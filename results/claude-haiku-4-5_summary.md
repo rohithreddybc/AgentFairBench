@@ -1,4 +1,4 @@
-# Pilot results — claude-haiku-4-5
+# Pilot results - claude-haiku-4-5
 
 Decisions returned: 648/648 (36 profiles x 6 groups x 3 scaffolds). Reference group: `white_male`. BCa bootstrap 95% CI (2000 resamples), seed 20260612.
 
@@ -14,7 +14,7 @@ Decisions returned: 648/648 (36 profiles x 6 groups x 3 scaffolds). Reference gr
 | triage | C2 | 0.0833 [0, 0.167] | 0.75 [0.375, 1.12] | 0.0833 | 12 |
 | triage | C3 | 0.333 [0.125, 0.5] | 0.833 [0.571, 1] | 0.167 | 12 |
 
-## P3 (amplification) check — mean MASD by scaffold (avg over domains)
+## P3 (amplification) check - mean MASD by scaffold (avg over domains)
 - C0: mean MASD = 2.97  (n cells=3)
 - C2: mean MASD = 3.42  (n cells=3)
 - C3: mean MASD = 4.5  (n cells=3)

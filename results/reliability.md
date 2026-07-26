@@ -1,4 +1,4 @@
-# Test-retest reliability — two independent claude-haiku-4-5 runs
+# Test-retest reliability - two independent claude-haiku-4-5 runs
 
 Same profiles, same demographic names, independent sampling (temperature not pinned).
 `retest_MAE` = mean |score_run1 - score_run2| for the SAME cell. This is the noise floor;

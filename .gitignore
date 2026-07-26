@@ -28,3 +28,12 @@ DECISIONS.md
 VERIFICATION_LOG.md
 CLAIM_PROVENANCE.md
 NOTES_FOR_AUTHORS.md
+
+# manuscript is under review at IEEE Access; not distributed in the public repo
+paper/
+scripts/assemble_paper.py
+scripts/build_pdf.py
+scripts/format_audit.py
+scripts/check_integrity.py
+scripts/humanize_audit.py
+scripts/auto_commit_push.py

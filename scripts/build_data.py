@@ -39,7 +39,7 @@ def main(src):
 
     # ---- references.bib ----
     bib = res["bib"]
-    out = ["% AgentFairBench references — all entries web-verified during Phase 1.",
+    out = ["% AgentFairBench references - all entries web-verified during Phase 1.",
            "% verified flag per record retained in references/bib_records.json\n"]
     for r in bib:
         idv = r.get("id", "")

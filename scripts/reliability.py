@@ -41,7 +41,7 @@ def main(p1, p2):
         if s1 is not None and s2 is not None:
             cell["score_abs"].append(abs(s1 - s2))
 
-    md = ["# Test-retest reliability — two independent claude-haiku-4-5 runs", "",
+    md = ["# Test-retest reliability - two independent claude-haiku-4-5 runs", "",
           "Same profiles, same demographic names, independent sampling (temperature not pinned).",
           "`retest_MAE` = mean |score_run1 - score_run2| for the SAME cell. This is the noise floor;",
           "cross-demographic MASD must EXCEED it to indicate a real demographic effect.", "",

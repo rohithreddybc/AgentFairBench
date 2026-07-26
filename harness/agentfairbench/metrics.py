@@ -3,9 +3,9 @@
 Operationalizes the Bias Conduction Framework (BCF) D2 component counterfactual
 disparity Delta_c at the action level. Three headline metrics:
 
-  CFR  — Counterfactual Flip Rate   (decision-level disparity)
-  MASD — Mean Absolute Score Diff   (score-level disparity; surfaces BCF P2 masking)
-  rate-gap — group action-rate disparity (advance/approve/escalate gap)
+  CFR  - Counterfactual Flip Rate   (decision-level disparity)
+  MASD - Mean Absolute Score Diff   (score-level disparity; surfaces BCF P2 masking)
+  rate-gap - group action-rate disparity (advance/approve/escalate gap)
 
 Statistics: BCa bootstrap 95% CIs (matched-set resampling), McNemar (paired
 binary), Wilcoxon signed-rank (paired score), Benjamini-Hochberg FDR, Cohen's h.

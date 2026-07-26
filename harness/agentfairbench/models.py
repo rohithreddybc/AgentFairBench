@@ -2,13 +2,13 @@
 
 A ModelAdapter turns a decision prompt + JSON schema into a structured dict.
 
-  * OpenAICompatibleAdapter — real external models via any OpenAI-compatible endpoint
+  * OpenAICompatibleAdapter - real external models via any OpenAI-compatible endpoint
     (OpenAI, Together, Groq, vLLM, litellm proxy, etc.). This is what adopters use to
     add GPT/Gemini/Llama/etc. to the leaderboard. Requires an API key.
-  * ReplayAdapter — replays decisions previously collected to a JSONL file. Used for
+  * ReplayAdapter - replays decisions previously collected to a JSONL file. Used for
     the paper's Claude-panel pilot (decisions gathered via the orchestration layer and
     dumped to JSONL), and for offline reproduction of any released run.
-  * MockAdapter — deterministic synthetic decisions for tests / dry runs (no API calls,
+  * MockAdapter - deterministic synthetic decisions for tests / dry runs (no API calls,
     no cost). Can inject a controllable demographic effect to exercise the metrics.
 
 No fabricated results ever enter the paper: pilot numbers come from real model calls

@@ -46,26 +46,26 @@ def main(src, model_override=None):
         json.dumps(rep, indent=2), encoding="utf-8")
 
     # markdown summary
-    md = [f"# Pilot results — {model_id}", "",
+    md = [f"# Pilot results - {model_id}", "",
           f"Decisions returned: {valid}/{len(recs)} "
           f"({len(profiles)} profiles x 6 groups x 3 scaffolds). Reference group: "
           f"`{rep['reference_group']}`. BCa bootstrap 95% CI (2000 resamples), seed 20260612.", ""]
     md.append("| Domain | Scaffold | CFR [95% CI] | MASD [95% CI] | rate disparity | n_sets |")
     md.append("|---|---|---|---|---|---|")
     def fmt(ci):
-        if ci.get("lo") is None: return "—"
+        if ci.get("lo") is None: return "-"
         return f"[{ci['lo']:.3g}, {ci['hi']:.3g}]"
     for key in sorted(rep["cells"]):
         c = rep["cells"][key]
         cfr = c["CFR"]["CFR"]; masd = c["MASD"]["MASD"]; disp = c["rate_disparity"]["disparity"]
         n = c["CFR"]["n_sets"]
-        cfrs = f"{cfr:.3g}" if cfr is not None else "—"
-        masds = f"{masd:.3g}" if masd is not None else "—"
-        disps = f"{disp:.3g}" if disp is not None else "—"
+        cfrs = f"{cfr:.3g}" if cfr is not None else "-"
+        masds = f"{masd:.3g}" if masd is not None else "-"
+        disps = f"{disp:.3g}" if disp is not None else "-"
         md.append(f"| {c['domain']} | {c['scaffold']} | {cfrs} {fmt(c['CFR_ci'])} | "
                   f"{masds} {fmt(c['MASD_ci'])} | {disps} | {n} |")
     # P3 amplification check: MASD by scaffold averaged across domains
-    md += ["", "## P3 (amplification) check — mean MASD by scaffold (avg over domains)"]
+    md += ["", "## P3 (amplification) check - mean MASD by scaffold (avg over domains)"]
     by_sc = {}
     for c in rep["cells"].values():
         if c["MASD"]["MASD"] is not None:

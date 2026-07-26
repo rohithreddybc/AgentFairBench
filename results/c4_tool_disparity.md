@@ -1,4 +1,4 @@
-# C4 tool-invocation disparity (Delta_tool) — claude-haiku-4-5
+# C4 tool-invocation disparity (Delta_tool) - claude-haiku-4-5
 
 Tool scaffold C4: the agent may invoke an info-gathering tool (request_more_info) before
 deciding. Delta_tool = disparity in tool-invocation rate across the 6 race x gender groups.
