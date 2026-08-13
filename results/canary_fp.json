@@ -1,0 +1,28 @@
+{
+  "token": "AGENTFAIRBENCH-CANARY-2f9c1a",
+  "fuzzy_threshold": 0.85,
+  "control_corpus": {
+    "n_strings": 324,
+    "total_chars": 48156,
+    "provenance": {
+      "public_split_profiles": 72,
+      "private_split_profiles": 72,
+      "name_probe_haiku": 90,
+      "name_probe_sonnet": 90
+    },
+    "description": "Every string is model-generated output produced by prompts that never contained the canary token. This is the same population the detector screens when a leaderboard entry is submitted."
+  },
+  "false_positive": {
+    "n": 324,
+    "flag_rate": 0.0,
+    "max_fuzzy_similarity": 0.3076923076923077,
+    "p99_fuzzy_similarity": 0.3076923076923077
+  },
+  "chance_occurrence": {
+    "token_length": 28,
+    "alphabet_size": 16,
+    "per_position_probability": 1.925929944387236e-34,
+    "corpus_size": 1000000000000.0,
+    "expected_occurrences": 1.9259299443872359e-22
+  }
+}

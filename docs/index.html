@@ -5,52 +5,389 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AgentFairBench Leaderboard</title>
 <style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:#1a1a1a;line-height:1.5}
-  .wrap{max-width:62rem;margin:0 auto;padding:2rem 1.25rem}
-  h1{margin:.2rem 0}
-  .sub{color:#555;margin:.2rem 0 1.2rem}
-  .note{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:.8rem 1rem;margin:1rem 0}
-  table{border-collapse:collapse;width:100%;margin:1rem 0}
-  th,td{border:1px solid #ddd;padding:.45rem .7rem;text-align:left}
-  th{background:#f3f4f6}
-  a{color:#0b5fff}
-  code{background:#f3f4f6;padding:.1rem .3rem;border-radius:4px}
-  .foot{color:#666;font-size:.9rem;margin-top:1.5rem}
+  :root{
+    --bg:#faf8f3;
+    --surface:#ffffff;
+    --ink:#1e2530;
+    --ink-soft:#4c5563;
+    --ink-faint:#7b8290;
+    --border:#e4e0d6;
+    --border-strong:#cfc9ba;
+    --accent:#2a5d8f;
+    --accent-soft:#e7eef5;
+    --banner-bg:#fbf3e2;
+    --banner-border:#dcc07d;
+    --code-bg:#f1efe6;
+    --verified-bg:#1f6f4a;
+    --verified-fg:#ffffff;
+    --trace-fg:#8a5c10;
+    --trace-bg:#fdf1d6;
+    --trace-border:#c98f1f;
+    --self-fg:#525c69;
+    --self-bg:#f4f3ef;
+    --self-border:#9aa3af;
+    --flag-bg:#fdece9;
+    --flag-border:#e3a99c;
+    --flag-fg:#8a3324;
+    --shadow:0 1px 2px rgba(30,37,48,.06),0 1px 1px rgba(30,37,48,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#14171c;
+      --surface:#1a1e25;
+      --ink:#e9e7e0;
+      --ink-soft:#b3b9c4;
+      --ink-faint:#7d8593;
+      --border:#2b313b;
+      --border-strong:#3a4250;
+      --accent:#82b4e0;
+      --accent-soft:#1e2c3a;
+      --banner-bg:#2a2311;
+      --banner-border:#6e5726;
+      --code-bg:#12151b;
+      --verified-bg:#2c8f61;
+      --verified-fg:#08120d;
+      --trace-fg:#e3b95a;
+      --trace-bg:#332911;
+      --trace-border:#9c7a2a;
+      --self-fg:#b7c0cc;
+      --self-bg:#20242c;
+      --self-border:#4a5361;
+      --flag-bg:#33201c;
+      --flag-border:#7a4335;
+      --flag-fg:#e5a894;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171c; --surface:#1a1e25; --ink:#e9e7e0; --ink-soft:#b3b9c4; --ink-faint:#7d8593;
+    --border:#2b313b; --border-strong:#3a4250; --accent:#82b4e0; --accent-soft:#1e2c3a;
+    --banner-bg:#2a2311; --banner-border:#6e5726; --code-bg:#12151b;
+    --verified-bg:#2c8f61; --verified-fg:#08120d;
+    --trace-fg:#e3b95a; --trace-bg:#332911; --trace-border:#9c7a2a;
+    --self-fg:#b7c0cc; --self-bg:#20242c; --self-border:#4a5361;
+    --flag-bg:#33201c; --flag-border:#7a4335; --flag-fg:#e5a894;
+  }
+  :root[data-theme="light"]{
+    --bg:#faf8f3; --surface:#ffffff; --ink:#1e2530; --ink-soft:#4c5563; --ink-faint:#7b8290;
+    --border:#e4e0d6; --border-strong:#cfc9ba; --accent:#2a5d8f; --accent-soft:#e7eef5;
+    --banner-bg:#fbf3e2; --banner-border:#dcc07d; --code-bg:#f1efe6;
+    --verified-bg:#1f6f4a; --verified-fg:#ffffff;
+    --trace-fg:#8a5c10; --trace-bg:#fdf1d6; --trace-border:#c98f1f;
+    --self-fg:#525c69; --self-bg:#f4f3ef; --self-border:#9aa3af;
+    --flag-bg:#fdece9; --flag-border:#e3a99c; --flag-fg:#8a3324;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+  h1,h2{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    color:var(--ink);
+    text-wrap:balance;
+    font-weight:600;
+  }
+  h1{margin:0 0 .2rem;font-size:2rem;letter-spacing:-.01em}
+  h2{margin:2.4rem 0 .8rem;font-size:1.25rem;border-top:1px solid var(--border);padding-top:1.6rem}
+  .wrap > h2:first-of-type{border-top:none;padding-top:0;margin-top:1.6rem}
+  .sub{color:var(--ink-soft);margin:.2rem 0 1.6rem;font-size:1.02rem;max-width:42rem}
+  p{max-width:42rem}
+  a{color:var(--accent)}
+  a:hover{text-decoration-thickness:2px}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    background:var(--code-bg);
+    padding:.12rem .35rem;
+    border-radius:4px;
+    font-size:.92em;
+  }
+
+  .banner{
+    background:var(--banner-bg);
+    border:1px solid var(--banner-border);
+    border-radius:10px;
+    padding:1.1rem 1.3rem;
+    margin:1.2rem 0 1.8rem;
+    box-shadow:var(--shadow);
+  }
+  .banner .kicker{
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--trace-fg);
+    margin:0 0 .5rem;
+  }
+  .banner p{margin:.5rem 0;max-width:none}
+  .banner p:first-of-type{margin-top:0}
+  .banner p:last-of-type{margin-bottom:0}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));
+    gap:.75rem;
+    margin:1.4rem 0 1.8rem;
+  }
+  .stat{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:.75rem .9rem;
+    box-shadow:var(--shadow);
+  }
+  .stat .n{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-variant-numeric:tabular-nums;
+    font-size:1.35rem;
+    font-weight:600;
+    color:var(--ink);
+    display:block;
+  }
+  .stat .l{
+    font-size:.74rem;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+
+  .legend{
+    display:grid;
+    gap:.6rem;
+    margin:1rem 0 1.6rem;
+  }
+  .legend-row{
+    display:grid;
+    grid-template-columns:9.5rem 1fr;
+    gap:.9rem;
+    align-items:start;
+    padding:.55rem 0;
+    border-bottom:1px solid var(--border);
+  }
+  .legend-row:last-child{border-bottom:none}
+  .legend-row .desc{font-size:.92rem;color:var(--ink-soft)}
+  .legend-row .desc b{color:var(--ink);font-weight:600}
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.32rem;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    padding:.28rem .55rem;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+  .badge .glyph{font-size:.85em}
+  .badge-verified{
+    background:var(--verified-bg);
+    color:var(--verified-fg);
+    border:1px solid var(--verified-bg);
+    border-radius:999px;
+  }
+  .badge-trace{
+    background:var(--trace-bg);
+    color:var(--trace-fg);
+    border:1.5px dashed var(--trace-border);
+    border-radius:999px 4px 999px 4px;
+  }
+  .badge-self{
+    background:var(--self-bg);
+    color:var(--self-fg);
+    border:1px dotted var(--self-border);
+    border-radius:3px;
+  }
+
+  .table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow)}
+  table{border-collapse:collapse;width:100%;min-width:40rem;background:var(--surface)}
+  caption{caption-side:top;text-align:left;color:var(--ink-soft);font-size:.85rem;padding:.7rem .9rem 0}
+  th,td{border-bottom:1px solid var(--border);padding:.55rem .8rem;text-align:left;vertical-align:top}
+  th{
+    background:var(--accent-soft);
+    color:var(--ink);
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-weight:700;
+  }
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  td.model{font-weight:600}
+
+  .flag{
+    background:var(--flag-bg);
+    border:1px solid var(--flag-border);
+    color:var(--flag-fg);
+    border-radius:8px;
+    padding:.85rem 1rem;
+    margin:1rem 0;
+    font-size:.92rem;
+  }
+  .flag b{color:inherit}
+
+  .foot{color:var(--ink-faint);font-size:.85rem;margin-top:2.2rem;border-top:1px solid var(--border);padding-top:1.2rem}
+  .links{margin:1.4rem 0}
+  .links a{margin-right:1.2rem}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>AgentFairBench Leaderboard</h1>
-  <p class="sub">Demographic disparity in the <b>actions</b> of LLM agents - hiring, lending, medical triage.
-  Lower CFR / MASD / rate-disparity = fairer; higher AFB-Score = fairer.</p>
 
-  <div class="note">
-    <b>Read this first.</b> The pilot's headline finding is methodological: comparing the six-group
-    score <i>spread</i> (MASD) to a two-run pairwise noise floor overstates disparity ~2.4&times; through
-    <b>statistic arity alone</b>. Against an <b>arity-matched</b> noise floor and an omnibus group test,
-    <code>claude-haiku-4-5</code> shows <b>no demographic effect above sampling noise</b>
-    (arity-matched MASD/noise ratio mean 0.83, below 1 in every cell; 0 of 120 pairwise and 0 of 9 omnibus
-    contrasts survive FDR). The raw per-cell numbers below are the instrument's output, not evidence of bias.
+  <h1>AgentFairBench Leaderboard</h1>
+  <p class="sub">Demographic disparity in the <b>actions</b> of LLM agents across hiring, lending,
+  and medical triage. Lower CFR / MASD / rate-disparity means fairer; higher AFB-Score means fairer -
+  but read the verification legend before trusting any row.</p>
+
+  <div class="banner">
+    <p class="kicker">Read this first</p>
+    <p>Two things are true here at once, and reading either one alone will mislead you. Across 5029
+    decisions on three model tiers (<code>haiku</code>, primary, k=3 replicate calls per condition;
+    <code>sonnet</code> and <code>fable</code>, secondary, k=2), <b>disparity magnitude sits at the
+    noise floor everywhere</b>, and yet <b>a small group effect is statistically detectable</b> in
+    three hiring cells once the sample is large enough to see it.</p>
+    <p>On magnitude: naively comparing the six-group score spread (MASD) against a two-replicate
+    pairwise noise floor overstates disparity by up to <b>2.25x</b> through statistic arity alone.
+    Against an <b>arity-matched</b> floor the observed-to-null ratio runs <b>0.63 to 1.00</b>
+    (median <b>0.83</b>), and <b>zero of 28</b> cells have a ratio confidence interval lying
+    entirely above 1.0.</p>
+    <p>On exchangeability: a within-set randomization test on the range of per-group means finds
+    <b>3 of 19</b> cells significant after Benjamini-Hochberg (smallest adjusted p = 0.0019). All
+    three are hiring, on the secondary tiers, and all three appear only at the expanded 24 matched
+    sets. The effect is real but small: the group variance component is under <b>0.12 percent</b> of
+    total variance. In every flagged cell the lowest-scoring group is <b>white-male-coded names</b>,
+    by 1 to 2.4 points on a 100-point scale, which is the opposite of the direction most readers
+    will assume.</p>
+    <p>So: no cell shows disparity large enough to clear sampling noise, and a consistent ordering is
+    nonetheless present in hiring for two of three tiers. Do not read this page as "no bias", and do
+    not read it as "bias found". Four secondary-model cells were excluded as incomplete because
+    collection was cut short by a rate limit, not selected after the fact.</p>
   </div>
 
-  <table>
-    <caption style="text-align:left;color:#555;margin-bottom:.4rem">
-      Pilot row run by the authors. External models enter via PR submission on the held-out private split.</caption>
-    <tr><th>#</th><th>Model</th><th>AFB-Score &#9650;</th><th>mean CFR</th><th>mean MASD</th>
-        <th>mean rate-disp</th><th>arity-matched MASD/noise</th><th>above noise?</th></tr>
-    <tr><td>1</td><td>claude-haiku-4-5</td><td>0.8612</td><td>0.157</td><td>3.63</td>
-        <td>0.120</td><td>0.83 (mean)</td><td>no</td></tr>
-  </table>
+  <div class="stats">
+    <div class="stat"><span class="n">28 / 4</span><span class="l">Cells reported / excluded</span></div>
+    <div class="stat"><span class="n">0.63-1.00</span><span class="l">Arity-matched ratio range</span></div>
+    <div class="stat"><span class="n">3 / 19</span><span class="l">BH-significant after correction</span></div>
+    <div class="stat"><span class="n">5029</span><span class="l">Decisions, 3 model tiers</span></div>
+  </div>
 
-  <p>
-    <a href="https://github.com/rohithreddybc/AgentFairBench">Code &amp; data (GitHub)</a> &nbsp;&middot;&nbsp;
+  <h2>Verification levels</h2>
+  <p>Every row below carries exactly one of three verification levels. They are not interchangeable,
+  and the difference matters for how much a row can be trusted against gaming.</p>
+  <div class="legend">
+    <div class="legend-row">
+      <span class="badge badge-verified"><span class="glyph">&#10003;</span>verified</span>
+      <span class="desc"><b>Maintainers re-ran the model</b> on the held-out private split themselves.
+      This is the only level with held-out gaming resistance: the submitter never saw the eval items.</span>
+    </div>
+    <div class="legend-row">
+      <span class="badge badge-trace">&#8776; trace-only</span>
+      <span class="desc"><b>Reproduced from submitted traces</b> - the maintainers replayed and
+      re-scored transcripts the submitter provided, but ran no held-out evaluation of their own.
+      <b>Trace-only entries carry no held-out gaming resistance</b>: a submitter who tuned to the
+      released items, or hand-picked favorable traces, would look identical to one who did not.</span>
+    </div>
+    <div class="legend-row">
+      <span class="badge badge-self">&#9675; self-reported</span>
+      <span class="desc"><b>Author-run pilot</b> - run by the AgentFairBench maintainers themselves
+      on the pilot/dev split, not independently re-run on the held-out private split. All three rows
+      below are self-reported for that reason: they are the authors' own instrument check, not a
+      verified submission.</span>
+    </div>
+  </div>
+
+  <h2>Results</h2>
+  <div class="table-scroll">
+    <table>
+      <caption>One row per model tier. Ratio range and BH-significant count are computed over that
+      tier's reported cells in <code>results/v11/analysis.json</code>. Full per-cell detail,
+      confidence intervals, and the excluded-cell log live in <code>results/v11/tables.md</code>.</caption>
+      <tr>
+        <th>Model</th><th>Verification</th>
+        <th class="num">Decisions</th><th class="num">Cells (reported/excl.)</th>
+        <th class="num">Replicate depth k</th><th class="num">Arity-matched ratio</th>
+        <th class="num">BH-significant</th><th>Flags</th>
+      </tr>
+      <tr>
+        <td class="model">fable</td>
+        <td><span class="badge badge-self">&#9675; self-reported</span></td>
+        <td class="num">383</td>
+        <td class="num">2 / 2</td>
+        <td class="num">k=2</td>
+        <td class="num">0.76-0.82</td>
+        <td class="num">0 / 2</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td class="model">haiku</td>
+        <td><span class="badge badge-self">&#9675; self-reported</span></td>
+        <td class="num">3024</td>
+        <td class="num">15 / 0</td>
+        <td class="num">k=2-3</td>
+        <td class="num">0.63-0.92</td>
+        <td class="num">0 / 15</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td class="model">sonnet</td>
+        <td><span class="badge badge-self">&#9675; self-reported</span></td>
+        <td class="num">326</td>
+        <td class="num">2 / 2</td>
+        <td class="num">k=2</td>
+        <td class="num">0.89-1.00</td>
+        <td class="num">0 / 2</td>
+        <td>4/5ths</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="flag">
+    <b>Four-fifths screening flag, sonnet / hiring / C0, at 24 matched sets.</b> Impact ratio
+    <b>0.774</b>, below the 0.80 conventional threshold. Unlike every other flag in this benchmark,
+    this one coincides with a randomization test that survives correction (adjusted p = 0.0019), so
+    the two channels agree.
+    <p>The direction needs stating plainly, because the number alone invites the wrong reading. The
+    selection rate is lowest for <b>white-male-coded names</b> (0.500) and highest for
+    black-female-coded names (0.646); the 0.774 ratio is white-male against that highest group. The
+    score channel points the same way. This is a disparity, and it runs opposite to the pattern the
+    four-fifths rule was written to detect.</p>
+    <p>Two limits on how far to take it. The magnitude is small, with a group variance component
+    under 0.12 percent of total variance, and the arity-matched ratio for this cell remains below
+    the noise floor. And a four-fifths ratio computed on 24 synthetic profiles is a screening
+    statistic on a purposive sample, not an adverse-impact finding about any deployed system.</p>
+  </div>
+
+  <h2>Excluded cells</h2>
+  <p><code>fable</code> / lending / C0, <code>fable</code> / lending / C3, <code>sonnet</code> /
+  lending / C0, and <code>sonnet</code> / lending / C3 are excluded from every table on this page.
+  Collection of these four cells was cut short by a rate limit; they are omitted rather than reported
+  on whichever profiles happened to finish, because scoring a partial, non-random subset would bias
+  exactly the disparity quantity being measured.</p>
+
+  <h2>Submit a model</h2>
+  <p>External models enter this leaderboard only through the PR-based submission protocol, never
+  estimated or fabricated. A submission with traces the maintainers can replay lands as
+  <span class="badge badge-trace">&#8776; trace-only</span>; a submission the maintainers re-run
+  themselves on the private split lands as <span class="badge badge-verified"><span class="glyph">&#10003;</span>verified</span>.
+  See the submission protocol for the full process.</p>
+
+  <div class="links">
+    <a href="https://github.com/rohithreddybc/AgentFairBench">Code &amp; data (GitHub)</a>
     <a href="https://github.com/rohithreddybc/AgentFairBench/blob/master/leaderboard/README.md">Submit a model</a>
-  </p>
+    <a href="https://github.com/rohithreddybc/AgentFairBench/blob/master/results/v11/tables.md">Full results tables</a>
+  </div>
 
-  <p class="foot">The pilot row is run by the maintainer; external models (GPT, Gemini, Llama, and
-  others) enter <b>only</b> through the transparent PR-based submission protocol on the held-out
-  private split, never estimated or fabricated. Each row pins the model id, harness version, and run
-  date. See the repository for confidence intervals and per-cell detail.</p>
+  <p class="foot">Each row pins the model tier, harness version, and run date in the repository.
+  See <code>results/v11/analysis.json</code> for the source data behind this page and
+  <code>leaderboard/results.json</code> for the machine-readable leaderboard this page is generated
+  alongside.</p>
 </div>
 </body>
 </html>

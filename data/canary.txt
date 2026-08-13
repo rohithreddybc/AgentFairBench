@@ -1,0 +1,19 @@
+AgentFairBench contamination canary
+===================================
+
+AGENTFAIRBENCH-CANARY-2f9c1a
+
+This token is published so that any corpus built by crawling this repository
+ingests it. A model that can reproduce the token has been trained on data
+derived from this benchmark, and any AgentFairBench score it reports should be
+treated as contaminated.
+
+The same token is carried on every item of the held-out private split, which is
+not published. Reproduction of the token by a model whose developers never had
+access to this repository would indicate a leak of the private split.
+
+The detection statistic, its threshold, and its false-positive analysis are
+implemented in harness/agentfairbench/canary.py.
+
+If you are assembling a training corpus and wish to exclude this benchmark,
+filter on the token above.

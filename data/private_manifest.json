@@ -1,0 +1,89 @@
+{
+  "split": "private_test",
+  "version": "1.1",
+  "created": "2026-08-07",
+  "n_profiles": 36,
+  "domains": [
+    "hiring",
+    "lending",
+    "triage"
+  ],
+  "strata": {
+    "hiring/borderline": 5,
+    "hiring/clear-no": 3,
+    "hiring/clear-yes": 4,
+    "lending/borderline": 5,
+    "lending/clear-no": 2,
+    "lending/clear-yes": 5,
+    "triage/borderline": 5,
+    "triage/clear-no": 3,
+    "triage/clear-yes": 4
+  },
+  "canary": "AGENTFAIRBENCH-CANARY-2f9c1a",
+  "commitment_sha256": "9cbba602f2971dcfc44e3d8003b75455e04ad8d77ff6d612e048e00a68c20718",
+  "item_hashes": {
+    "hire_p01": "b6d588b71dcbcf4b",
+    "hire_p02": "df925b94d29cf28e",
+    "hire_p03": "03def4523001c9bc",
+    "hire_p04": "e55ebca102494fe6",
+    "hire_p05": "03a475741e7a0ade",
+    "hire_p06": "42cf2701d201b228",
+    "hire_p07": "ccc1d3df9de8b2c2",
+    "hire_p08": "676f41a9bc7c4d08",
+    "hire_p09": "cddc5491fac1b03d",
+    "hire_p10": "77d6297cde94b749",
+    "hire_p11": "14d8a0d9cdee89b0",
+    "hire_p12": "ec95a57143f29dd1",
+    "loan_p01": "e05093366eab3306",
+    "loan_p02": "f1c948ca5765b62e",
+    "loan_p03": "bd1479a8ec3fae9d",
+    "loan_p04": "fadd26fa3141e550",
+    "loan_p05": "cc86ebb0f8249c72",
+    "loan_p06": "8582f67fb096c91b",
+    "loan_p07": "979ba6bef60ae3d1",
+    "loan_p08": "6c2781b3c58e6ad9",
+    "loan_p09": "f8478aa33f14ffd7",
+    "loan_p10": "aaa37cf9b3ca0b3d",
+    "loan_p11": "217cff57773ccafa",
+    "loan_p12": "6071faff04967cab",
+    "triage_p01": "f1a2928e4c713a8c",
+    "triage_p02": "7b5e4286d613dabf",
+    "triage_p03": "824f03fe4098ab3c",
+    "triage_p04": "46333c8a7cb50e5a",
+    "triage_p05": "97d31a29098080cd",
+    "triage_p06": "6c80f4355767bc95",
+    "triage_p07": "3d3fe4c0981fdc7f",
+    "triage_p08": "b12a7fdeeae8ea17",
+    "triage_p09": "4169115a75ff5a98",
+    "triage_p10": "a733d7b6b8642caf",
+    "triage_p11": "f7131837ff860ea1",
+    "triage_p12": "0bd58b13266b8bb0"
+  },
+  "construction_rules": [
+    "36 profiles, 12 per domain, strata matched to the public development split",
+    "one distinct subject per slot, disjoint from every public-split subject",
+    "body text 46 to 65 words, demographic-neutral: no names, no pronouns, no age, no location, no employer or school that carries a demographic signal",
+    "generated independently per slot, then validated for word count and for the absence of gendered or age markers",
+    "the contamination canary is carried on every item"
+  ],
+  "validation": {
+    "word_range_target": [
+      46,
+      65
+    ],
+    "word_range_realised": [
+      48,
+      69
+    ],
+    "neutrality_screen_flags": 1,
+    "flags_cleared_on_review": [
+      "hire_p02: ['year-old'] cleared, '40-year-old' describes a parking structure being retrofitted, not a person; no demographic signal"
+    ],
+    "hand_repairs": [
+      "loan_p08: 77 words, over the 65-word ceiling; trimmed without changing the financial facts or the intended difficulty"
+    ],
+    "unresolved_problems": []
+  },
+  "what_this_manifest_proves": "That the private split exists, when it was fixed, how many items it has, its domain and difficulty composition, and that the file has not been altered since. It does not reveal any item, and it is not a proof that the items are well constructed; that judgement needs the domain-expert review we have not obtained.",
+  "what_the_private_split_does_not_do": "It cannot be re-run against a proprietary model the maintainers cannot reach. Entries for such models are scored from submitted traces and are flagged trace-only, which carries no held-out gaming resistance."
+}

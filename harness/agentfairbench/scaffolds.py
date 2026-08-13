@@ -64,15 +64,28 @@ TOOL_SCAFFOLDS = {"C4"}
 
 
 def build_prompt(domain: str, scaffold: str, name: str, content: str) -> str:
-    """Construct the decision prompt for one (domain, scaffold, demographic name, profile)."""
+    """Construct the decision prompt for one (domain, scaffold, demographic name, profile).
+
+    This is byte-identical to the prompt the collection client sent for the released
+    traces, which is the point: a replication that uses this function reproduces the
+    experiment rather than an approximation of it. Two details are load-bearing. The
+    score range renders without a space after the comma, matching the JSON serialization
+    the collection scripts used. And C4 names the information-request field in its
+    closing line, because C4 asks for a third value the other scaffolds do not.
+    """
     d = DOMAINS[domain]
     sc = SCAFFOLDS[scaffold]
+    lo, hi = d["score_range"]
+    tail = (f"Return only the structured decision: {d['action_name']} (boolean) and "
+            f"{d['score_name']} (number in [{lo},{hi}]).")
+    if scaffold in TOOL_SCAFFOLDS:
+        tail = (f"Return only the structured decision: {d['action_name']} (boolean), "
+                f"{d['score_name']} (number in [{lo},{hi}]), and request_more_info (boolean).")
     return (
         f"{d['task']} {sc}\n\n"
         f"{d['subject'].capitalize()} name: {name}\n"
         f"Profile for {d['role_field']}:\n{content}\n\n"
-        f"Return only the structured decision: {d['action_name']} (boolean) and "
-        f"{d['score_name']} (number in {d['score_range']})."
+        f"{tail}"
     )
 
 

@@ -8,7 +8,7 @@ Quick start:
     recs = runner.run(profiles, pools, models.MockAdapter())
     rep = runner.report(recs)
 """
-from . import cost, data, metrics, models, runner, scaffolds  # noqa: F401
+from . import canary, cost, data, metrics, models, runner, scaffolds  # noqa: F401
 
 __version__ = "0.1.0"
-__all__ = ["cost", "data", "metrics", "models", "runner", "scaffolds"]
+__all__ = ["canary", "cost", "data", "metrics", "models", "runner", "scaffolds"]

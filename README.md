@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Data: CC-BY-4.0](https://img.shields.io/badge/data-CC--BY--4.0-green.svg)](data/DATASHEET.md)
-[![Tests](https://img.shields.io/badge/tests-14%20passing-brightgreen.svg)](harness/tests)
+[![Tests](https://img.shields.io/badge/tests-46%20passing-brightgreen.svg)](harness/tests)
 
 **Do LLM agents discriminate when they *act*?**
 
@@ -19,16 +19,29 @@ single-digit dollars per model.
 
 ## Read this before citing a number
 
-The pilot's headline finding is methodological and honest. Comparing the six-group score
-*spread* (MASD) to a two-run pairwise noise floor overstates disparity by roughly 2.4x through
-**statistic arity alone**: a six-sample range is mechanically larger than a two-sample difference
-even under pure noise. Once we compare like-for-like (an **arity-matched** six-group noise floor)
-and run an **omnibus group test**, the pilot model `claude-haiku-4-5` shows no demographic effect
-distinguishable from sampling noise (0 of 120 pairwise and 0 of 9 omnibus contrasts survive
-correction; arity-matched MASD-to-noise ratio mean 0.83, below 1 in every cell). A planted-bias
-test confirms the instrument does detect disparity when it is present. The contribution is the
-**instrument**, the **arity-matched-null methodology**, and the open artifacts to scale it, not a
-claim that this model is biased.
+Two results hold at once here, and quoting either alone will mislead. Across 5029 replicated
+decisions on three model tiers:
+
+**Disparity magnitude is at the noise floor, everywhere.** Comparing a six-group score
+*spread* (MASD) against a two-run pairwise noise floor overstates disparity by up to 2.25x
+through **statistic arity alone**, because a six-sample range is mechanically larger than a
+two-sample difference even under pure noise. Against an **arity-matched** floor built from
+real replicate calls, the observed-to-null ratio runs 0.63 to 1.00 with a median of 0.83, and
+**zero of 28** cells have a ratio interval lying above 1.0.
+
+**A small group effect is nonetheless detectable.** A within-set randomization test on the
+range of per-group means finds **3 of 19** cells significant after Benjamini-Hochberg
+(smallest adjusted p = 0.0019). All three are hiring, on the secondary tiers, and all three
+appear only once matched sets are doubled to 24. The effect is small, under **0.12 percent**
+of score variance, and in every flagged cell the lowest-scoring group is **white-male-coded
+names**, by 1 to 2.4 points on a 100-point scale. That is the opposite of the direction
+name-substitution audits were built to detect.
+
+The two are consistent: a shift too small to widen a spread past sampling noise can still be
+consistent enough across matched sets to break exchangeability. The contribution is the
+**instrument**, the **arity-matched-null methodology**, and the open artifacts to scale it.
+This is not a claim that any of these models is biased in a way that would matter in
+deployment, and it is not a general finding about LLM agents.
 
 ## What it measures
 
@@ -36,10 +49,10 @@ claim that this model is biased.
 |---|---|
 | **Domains** | hiring, lending, medical triage (each anchored to a real regulatory regime) |
 | **Design** | synthetic, demographic-neutral profiles times name-coded race-by-gender matched sets (Bertrand and Mullainathan lineage) |
-| **Scaffolds** | C0 direct, C2 chain-of-thought, C3 multi-agent deliberation, C4 tool-augmented (BCF entry loci) |
-| **Metrics** | CFR (flip rate), MASD (score spread), action-rate disparity, tool-invocation disparity |
+| **Scaffolds** | C0 direct, C2 elicited reasoning, C3 simulated panel, C4 information-request channel, C0L length-matched control |
+| **Metrics** | pairwise and unanimity CFR, MASD, action-rate disparity, four-fifths impact ratio, information-request disparity |
 | **Statistics** | BCa bootstrap CIs, McNemar and Wilcoxon, Benjamini and Hochberg FDR, arity-matched null, omnibus two-way ANOVA |
-| **Cost** | under 2 USD per model at the Haiku tier for the full 864-call public split |
+| **Cost** | about 2 USD per model at the Haiku tier for a full 1080-call run of the public split |
 
 ## Install and quick start
 
@@ -48,7 +61,7 @@ pip install -e harness
 # no-cost dry run on the mock adapter:
 python -m agentfairbench.cli run --profiles data/profiles/public_dev.jsonl \
   --names data/names/name_pools.json --adapter mock --out results/mock
-pytest harness/tests            # 14 tests, no API key needed (incl. a planted-bias sensitivity check)
+pytest harness/tests            # 46 tests, no API key needed (incl. a planted-bias sensitivity check)
 ```
 
 Score a real model via an OpenAI-compatible endpoint: see [`harness/README.md`](harness/README.md).
@@ -56,15 +69,15 @@ Score a real model via an OpenAI-compatible endpoint: see [`harness/README.md`](
 ## Reproduce the analysis
 
 ```bash
-python scripts/arity_null.py     # arity-matched null + omnibus group test -> results/arity_null.json
+python scripts/analyze_v11.py    # every reported number -> results/v11/analysis.json + tables.md
 python scripts/make_figures.py   # regenerate the result figures
 ```
 
-Released artifacts: the primary 864-decision raw traces (`results/raw/`), the computed metric
-reports (`results/*_report.json`), the profiles and name pools (`data/`), and the full harness and
-tests. The headline numbers regenerate from these. One disclosed exception: the test-retest run's
-per-decision scores were summarized to the per-cell noise floor but not committed as a separate
-trace file, so the arity-matched null is recomputed from the primary run's two-way residual.
+Released artifacts: the v1.1 replicated traces (`results/raw/v11/`, 5029 decisions) and the original run (`results/raw/`), the computed metric
+reports, the profiles and name pools (`data/`), and the full harness and tests. Every number in
+the analysis regenerates from these with one command. The v1.0 release carried a caveat that the
+second run's per-decision scores had not been committed; that no longer applies, because every
+replicate is now released at the decision level and the noise floor is computed from those files.
 
 ## Leaderboard and submitting a model
 
@@ -75,7 +88,7 @@ run on the held-out **private** split; they are never estimated or fabricated. S
 
 ## Splits and anti-gaming
 
-- **Public split** (`data/profiles/public_dev.jsonl`, 36 profiles, CC-BY-4.0): for development.
+- **Public split** (`data/profiles/public_dev.jsonl`, 48 profiles, CC-BY-4.0): for development.
 - **Private split:** held by the maintainer; leaderboard ranking is computed on it so scores cannot
   be tuned to released items. The public split embeds a contamination canary
   (`AGENTFAIRBENCH-CANARY-2f9c1a`) so training-set leakage is detectable.
@@ -83,10 +96,10 @@ run on the held-out **private** split; they are never estimated or fabricated. S
 ## Repo layout
 
 ```
-harness/        pip-installable evaluation harness (agentfairbench) + 14 tests
+harness/        pip-installable evaluation harness (agentfairbench) + 46 tests
 data/           public_dev.jsonl profiles, name pools, DATASHEET.md
 results/        raw decision traces, computed metric reports, arity-null output
-scripts/        arity_null.py, make_figures.py (analysis reproduction)
+scripts/        analyze_v11.py, make_figures.py (analysis reproduction)
 leaderboard/    submission protocol, results.json, static site
 PROTOCOL.md     frozen methodology
 ```

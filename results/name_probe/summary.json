@@ -1,0 +1,433 @@
+{
+  "haiku": {
+    "n_ratings": 90,
+    "n_names": 30,
+    "race_accuracy": 1.0,
+    "gender_accuracy": 0.9889,
+    "cell_accuracy": 0.9889,
+    "names_with_unanimous_raters": 29,
+    "ses_by_intended_race": {
+      "White": {
+        "Middle": 23,
+        "Unsure": 6,
+        "Upper": 1
+      },
+      "Black": {
+        "Lower": 6,
+        "Unsure": 18,
+        "Middle": 6
+      },
+      "Hispanic": {
+        "Unsure": 27,
+        "Lower": 1,
+        "Middle": 2
+      }
+    },
+    "pct_lower_ses_by_race": {
+      "White": 0.0,
+      "Black": 20.0,
+      "Hispanic": 3.3
+    },
+    "mean_familiarity_by_race": {
+      "White": 3.73,
+      "Black": 2.87,
+      "Hispanic": 4.17
+    },
+    "per_name": {
+      "Aisha Jefferson": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 3.0
+      },
+      "Allison Schroeder": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 3.67
+      },
+      "Anne Baker": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 3.33
+      },
+      "Brad Baker": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.0
+      },
+      "Carlos Morales": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 3.67
+      },
+      "Darnell Booker": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 2.67
+      },
+      "DeShawn Jackson": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Lower",
+        "familiarity": 3.0
+      },
+      "Ebony Robinson": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 3.0
+      },
+      "Emily Walsh": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.33
+      },
+      "Geoffrey Schroeder": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 3.0
+      },
+      "Greg Walsh": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 3.33
+      },
+      "Guadalupe Hernandez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 4.0
+      },
+      "Isabella Morales": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 4.0
+      },
+      "Jamal Washington": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 3.0
+      },
+      "Jay O'Brien": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 3.67
+      },
+      "Jill Sullivan": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 3.33
+      },
+      "Jose Rodriguez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 4.33
+      },
+      "Juan Hernandez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 4.67
+      },
+      "Kristen O'Brien": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.0
+      },
+      "Lakisha Washington": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 2.67
+      },
+      "Latoya Booker": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 2.67
+      },
+      "Leroy Jefferson": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 3.0
+      },
+      "Luis Gonzalez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 4.67
+      },
+      "Lupe Gonzalez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 3.67
+      },
+      "Maria Rodriguez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.67
+      },
+      "Matthew Sullivan": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.67
+      },
+      "Miguel Ramirez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 4.0
+      },
+      "Sofia Ramirez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 4.0
+      },
+      "Tamika Jackson": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Unsure",
+        "familiarity": 2.67
+      },
+      "Tyrone Robinson": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Unsure",
+        "familiarity": 3.0
+      }
+    }
+  },
+  "sonnet": {
+    "n_ratings": 90,
+    "n_names": 30,
+    "race_accuracy": 1.0,
+    "gender_accuracy": 0.9778,
+    "cell_accuracy": 0.9778,
+    "names_with_unanimous_raters": 29,
+    "ses_by_intended_race": {
+      "White": {
+        "Middle": 29,
+        "Upper": 1
+      },
+      "Black": {
+        "Middle": 2,
+        "Lower": 28
+      },
+      "Hispanic": {
+        "Lower": 6,
+        "Middle": 24
+      }
+    },
+    "pct_lower_ses_by_race": {
+      "White": 0.0,
+      "Black": 93.3,
+      "Hispanic": 20.0
+    },
+    "mean_familiarity_by_race": {
+      "White": 3.47,
+      "Black": 2.37,
+      "Hispanic": 4.1
+    },
+    "per_name": {
+      "Aisha Jefferson": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 2.33
+      },
+      "Allison Schroeder": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 2.67
+      },
+      "Anne Baker": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.0
+      },
+      "Brad Baker": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 3.67
+      },
+      "Carlos Morales": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.0
+      },
+      "Darnell Booker": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Lower",
+        "familiarity": 2.0
+      },
+      "DeShawn Jackson": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Lower",
+        "familiarity": 2.67
+      },
+      "Ebony Robinson": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 2.0
+      },
+      "Emily Walsh": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.33
+      },
+      "Geoffrey Schroeder": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 2.33
+      },
+      "Greg Walsh": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 3.0
+      },
+      "Guadalupe Hernandez": {
+        "race": "Hispanic",
+        "gender": "Unsure",
+        "ses": "Lower",
+        "familiarity": 3.0
+      },
+      "Isabella Morales": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.33
+      },
+      "Jamal Washington": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Lower",
+        "familiarity": 2.33
+      },
+      "Jay O'Brien": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 3.0
+      },
+      "Jill Sullivan": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.0
+      },
+      "Jose Rodriguez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 5.0
+      },
+      "Juan Hernandez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.33
+      },
+      "Kristen O'Brien": {
+        "race": "White",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 3.0
+      },
+      "Lakisha Washington": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 3.0
+      },
+      "Latoya Booker": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 2.0
+      },
+      "Leroy Jefferson": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Lower",
+        "familiarity": 2.0
+      },
+      "Luis Gonzalez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.67
+      },
+      "Lupe Gonzalez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 2.33
+      },
+      "Maria Rodriguez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 5.0
+      },
+      "Matthew Sullivan": {
+        "race": "White",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.67
+      },
+      "Miguel Ramirez": {
+        "race": "Hispanic",
+        "gender": "Male",
+        "ses": "Middle",
+        "familiarity": 4.33
+      },
+      "Sofia Ramirez": {
+        "race": "Hispanic",
+        "gender": "Female",
+        "ses": "Middle",
+        "familiarity": 4.0
+      },
+      "Tamika Jackson": {
+        "race": "Black",
+        "gender": "Female",
+        "ses": "Lower",
+        "familiarity": 3.0
+      },
+      "Tyrone Robinson": {
+        "race": "Black",
+        "gender": "Male",
+        "ses": "Lower",
+        "familiarity": 2.33
+      }
+    }
+  }
+}
