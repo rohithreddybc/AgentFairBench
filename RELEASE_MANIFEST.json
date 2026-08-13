@@ -1,6 +1,6 @@
 {
   "release": "v1.1.0",
-  "commit": "e03bf4bc4f21134b33a982df723f78fe1addd6fa",
+  "commit": "2392a859b47d10588d538eaa0316b7585509faff",
   "n_decisions": 5029,
   "models_evaluated": [
     "fable",
@@ -25,8 +25,8 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 1526361,
-  "n_files": 40,
+  "total_bytes": 1571921,
+  "n_files": 42,
   "files": {
     "public_split": [
       {
@@ -79,6 +79,11 @@
         "sha256": "4d348aea2b6a5976a7aec41e9ceb15cb1b1c9176882b797853b062d0561378a9"
       },
       {
+        "path": "results/raw/v11/gpt-oss-20b_r1.jsonl",
+        "bytes": 8358,
+        "sha256": "6d1e34ba1d15ee2775f9d5bbd77ee7c5a7a4d8d0e92ddf3a5520d8870ee28300"
+      },
+      {
         "path": "results/raw/v11/haiku_r2.jsonl",
         "bytes": 280470,
         "sha256": "549f794a03103e86b9678ac3e25cb39e0450ee81340716633dd175c3e682be8d"
@@ -87,6 +92,11 @@
         "path": "results/raw/v11/haiku_r3.jsonl",
         "bytes": 280467,
         "sha256": "f1cbc968e8a45b69c3aba22492b958d681e932ce286718bb2056a8fe8d572222"
+      },
+      {
+        "path": "results/raw/v11/llama31-8b_r1.jsonl",
+        "bytes": 36230,
+        "sha256": "fea7a8fbe21334e360ca26f21ebc62a31f515d0336be2740fdc1b9923b0707c2"
       },
       {
         "path": "results/raw/v11/sonnet_r1.jsonl",
@@ -102,8 +112,8 @@
     "analysis_outputs": [
       {
         "path": "results/v11/analysis.json",
-        "bytes": 124056,
-        "sha256": "c491381c8dac30559733ea79f84f66fbea8046db815b28dd240417b5334a7272"
+        "bytes": 124228,
+        "sha256": "6445519a408d43900c55fa3b182864c9270aa3a21d8030e5d953abe375e7807e"
       },
       {
         "path": "results/v11/tables.md",
@@ -129,8 +139,8 @@
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 22078,
-        "sha256": "5d90a11a3d97b892e9c4ff1a27b2b40832ef170647e2ed0bd7d85f47f09a0bd3"
+        "bytes": 22878,
+        "sha256": "8a65ae79a50cb460799d08e08f6a39850b230518cde82ddf31a6f4307c6f9c26"
       },
       {
         "path": "scripts/make_figures.py",

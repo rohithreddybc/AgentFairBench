@@ -10,7 +10,7 @@ trace it through a library.
 - Python: 3.11.7
 - NumPy: 1.26.4
 - Platform: Windows 10 (AMD64)
-- Commit: e03bf4bc4f21134b33a982df723f78fe1addd6fa
+- Commit: 2392a859b47d10588d538eaa0316b7585509faff
 
 ## Reproducing
 

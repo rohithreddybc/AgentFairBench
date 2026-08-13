@@ -75,7 +75,16 @@ def load_records():
             ))
             n += 1
         present.append({"file": rel, "model": model, "rep": rep, "n": n})
-    return recs, present, missing
+
+    # SOURCES is a whitelist, which is the right design: a file cannot enter the analysis
+    # by being dropped in a directory. The failure mode it creates is the opposite one, a
+    # trace file that exists and is quietly never read. Name those explicitly so an
+    # abandoned or half-finished collection cannot sit there looking like data.
+    listed = {ROOT / rel for rel, _, _ in SOURCES}
+    unlisted = sorted(str(p.relative_to(ROOT)).replace("\\", "/")
+                      for p in (ROOT / "results" / "raw").rglob("*.jsonl")
+                      if p not in listed)
+    return recs, present, missing, unlisted
 
 
 def profiles_in_split():
@@ -157,7 +166,11 @@ def per_stratum_rates(recs):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    recs, present, missing = load_records()
+    recs, present, missing, unlisted = load_records()
+    if unlisted:
+        print("NOT IN THE ANALYSIS (present on disk, not declared in SOURCES):")
+        for u in unlisted:
+            print("  ", u)
     if not recs:
         print("no traces found; nothing to analyze")
         return
@@ -317,6 +330,7 @@ def main():
         "n_decisions": len(recs),
         "files": present,
         "missing_files": missing,
+        "trace_files_not_in_analysis": unlisted,
         "replicate_depth": {"/".join(k): v for k, v in sorted(depth.items())},
         "arity_constants": {
             "d2_2": R.d2(2), "d2_6": R.d2(6), "inflation_6_groups": R.arity_inflation(6),

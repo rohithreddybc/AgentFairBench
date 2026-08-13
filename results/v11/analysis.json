@@ -50,6 +50,11 @@
     }
   ],
   "missing_files": [],
+  "trace_files_not_in_analysis": [
+    "results/raw/claude-haiku-4-5_raw.jsonl",
+    "results/raw/v11/gpt-oss-20b_r1.jsonl",
+    "results/raw/v11/llama31-8b_r1.jsonl"
+  ],
   "replicate_depth": {
     "hiring/C0/fable": {
       "k_min": 2,
