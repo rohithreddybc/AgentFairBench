@@ -1,0 +1,249 @@
+{
+  "release": "v1.1.0",
+  "commit": "e03bf4bc4f21134b33a982df723f78fe1addd6fa",
+  "n_decisions": 5029,
+  "models_evaluated": [
+    "fable",
+    "haiku",
+    "sonnet"
+  ],
+  "model_identifier_note": "The June 2026 run recorded the versioned string claude-haiku-4-5 on every call. The August 2026 replicates were collected through a client that accepts a model tier and does not return the resolved version, so those records carry the tier. We record what was observed rather than back-filling an identifier.",
+  "api_parameters_note": "The collection client exposes neither temperature nor a sampling seed, so decoding was not pinned and this is not recoverable from the traces. The released OpenAI-compatible adapter sends the identical prompt and schema and does expose temperature, defaulting to 0, for a decoding-pinned replication.",
+  "headline": {
+    "cells_reported": 28,
+    "cells_with_ratio_interval_above_one": 0,
+    "randomization_tests": 19,
+    "significant_after_bh": 3,
+    "significant_cells": [
+      "sonnet/hiring/C0+expanded",
+      "fable/hiring/C3+expanded",
+      "sonnet/hiring/C3+expanded"
+    ]
+  },
+  "regenerate": [
+    "python scripts/analyze_v11.py    # every reported number",
+    "python scripts/make_figures.py   # both figures",
+    "python -m pytest harness/tests -q"
+  ],
+  "total_bytes": 1526361,
+  "n_files": 40,
+  "files": {
+    "public_split": [
+      {
+        "path": "data/profiles/public_dev.jsonl",
+        "bytes": 25913,
+        "sha256": "e2c0cf189d589620ec5735b302a741b39d892cb7341cb4e8b51f1a130fee358d"
+      },
+      {
+        "path": "data/names/name_pools.json",
+        "bytes": 2865,
+        "sha256": "3e98312b1939f419c2d578950bafebc454aefdede18759c805f2b5b8bf387731"
+      },
+      {
+        "path": "data/canary.txt",
+        "bytes": 818,
+        "sha256": "419f62800e315f9035ded17a1f532105e637a858811c29625d08ec2dc5d4fbd7"
+      },
+      {
+        "path": "data/DATASHEET.md",
+        "bytes": 3060,
+        "sha256": "5b2453768cb780eff2da3f72285fa70e93abcba92150ffc0ed70bec185a6db5e"
+      }
+    ],
+    "private_split_commitment": [
+      {
+        "path": "data/private_manifest.json",
+        "bytes": 3549,
+        "sha256": "cc6322549740e2f62882cd29b7a39b81815894ad93be4b5803796cc9fe333c62"
+      }
+    ],
+    "raw_traces": [
+      {
+        "path": "results/raw/claude-haiku-4-5_full_raw.jsonl",
+        "bytes": 171409,
+        "sha256": "52ef7749bffff65ab51d1bb5d6f3e601f288cb995b537c793bb992e1405ec511"
+      },
+      {
+        "path": "results/raw/claude-haiku-4-5_raw.jsonl",
+        "bytes": 124020,
+        "sha256": "38c5a862d8b820bc0e23731e6d94d3e0cd2684600b9f91142062dcf550ac5a1f"
+      },
+      {
+        "path": "results/raw/v11/fable_r1.jsonl",
+        "bytes": 72003,
+        "sha256": "c0f21309b6e2133fbc4203550317b047bf6b7b1035c184bd00bb85e6d848f84b"
+      },
+      {
+        "path": "results/raw/v11/fable_r2.jsonl",
+        "bytes": 53935,
+        "sha256": "4d348aea2b6a5976a7aec41e9ceb15cb1b1c9176882b797853b062d0561378a9"
+      },
+      {
+        "path": "results/raw/v11/haiku_r2.jsonl",
+        "bytes": 280470,
+        "sha256": "549f794a03103e86b9678ac3e25cb39e0450ee81340716633dd175c3e682be8d"
+      },
+      {
+        "path": "results/raw/v11/haiku_r3.jsonl",
+        "bytes": 280467,
+        "sha256": "f1cbc968e8a45b69c3aba22492b958d681e932ce286718bb2056a8fe8d572222"
+      },
+      {
+        "path": "results/raw/v11/sonnet_r1.jsonl",
+        "bytes": 61499,
+        "sha256": "cd38a993d12b5b1f9eba7a985e12d0957a42d6ce77914109ce07b96cc520b230"
+      },
+      {
+        "path": "results/raw/v11/sonnet_r2.jsonl",
+        "bytes": 54228,
+        "sha256": "c301cfab20c6bced470d1f4ee9d60ccd7d3424318270eed326414f37edae67d4"
+      }
+    ],
+    "analysis_outputs": [
+      {
+        "path": "results/v11/analysis.json",
+        "bytes": 124056,
+        "sha256": "c491381c8dac30559733ea79f84f66fbea8046db815b28dd240417b5334a7272"
+      },
+      {
+        "path": "results/v11/tables.md",
+        "bytes": 7072,
+        "sha256": "34c5ae0520673f8aad7a41a3adba5c58e79d6866d65a0f5eefc1025673937b8c"
+      },
+      {
+        "path": "results/v11/profile_standards_check.md",
+        "bytes": 29184,
+        "sha256": "79a29dfc8a70172f72c72a9ddf2c9f634af3fb7f5e3d896a8e3f7a47a661a6c8"
+      },
+      {
+        "path": "results/canary_fp.json",
+        "bytes": 892,
+        "sha256": "5a867e7ffc30b92b313544f486ab647b4daf9e02d18662fbbf250756023a83a4"
+      },
+      {
+        "path": "results/name_probe/summary.json",
+        "bytes": 10231,
+        "sha256": "6f33ae66e5ba7dadba7081779ab2fead533668a537586e5ab8d448b6beaa4aa8"
+      }
+    ],
+    "analysis_scripts": [
+      {
+        "path": "scripts/analyze_v11.py",
+        "bytes": 22078,
+        "sha256": "5d90a11a3d97b892e9c4ff1a27b2b40832ef170647e2ed0bd7d85f47f09a0bd3"
+      },
+      {
+        "path": "scripts/make_figures.py",
+        "bytes": 7057,
+        "sha256": "26281503831e1df4c8fec4e3e6a937244c4167b5a0683c14a063e7acdc13bb9d"
+      },
+      {
+        "path": "scripts/finalize_private_split.py",
+        "bytes": 9240,
+        "sha256": "dbb8d52a00beba98091fe99a482688c7c2e1fdd519527fb30d75ccf1b350bd68"
+      },
+      {
+        "path": "scripts/expand_public_split.py",
+        "bytes": 4607,
+        "sha256": "800ed95042c2ca8d195c43e111bb4ad984eb582e12e454920ce77f1f05fcf6ae"
+      },
+      {
+        "path": "scripts/dump_protocol.py",
+        "bytes": 30435,
+        "sha256": "3a4ab0d33bd9481cc823c2be17bd6b093ad8de9b64d99a8bdc041d0d31c0d136"
+      }
+    ],
+    "harness": [
+      {
+        "path": "harness/agentfairbench/__init__.py",
+        "bytes": 652,
+        "sha256": "8308511a7760b7a1d85e82f100729a94fcb9192b1ba75c70875e63d5175d9a5c"
+      },
+      {
+        "path": "harness/agentfairbench/canary.py",
+        "bytes": 10353,
+        "sha256": "099f3093675dee9c79cc8b03bd8bcc79444a0ed23dda50335847405cd0e30f00"
+      },
+      {
+        "path": "harness/agentfairbench/cli.py",
+        "bytes": 4399,
+        "sha256": "326d44346397d8e7cd3b25956be40b856bd9b0a07fbba1072a8a04d4212b8243"
+      },
+      {
+        "path": "harness/agentfairbench/cost.py",
+        "bytes": 1824,
+        "sha256": "abeb9690e36e6500686f43abdb419f3c37ed5138fc32930b0d26f999d47705ca"
+      },
+      {
+        "path": "harness/agentfairbench/data.py",
+        "bytes": 2403,
+        "sha256": "7cbb6bcc961cdf3695985fdcc5e4851cd78ec2e846525dd8a7f0996039cc236c"
+      },
+      {
+        "path": "harness/agentfairbench/metrics.py",
+        "bytes": 16042,
+        "sha256": "037b2e46f5252062e1c102ddaac856548bc8b111a42ab9f77496201cd5361648"
+      },
+      {
+        "path": "harness/agentfairbench/models.py",
+        "bytes": 5119,
+        "sha256": "af16a8b04f1de30d39fc3b5ad3489fc78ef8cd5ce53830302777029a4b152929"
+      },
+      {
+        "path": "harness/agentfairbench/repeated.py",
+        "bytes": 23299,
+        "sha256": "251202c4ae850b1b5c9266d1275ee63dcd2b0be95aece4c3b40f2b57e9b723df"
+      },
+      {
+        "path": "harness/agentfairbench/runner.py",
+        "bytes": 4651,
+        "sha256": "57a28ea19baaece39cb6c5ee5a4e5c375ea36cf3e3ff2bdadb50acbccda9117f"
+      },
+      {
+        "path": "harness/agentfairbench/scaffolds.py",
+        "bytes": 5972,
+        "sha256": "2e521cf6d605b159d1bf7d9365a0ffc2f72d78f1c5efa13a3530f00eb95d187f"
+      },
+      {
+        "path": "harness/tests/test_canary.py",
+        "bytes": 2836,
+        "sha256": "51014eee101526a5e37987a42fa4ab45f48343493b28c0312cf06f3c256a3ff2"
+      },
+      {
+        "path": "harness/tests/test_metrics.py",
+        "bytes": 5816,
+        "sha256": "178993a6840ebd1e950af7c88218159b398c8ad37105de894f39d86ca7f9dae7"
+      },
+      {
+        "path": "harness/tests/test_repeated.py",
+        "bytes": 11961,
+        "sha256": "8300b196bc27eb12a4e1dedd3ee3df972600d80198c1fa3e7aff6760f8beba35"
+      }
+    ],
+    "protocol": [
+      {
+        "path": "PROTOCOL_APPENDIX.md",
+        "bytes": 29609,
+        "sha256": "5e6d5fc8efffdd3f9deb6cbfe6aa0b01665dd7359fd1ca02396d1687454c1a12"
+      },
+      {
+        "path": "PROTOCOL.md",
+        "bytes": 7645,
+        "sha256": "0a8ad520aa0aaed464d2df6b20d442a4fd509087d3b636a8cf4ee00347d717cb"
+      }
+    ],
+    "leaderboard": [
+      {
+        "path": "leaderboard/results.json",
+        "bytes": 4814,
+        "sha256": "f24c0c6c2a476cade761811cae7284421dc5a9048eb4e156626dc2ce50c63b7c"
+      },
+      {
+        "path": "leaderboard/build_leaderboard.py",
+        "bytes": 9878,
+        "sha256": "b410a9147f434af4831a6187086b2e10d3ad7a6f8fbdd01984b5d21e2d34a905"
+      }
+    ]
+  },
+  "missing": []
+}
