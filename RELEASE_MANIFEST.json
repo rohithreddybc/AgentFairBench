@@ -1,6 +1,6 @@
 {
   "release": "v1.1.0",
-  "commit": "2392a859b47d10588d538eaa0316b7585509faff",
+  "commit": "b6cc5c2ea3761f1d354460aed04e5902a2e7ee26",
   "n_decisions": 5029,
   "models_evaluated": [
     "fable",
@@ -25,8 +25,8 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 1571921,
-  "n_files": 42,
+  "total_bytes": 1701493,
+  "n_files": 44,
   "files": {
     "public_split": [
       {
@@ -80,8 +80,13 @@
       },
       {
         "path": "results/raw/v11/gpt-oss-20b_r1.jsonl",
-        "bytes": 8358,
-        "sha256": "6d1e34ba1d15ee2775f9d5bbd77ee7c5a7a4d8d0e92ddf3a5520d8870ee28300"
+        "bytes": 55572,
+        "sha256": "1abc7aeab9385913dff9a8b0eebedf00a9ca6ced0086ad7c2a9164afbe2356ce"
+      },
+      {
+        "path": "results/raw/v11/gpt-oss-20b_r2.jsonl",
+        "bytes": 17733,
+        "sha256": "357291f3170235269fdfa76bc251ed6b441a468925418f01a65e762dcdeb33cc"
       },
       {
         "path": "results/raw/v11/haiku_r2.jsonl",
@@ -95,8 +100,13 @@
       },
       {
         "path": "results/raw/v11/llama31-8b_r1.jsonl",
-        "bytes": 36230,
-        "sha256": "fea7a8fbe21334e360ca26f21ebc62a31f515d0336be2740fdc1b9923b0707c2"
+        "bytes": 55681,
+        "sha256": "7de9dd4c2ab68d45569654cb93867debadec088d66821bcc56386855cb39d99d"
+      },
+      {
+        "path": "results/raw/v11/llama31-8b_r2.jsonl",
+        "bytes": 45174,
+        "sha256": "73b2525fe2d4151d9b07105beef804674fd21686439495e6ef9445b07ff74359"
       },
       {
         "path": "results/raw/v11/sonnet_r1.jsonl",
