@@ -1,6 +1,6 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "48fa3b01d0d2b3d266a050fee29f64518db0f24b",
+  "commit_at_generation": "3622a5b67e44daadab3fef5b21591bb1783d5d02",
   "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
   "n_decisions": 6469,
   "models_evaluated": [
