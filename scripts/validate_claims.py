@@ -235,18 +235,193 @@ def _c16(text):
 @check("survivor count is not contradicted anywhere")
 def _c17(text):
     """Presence checks cannot catch a contradiction: the manuscript can say "four survive"
-    in one section and "three surviving cells" in another and satisfy both. This looks for
-    the wrong count stated as a fact about survivors."""
+    in one section and "three surviving cells" in another and satisfy both.
+
+    The earlier version of this check listed the exact phrasings seen so far, and missed
+    "three cells whose randomization test survives" because that wording was new. This
+    scans structurally instead: any number word within a short window of a survivorship
+    verb must be the right number.
+    """
     n = MULT["n_bh_below_0.05"]
-    words = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
-    wrong = [w for k, w in words.items() if k != n]
-    phrases = []
-    for w in wrong:
-        phrases += [f"{w} surviving cell", f"{w} survive", f"{w} hiring cells\nshow",
-                    f"{w} significant cells", f"{w} cells survive",
-                    f"{w} hiring cells nonetheless"]
-    hits = [ph for ph in phrases if ph.replace("\\n", "\n") in text]
+    words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+             "seven": 7, "eight": 8}
+    flat = " ".join(text.split()).lower()
+    verb = r"(?:survive[sd]?|surviving|significant after|clear(?:s)? correction)"
+    pat = re.compile(r"\b(" + "|".join(words) + r")\b((?:\W+\w+){0,9}?\W+)" + verb)
+    right = [w for w, v in words.items() if v == n]
+    hits = []
+    for m in pat.finditer(flat):
+        span = m.group(0)
+        if "cell" not in span:
+            continue
+        # A span may legitimately carry more than one count, as in "one of the four cells
+        # whose randomization test survives". It is wrong only when the correct count is
+        # absent from the span entirely.
+        if not any(re.search(r"\b" + w + r"\b", span) for w in right):
+            hits.append(span)
     return not hits, f"{n} cells survive; contradicted by: {hits}"
+
+
+@check("leave-one-name-out figures match the analysis")
+def _c25(text):
+    """The prose quoted 28 names and a 1.7-point swing; the analysis has 30 names and a
+    3.29-point swing. Both are read from the data here."""
+    lo = A.get("leave_one_name_out") or {}
+    if not lo:
+        return True, "no leave-one-name-out block in the analysis"
+    hir = {k: v for k, v in lo.items() if "/hiring/" in k}
+    other = {k: v for k, v in lo.items() if "/hiring/" not in k}
+    names = {v["n_names"] for v in hir.values()}
+    miss = []
+    if len(names) == 1 and str(names.pop()) not in text:
+        miss.append("name count")
+    if hir:
+        top = max(v["range"] for v in hir.values())
+        if f"{top:.2f}" not in text:
+            miss.append(f"max hiring swing {top:.2f}")
+    if other:
+        top2 = max(v["range"] for v in other.values())
+        if f"{top2:.2f}" not in text:
+            miss.append(f"max non-hiring swing {top2:.2f}")
+    return not miss, f"leave-one-name-out; missing {miss}"
+
+
+@check("length-control ratios match the analysis")
+def _c26(text):
+    """The C0L triple in the prose matched no released cell for two revisions."""
+    miss = []
+    for name, cell in sorted(PER.items()):
+        if "/C0L" not in name:
+            continue
+        am = cell.get("arity_matched") or {}
+        r = am.get("ratio")
+        if r is None or am.get("floor_degenerate"):
+            continue
+        if f"{r:.2f}" not in text:
+            miss.append(f"{name} {r:.2f}")
+    return not miss, f"C0L ratios absent from the prose: {miss}"
+
+
+@check("CFR range endpoints match the analysis")
+def _c27(text):
+    """The prose put the floor at 0.083 while the results table printed 0.000 twice."""
+    vals = []
+    for cell in PER.values():
+        c = cell.get("cfr_pairwise_vs_reference") or {}
+        if c:
+            vals.append(max(c.values()))
+    if not vals:
+        return True, "no CFR block"
+    lo, hi = min(vals), max(vals)
+    pat = re.compile(r"CFR against the reference group runs from \$([0-9.]+)\$ to "
+                     r"\$([0-9.]+)\$")
+    # Every occurrence, not the first: a stale sentence elsewhere in the manuscript is
+    # exactly the drift this is meant to catch.
+    wrong = [f"{m.group(1)} to {m.group(2)}" for m in pat.finditer(" ".join(text.split()))
+             if abs(float(m.group(1)) - lo) > 5e-4 or abs(float(m.group(2)) - hi) > 5e-4]
+    return not wrong, (f"CFR range is {lo:.3f} to {hi:.3f}; prose claims {wrong}")
+
+
+@check("no claim that a value is on a trace row unless it is")
+def _c28(text):
+    """The repro section claimed the profile hash was "recorded in the released JSONL
+    beside every raw decision". It is not: decision rows carry the profile identifier.
+    This reads a real trace row and refuses any per-row claim it cannot support."""
+    raw = ROOT / "results" / "raw" / "v11"
+    files = sorted(raw.glob("*.jsonl")) if raw.exists() else []
+    if not files:
+        return True, "no traces on disk to check against"
+    with open(files[0], encoding="utf-8") as fh:
+        row = json.loads(fh.readline())
+    flat = " ".join(text.split())
+    bad = []
+    if "content_sha256" not in row and "hash" not in row:
+        for phrase in ("beside every raw decision", "on every decision row",
+                       "recorded on every row"):
+            for m in re.finditer(re.escape(phrase), flat):
+                # A negative claim about what is not on a row is the correct thing to say,
+                # so only affirmative ones are defects.
+                lead = flat[max(0, m.start() - 60):m.start()].lower()
+                if "rather than" in lead or "not " in lead or "never" in lead:
+                    continue
+                bad.append(phrase)
+    return not bad, f"row keys are {sorted(row)}; unsupported per-row claims: {bad}"
+
+
+@check("stable-floor median is stated to two decimals correctly")
+def _c29(text):
+    r = sorted(v["arity_matched"]["ratio"] for v in PER.values()
+               if isinstance(v.get("arity_matched"), dict)
+               and v["arity_matched"].get("ratio") is not None
+               and not v["arity_matched"].get("floor_degenerate"))
+    n = len(r)
+    med = r[n // 2] if n % 2 else (r[n // 2 - 1] + r[n // 2]) / 2.0
+    flat = " ".join(text.split())
+    # "a median of 212" is the token-budget median; only ratio medians are in scope.
+    claims = set()
+    for m in re.finditer(r"median of \$?([0-9.]+)", flat):
+        ctx = flat[max(0, m.start() - 220):m.end() + 60].lower()
+        if "ratio" in ctx or "stable-floor" in ctx:
+            claims.add(m.group(1))
+    wrong = [c for c in claims if abs(float(c) - med) > 5e-3]
+    return not wrong, f"stable-floor median {med:.4f}; prose claims {sorted(claims)}"
+
+
+@check("per-set noise scale spread matches the analysis")
+def _c30(text):
+    cvs = [(v["arity_matched"] or {}).get("set_noise_sd_cv") for v in PER.values()
+           if isinstance(v.get("arity_matched"), dict)
+           and v["arity_matched"].get("ratio") is not None
+           and not v["arity_matched"].get("floor_degenerate")]
+    cvs = [c for c in cvs if c is not None]
+    if not cvs:
+        return True, "no set_noise_sd_cv recorded"
+    flat = " ".join(text.split())
+    m = re.search(r"coefficient of variation from \$([0-9.]+)\$ to \$([0-9.]+)\$", flat)
+    if not m:
+        return True, "no coefficient-of-variation sentence to check"
+    ok = (abs(float(m.group(1)) - min(cvs)) < 0.01
+          and abs(float(m.group(2)) - max(cvs)) < 0.01)
+    return ok, (f"stable-floor cv runs {min(cvs):.2f} to {max(cvs):.2f}; prose says "
+                f"{m.group(1)} to {m.group(2)}")
+
+
+@check("release manifest headline matches the analysis")
+def _c31(text):
+    p = ROOT / "RELEASE_MANIFEST.json"
+    if not p.exists():
+        return True, "no release manifest yet"
+    h = json.loads(p.read_text(encoding="utf-8")).get("headline") or {}
+    want = 0
+    for cell in PER.values():
+        am = cell.get("arity_matched") or {}
+        if am.get("ratio") is None or am.get("floor_degenerate"):
+            continue
+        ci = am.get("ratio_ci") or []
+        if len(ci) == 2 and ci[0] is not None and ci[0] > 1.0:
+            want += 1
+    bad = []
+    if h.get("cells_with_ratio_interval_above_one") != want:
+        bad.append(f"ci_above_one {h.get('cells_with_ratio_interval_above_one')} != {want}")
+    if h.get("significant_after_bh") != MULT["n_bh_below_0.05"]:
+        bad.append("survivor count")
+    return not bad, f"manifest headline: {bad or 'consistent'}"
+
+
+@check("released power table renders rows")
+def _c32(text):
+    p = ROOT / "results" / "v11" / "tables.md"
+    if not p.exists():
+        return True, "no tables.md"
+    t = p.read_text(encoding="utf-8")
+    i = t.find("Power of the randomization test")
+    if i < 0:
+        return False, "power section missing from tables.md"
+    seg = t[i:i + 2500]
+    rows = [ln for ln in seg.splitlines()
+            if ln.startswith("| ") and "---" not in ln and "Matched sets" not in ln]
+    return (len(rows) >= 6 and "None" not in seg,
+            f"power table has {len(rows)} data rows")
 
 
 @check("abstract length within IEEE Access guidance")

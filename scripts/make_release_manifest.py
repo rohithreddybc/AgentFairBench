@@ -68,6 +68,23 @@ def git(*args):
         return None
 
 
+
+def _n_ci_above_one(analysis):
+    """Stable-floor cells whose ratio interval lies entirely above one.
+
+    Read from the analysis rather than written by hand, so the manifest cannot drift
+    away from the paper's Finding 2 the way a literal would.
+    """
+    n = 0
+    for cell in (analysis.get("per_cell") or {}).values():
+        am = cell.get("arity_matched") or {}
+        if am.get("ratio") is None or am.get("floor_degenerate"):
+            continue
+        ci = am.get("ratio_ci") or []
+        if len(ci) == 2 and ci[0] is not None and ci[0] > 1.0:
+            n += 1
+    return n
+
 def main():
     files, missing, total = {}, [], 0
     for group, paths in GROUPS.items():
@@ -107,7 +124,10 @@ def main():
         "headline": {
             "cells_reported": len([1 for v in analysis.get("per_cell", {}).values()
                                    if v.get("arity_matched", {}).get("ratio")]),
-            "cells_with_ratio_interval_above_one": 0,
+            "cells_with_ratio_interval_above_one": _n_ci_above_one(analysis),
+            "cells_with_ratio_interval_above_one_note": (
+                "Counted over the stable-floor cells. Cells whose noise floor is "
+                "degenerate are excluded, because their ratio is uninformative."),
             "randomization_tests": mult.get("n_tests"),
             "significant_after_bh": mult.get("n_bh_below_0.05"),
             "significant_cells": mult.get("survivors"),

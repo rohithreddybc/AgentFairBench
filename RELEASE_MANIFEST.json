@@ -1,6 +1,6 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "3622a5b67e44daadab3fef5b21591bb1783d5d02",
+  "commit_at_generation": "50422b7e3dc6260abbb4be03b780e8c7f9721820",
   "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
   "n_decisions": 6469,
   "models_evaluated": [
@@ -13,7 +13,8 @@
   "api_parameters_note": "The collection client exposes neither temperature nor a sampling seed, so decoding was not pinned and this is not recoverable from the traces. The released OpenAI-compatible adapter sends the identical prompt and schema and does expose temperature, defaulting to 0, for a decoding-pinned replication.",
   "headline": {
     "cells_reported": 34,
-    "cells_with_ratio_interval_above_one": 0,
+    "cells_with_ratio_interval_above_one": 1,
+    "cells_with_ratio_interval_above_one_note": "Counted over the stable-floor cells. Cells whose noise floor is degenerate are excluded, because their ratio is uninformative.",
     "randomization_tests": 24,
     "significant_after_bh": 4,
     "significant_cells": [
@@ -28,7 +29,7 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 2146934,
+  "total_bytes": 2154889,
   "n_files": 60,
   "files": {
     "public_split": [
@@ -135,8 +136,8 @@
       },
       {
         "path": "results/v11/tables.md",
-        "bytes": 8445,
-        "sha256": "5799940c980df25a16da348a516d109dc2e081a8e9326191fd1c62c89355801f"
+        "bytes": 9141,
+        "sha256": "47e1298044d3a1446914326ef873bf13571c1f506f21ac636796f6aa1d708ad1"
       },
       {
         "path": "results/v11/profile_standards_check.md",
@@ -157,8 +158,8 @@
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 32912,
-        "sha256": "45a90677d1e35c2f3365cfe13c17e926e3f13a5228c0ed25a9fc3936043e5afa"
+        "bytes": 33492,
+        "sha256": "b05ef1dcce52bf0ecec1323ed09c463cbba2b76ca24a55a65099d30de677e463"
       },
       {
         "path": "scripts/make_figures.py",
@@ -197,8 +198,8 @@
       },
       {
         "path": "scripts/validate_claims.py",
-        "bytes": 14842,
-        "sha256": "298e3bc8965449f921c2fb8c51160ca58a82cb7c4c645808cd3e152771ab32ac"
+        "bytes": 21521,
+        "sha256": "bcc82dfcd85feafa1627b00a428e9d443b988e5bb0dcfdac8362145aec28efa6"
       }
     ],
     "name_perception_panel": [
@@ -326,7 +327,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "946e927ab8c4d5a8b7e18f995b8d3fdc5ce8ecaa84b8ccde720e582fd9081225"
+        "sha256": "2cad6958769dcf7b8956c79db5e3725cf9a04d4fb89c5c1f8b340bed8fabb1d3"
       }
     ],
     "model_provenance": [

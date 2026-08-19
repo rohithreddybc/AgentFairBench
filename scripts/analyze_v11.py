@@ -647,20 +647,32 @@ def write_tables(out):
             f"{(vc.get('group_to_noise_sd') or 0.0):.3f} |")
 
     p = out.get("power") or {}
-    if p:
+    depths = p.get("by_replicate_depth") or {}
+    if depths:
         add("\n## Power of the randomization test\n")
         add("Simulated from the measured residual variability, so these refer to the "
-            "procedure this paper runs rather than to a normal-theory approximation.\n")
-        ns = sorted({int(k.split(",")[0][2:]) for k in p if k.startswith("n=")})
-        ds = sorted({float(k.split("d=")[1]) for k in p if k.startswith("n=")})
-        add("| Matched sets n | " + " | ".join(f"d = {d}" for d in ds) + " |")
-        add("|---" * (len(ds) + 1) + "|")
-        for n in ns:
-            add(f"| {n} | " + " | ".join(f"{p.get(f'n={n},d={d}', float('nan')):.2f}"
-                                         for d in ds) + " |")
-        add(f"\nMinimum detectable effect at 80% power with n = 36: "
-            f"**d = {p.get('mde_at_n36')}**. At the pilot's n = 12 no tested effect size "
-            f"reaches 80% power, which is the honest statement of what that design buys.")
+            "procedure this paper runs rather than to a normal-theory approximation. "
+            "Reported separately at each replicate depth m, because power depends on how "
+            "much the per-set mean is averaged down, and the domains differ in depth.\n")
+        for m in sorted(depths):
+            g = depths[m]
+            keys = [k for k in g if k.startswith("n=")]
+            ns = sorted({int(k.split(",")[0][2:]) for k in keys})
+            ds = sorted({float(k.split("d=")[1]) for k in keys})
+            add(f"\n**Replicate depth {m}**\n")
+            add("| Matched sets n | " + " | ".join(f"d = {d}" for d in ds) + " |")
+            add("|---" * (len(ds) + 1) + "|")
+            for n in ns:
+                add(f"| {n} | " + " | ".join(
+                    f"{g[f'n={n},d={d}']:.2f}" if f"n={n},d={d}" in g else "--"
+                    for d in ds) + " |")
+            mde12, mde24 = g.get("mde_at_n12"), g.get("mde_at_n24")
+            add("")
+            add(f"Minimum detectable effect at 80% power, replicate depth {m}: "
+                + (f"**d = {mde12}** at n = 12" if mde12 is not None
+                   else "no tested effect size reaches it at n = 12")
+                + (f", **d = {mde24}** at n = 24." if mde24 is not None
+                   else ", and none at n = 24 either."))
 
     ex = out.get("excluded_incomplete_cells") or {}
     if ex:
