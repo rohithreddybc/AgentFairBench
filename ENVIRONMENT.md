@@ -10,13 +10,13 @@ trace it through a library.
 - Python: 3.11.7
 - NumPy: 1.26.4
 - Platform: Windows 10 (AMD64)
-- Commit: 54b93e7a2356895821434e90740a7a5c2dfce4cd
+- Commit: f9de66a8149a174406fbec3b27f9596eae214387
 
 ## Reproducing
 
 ```bash
 pip install -e harness
-python -m pytest harness/tests -q     # 46 tests, no API key needed
+python -m pytest harness/tests -q     # 54 tests, no API key needed
 python scripts/analyze_v11.py         # regenerates every reported number
 python scripts/make_figures.py        # regenerates both figures
 ```

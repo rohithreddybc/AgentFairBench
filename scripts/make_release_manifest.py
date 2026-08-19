@@ -142,7 +142,7 @@ def main():
         "## Reproducing\n\n"
         "```bash\n"
         "pip install -e harness\n"
-        "python -m pytest harness/tests -q     # 46 tests, no API key needed\n"
+        "python -m pytest harness/tests -q     # 54 tests, no API key needed\n"
         "python scripts/analyze_v11.py         # regenerates every reported number\n"
         "python scripts/make_figures.py        # regenerates both figures\n"
         "```\n\n"
