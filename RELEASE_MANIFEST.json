@@ -1,6 +1,6 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "50422b7e3dc6260abbb4be03b780e8c7f9721820",
+  "commit_at_generation": "41bd5ea11f3b86f07466da49ae13bb8831dc1e14",
   "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
   "n_decisions": 6469,
   "models_evaluated": [
@@ -29,7 +29,7 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 2154889,
+  "total_bytes": 2155939,
   "n_files": 60,
   "files": {
     "public_split": [
@@ -198,8 +198,8 @@
       },
       {
         "path": "scripts/validate_claims.py",
-        "bytes": 21521,
-        "sha256": "bcc82dfcd85feafa1627b00a428e9d443b988e5bb0dcfdac8362145aec28efa6"
+        "bytes": 22571,
+        "sha256": "3363905e49241940cc5ec1154cd7e166812aad599d2fe0f2a17dcb627e0ef1be"
       }
     ],
     "name_perception_panel": [
@@ -327,7 +327,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "2cad6958769dcf7b8956c79db5e3725cf9a04d4fb89c5c1f8b340bed8fabb1d3"
+        "sha256": "01d2aca20e89fec2242614440c3eaec636494a3fb697961cd95280ed104b20a9"
       }
     ],
     "model_provenance": [
