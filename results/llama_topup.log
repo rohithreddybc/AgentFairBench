@@ -1,0 +1,10 @@
+model llama3.1:8b-instruct-q4_K_M -> alias llama31-8b
+  digest 46e0c10c039e  8.0B Q4_K_M  temperature 0.0
+
+replicate 1: 285 on disk, 3 to collect
+    3/3  ok=3 fail=0  0.14/s  eta 0.0 min
+
+replicate 2: 267 on disk, 21 to collect
+    21/21  ok=21 fail=0  0.27/s  eta 0.0 min
+
+total ok 24, failed 0 -> C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\results\raw\v11

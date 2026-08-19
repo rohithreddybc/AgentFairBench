@@ -38,7 +38,15 @@ SOURCES = [
     ("results/raw/v11/sonnet_r2.jsonl", "sonnet", 2),
     ("results/raw/v11/fable_r1.jsonl", "fable", 1),
     ("results/raw/v11/fable_r2.jsonl", "fable", 2),
+    # Cross-vendor, open weights, served locally with the temperature pinned at 0 and the
+    # manifest digest recorded. This is the only model in the panel a third party can
+    # re-run bit-for-bit, which is why it is the only one eligible for the leaderboard's
+    # verified tier rather than trace-only.
+    ("results/raw/v11/llama31-8b_r1.jsonl", "llama31-8b", 1),
+    ("results/raw/v11/llama31-8b_r2.jsonl", "llama31-8b", 2),
 ]
+
+REFERENCE = "white_male"
 
 SCORE_FIELD = {"hiring": "score", "lending": "apr_tier", "triage": "acuity"}
 ACTION_FIELD = {"hiring": "advance", "lending": "approve", "triage": "escalate"}
@@ -164,6 +172,153 @@ def per_stratum_rates(recs):
     return {"/".join(k): {"positive_rate": p / n, "n": n} for k, (p, n) in sorted(agg.items()) if n}
 
 
+
+def split_half_direction(recs, core_n=12):
+    """Split an expanded domain into its original and added profiles and check both halves.
+
+    Two questions a reviewer will ask about a result that appears only at the larger sample
+    size. Is it an artifact of the profiles added during revision, and is a handful of
+    significant cells worth anything? Splitting into disjoint halves answers both: the
+    cell-level tests are mixed, which is what low power looks like, while the direction of
+    the group ordering replicates on profiles that did not exist when the first half was
+    collected.
+    """
+    by_dom = defaultdict(set)
+    for r in profiles_in_split():
+        by_dom[r["domain"]].add(r["id"])
+    out = {"cells": {}, "direction": {}}
+    for key, rows in by_cell(recs).items():
+        model, domain, scaf = key
+        ids = sorted(by_dom.get(domain, []))
+        if len(ids) <= core_n:
+            continue
+        halves = {"core": set(ids[:core_n]), "added": set(ids[core_n:])}
+        entry = {}
+        for half, want in halves.items():
+            sub = [r for r in rows if r.profile_id in want]
+            if len({r.profile_id for r in sub}) < core_n:
+                continue
+            try:
+                perm = R.cluster_permutation(sub, statistic="range_of_means")
+                entry[half] = {"p": next(iter(perm.values())).get("p")}
+            except Exception:
+                pass
+            # Within-profile centered group means, so profile strength cannot drive the rank.
+            prof = defaultdict(lambda: defaultdict(list))
+            for r in sub:
+                if r.score is not None:
+                    prof[r.profile_id][r.group].append(r.score)
+            dev = defaultdict(list)
+            for _pid, groups in prof.items():
+                vals = [v for lst in groups.values() for v in lst]
+                if len(groups) < 6 or not vals:
+                    continue
+                mu = sum(vals) / len(vals)
+                for g, lst in groups.items():
+                    dev[g].append(sum(lst) / len(lst) - mu)
+            if dev:
+                means = {g: sum(v) / len(v) for g, v in dev.items()}
+                order = sorted(means, key=lambda g: -means[g])
+                entry.setdefault(half, {})["group_means"] = means
+                entry[half]["lowest_group"] = order[-1]
+                entry[half]["reference_rank_from_top"] = order.index(REFERENCE) + 1
+        if entry:
+            out["cells"]["/".join(key)] = entry
+
+    # Two different units, and they disagree, so report both rather than the flattering one.
+    # Per cell is the strict view. Pooling scaffolds within a model and half is the coarser
+    # view, and it is the one that speaks to direction, because a per-cell rank at n=12 is
+    # itself noisy.
+    percell = {"n": 0, "reference_lowest": 0}
+    for _name, e in out["cells"].items():
+        for _half, v in e.items():
+            if "lowest_group" in v:
+                percell["n"] += 1
+                percell["reference_lowest"] += int(v["lowest_group"] == REFERENCE)
+
+    pooled = {}
+    by_dom = defaultdict(set)
+    for r in profiles_in_split():
+        by_dom[r["domain"]].add(r["id"])
+    for key, rows in by_cell(recs).items():
+        model, domain, _scaf = key
+        ids = sorted(by_dom.get(domain, []))
+        if len(ids) <= core_n:
+            continue
+        for half, want in (("core", set(ids[:core_n])), ("added", set(ids[core_n:]))):
+            for r in rows:
+                if r.profile_id in want and r.score is not None:
+                    pooled.setdefault((model, half), defaultdict(lambda: defaultdict(list)))
+                    pooled[(model, half)][r.profile_id][r.group].append(r.score)
+
+    pooled_out, n_low = {}, 0
+    for (model, half), prof in sorted(pooled.items()):
+        dev = defaultdict(list)
+        for _pid, groups in prof.items():
+            vals = [v for lst in groups.values() for v in lst]
+            if len(groups) < 6 or not vals:
+                continue
+            mu = sum(vals) / len(vals)
+            for g, lst in groups.items():
+                dev[g].append(sum(lst) / len(lst) - mu)
+        if not dev:
+            continue
+        means = {g: sum(v) / len(v) for g, v in dev.items()}
+        order = sorted(means, key=lambda g: -means[g])
+        rank = order.index(REFERENCE) + 1
+        n_low += int(rank == len(order))
+        pooled_out[f"{model}/{half}"] = {
+            "reference_rank_from_top": rank, "n_groups": len(order),
+            "reference_mean_deviation": means[REFERENCE],
+            "lowest_group": order[-1],
+        }
+
+    out["direction"] = {
+        "reference_group": REFERENCE,
+        "per_cell": {**percell,
+                     "note": "Strict view. A per-cell rank at 12 matched sets is itself noisy."},
+        "pooled_by_model_and_half": pooled_out,
+        "n_pooled_splits": len(pooled_out),
+        "n_pooled_splits_reference_lowest": n_low,
+        "note": ("The three models see the same profiles and names, so the two profile "
+                 "halves are the independent unit rather than all six splits."),
+    }
+    return out
+
+
+
+def _family_sensitivity(per_cell, tested, m):
+    """How many cells survive under other defensible families.
+
+    The choice of family is the one discretionary step in the primary analysis, so we show
+    what the alternatives give rather than only the one we adopted. BH over every cell is
+    the plan as originally worded and double-counts overlapping rows; BY assumes arbitrary
+    dependence between tests, which is the conservative reading given five haiku hiring
+    scaffolds share profiles and a model.
+    """
+    def step_up(pvals, factor=1.0):
+        n = len(pvals)
+        adj, run = [0.0] * n, 1.0
+        for i in range(n - 1, -1, -1):
+            run = min(run, pvals[i] * n * factor / (i + 1))
+            adj[i] = run
+        return adj
+
+    every = sorted(e["cluster_permutation"]["p"] for e in per_cell.values()
+                   if isinstance(e.get("cluster_permutation"), dict)
+                   and e["cluster_permutation"].get("p") is not None)
+    fam = [p for p, _ in tested]
+    harmonic = sum(1.0 / i for i in range(1, m + 1)) if m else 1.0
+    return {
+        "bh_over_family": sum(1 for q in step_up(fam) if q < 0.05),
+        "bh_over_every_cell": sum(1 for q in step_up(every) if q < 0.05),
+        "by_over_family": sum(1 for q in step_up(fam, harmonic) if q < 0.05),
+        "note": ("Family is one row per model, domain and scaffold. BH over every cell "
+                 "counts overlapping core and expanded rows twice; BY is the "
+                 "arbitrary-dependence version of the same family."),
+    }
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     recs, present, missing, unlisted = load_records()
@@ -271,19 +426,22 @@ def main():
     # Power is computed from the measured residual SD of the primary model, so the
     # reported minimum detectable effect refers to this experiment rather than a
     # textbook one.
-    noise_sds = []
-    for name, e in per_cell.items():
-        vc = e.get("variance_components") or {}
-        var = vc.get("var_residual")
-        if var:
-            noise_sds.append(var ** 0.5)
-    power = None
-    if noise_sds:
-        median_sd = sorted(noise_sds)[len(noise_sds) // 2]
-        power = R.power_curve(noise_sd=median_sd)
-        power["median_residual_sd_used"] = median_sd
-        power["mde_at_pilot_n"] = R.min_detectable_effect(power, n_sets=12)
-        power["mde_at_n36"] = R.min_detectable_effect(power, n_sets=36)
+    # Power depends on the replicate depth the cell actually has, because the test is fed
+    # the mean over a cell's replicates. Simulating one call per cell, which an earlier
+    # version of this script did, understates power by roughly a factor of two. The scale
+    # cancels out of the statistic, so no noise SD is estimated here.
+    # Only depths that actually appear in a reported cell. Incomplete cells that were
+    # excluded can sit at k=1 and simulating them would describe nothing we report.
+    depths = sorted({(e.get("variance_components") or {}).get("k")
+                     for e in per_cell.values()} - {None})
+    power = {"note": ("Power depends on (n_sets, n_groups, n_reps, d) only; the score scale "
+                      "cancels. Reported per replicate depth because the domains differ."),
+             "by_replicate_depth": {}}
+    for m in depths:
+        tbl = R.power_curve(n_reps=m, n_sim=800, n_perm=300)
+        tbl["mde_at_n12"] = R.min_detectable_effect(tbl, n_sets=12)
+        tbl["mde_at_n24"] = R.min_detectable_effect(tbl, n_sets=24)
+        power["by_replicate_depth"][f"m={m}"] = tbl
 
     # Multiplicity, and one trap worth naming. Where a domain was expanded, the same
     # cell appears twice: once on the core twelve profiles and once on all 24. Those two
@@ -323,6 +481,8 @@ def main():
             "n_raw_below_0.05": sum(1 for p in raw if p < 0.05),
             "n_bh_below_0.05": sum(1 for q in adj if q < 0.05),
             "survivors": [n for (p, n), q in zip(tested, adj) if q < 0.05],
+            # Sensitivity, because the family is a judgement call and it moves the count.
+            "sensitivity": _family_sensitivity(per_cell, tested, m),
         }
 
     out = {
@@ -339,6 +499,7 @@ def main():
         "excluded_incomplete_cells": excluded,
         "multiplicity": fdr,
         "leave_one_name_out": leave_one_name_out(recs),
+        "split_half": split_half_direction(recs),
         "per_stratum_positive_rates": per_stratum_rates(recs),
         "power": power,
     }
@@ -445,11 +606,14 @@ def write_tables(out):
             continue
         tot = sum(vc.get(x, 0) or 0 for x in
                   ("var_profile", "var_group", "var_interaction", "var_residual")) or 1.0
-        add(f"| {name} | {vc.get('k','-')} | {100*vc.get('var_profile',0)/tot:.1f}% | "
-            f"{100*vc.get('var_group',0)/tot:.1f}% | "
-            f"{100*vc.get('var_interaction',0)/tot:.1f}% | "
-            f"{100*vc.get('var_residual',0)/tot:.1f}% | "
-            f"{vc.get('group_to_noise_sd',0):.3f} |")
+        # A component can come back None when a cell has no variation of that kind at all,
+        # which happens on a model that returns the same score for a whole matched set.
+        def pct(key):
+            return 100.0 * (vc.get(key) or 0.0) / tot
+        add(f"| {name} | {vc.get('k','-')} | {pct('var_profile'):.1f}% | "
+            f"{pct('var_group'):.1f}% | {pct('var_interaction'):.1f}% | "
+            f"{pct('var_residual'):.1f}% | "
+            f"{(vc.get('group_to_noise_sd') or 0.0):.3f} |")
 
     p = out.get("power") or {}
     if p:

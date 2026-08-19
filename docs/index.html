@@ -248,20 +248,20 @@
 
   <div class="banner">
     <p class="kicker">Read this first</p>
-    <p>Two things are true here at once, and reading either one alone will mislead you. Across 5029
-    decisions on three model tiers (<code>haiku</code>, primary, k=3 replicate calls per condition;
+    <p>Two things are true here at once, and reading either one alone will mislead you. Across 5607
+    decisions on four models spanning two vendors (<code>haiku</code>, primary, k=3 replicate calls per condition;
     <code>sonnet</code> and <code>fable</code>, secondary, k=2), <b>disparity magnitude sits at the
     noise floor everywhere</b>, and yet <b>a small group effect is statistically detectable</b> in
     three hiring cells once the sample is large enough to see it.</p>
     <p>On magnitude: naively comparing the six-group score spread (MASD) against a two-replicate
     pairwise noise floor overstates disparity by up to <b>2.25x</b> through statistic arity alone.
-    Against an <b>arity-matched</b> floor the observed-to-null ratio runs <b>0.63 to 1.00</b>
-    (median <b>0.83</b>), and <b>zero of 28</b> cells have a ratio confidence interval lying
+    Against an <b>arity-matched</b> floor the observed-to-null ratio runs <b>0.46 to 1.00</b>
+    (median <b>0.82</b>), and <b>zero of 30</b> cells have a ratio confidence interval lying
     entirely above 1.0.</p>
     <p>On exchangeability: a within-set randomization test on the range of per-group means finds
-    <b>3 of 19</b> cells significant after Benjamini-Hochberg (smallest adjusted p = 0.0019). All
-    three are hiring, on the secondary tiers, and all three appear only at the expanded 24 matched
-    sets. The effect is real but small: the group variance component is under <b>0.12 percent</b> of
+    <b>4 of 21</b> cells significant after Benjamini-Hochberg (smallest adjusted p = 0.0021). All four are hiring, none is on the primary tier, and all appear only at the expanded 24
+    matched sets. One is a different vendor entirely, which is what stops this being a claim
+    about a single company's alignment pipeline. The effect is real but small: the group variance component is under <b>0.12 percent</b> of
     total variance. In every flagged cell the lowest-scoring group is <b>white-male-coded names</b>,
     by 1 to 2.4 points on a 100-point scale, which is the opposite of the direction most readers
     will assume.</p>
@@ -272,10 +272,10 @@
   </div>
 
   <div class="stats">
-    <div class="stat"><span class="n">28 / 4</span><span class="l">Cells reported / excluded</span></div>
+    <div class="stat"><span class="n">30 / 4</span><span class="l">Cells reported / excluded</span></div>
     <div class="stat"><span class="n">0.63-1.00</span><span class="l">Arity-matched ratio range</span></div>
-    <div class="stat"><span class="n">3 / 19</span><span class="l">BH-significant after correction</span></div>
-    <div class="stat"><span class="n">5029</span><span class="l">Decisions, 3 model tiers</span></div>
+    <div class="stat"><span class="n">4 / 21</span><span class="l">BH-significant after correction</span></div>
+    <div class="stat"><span class="n">5607</span><span class="l">Decisions, 3 model tiers</span></div>
   </div>
 
   <h2>Verification levels</h2>

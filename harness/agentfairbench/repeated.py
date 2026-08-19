@@ -440,9 +440,9 @@ def impact_ratio(records) -> dict:
 # power
 # --------------------------------------------------------------------------
 
-def power_curve(noise_sd: float, n_sets_grid=(12, 24, 36, 50, 75, 100),
+def power_curve(noise_sd: float = 1.0, n_sets_grid=(12, 24, 36, 50, 75, 100),
                 effect_grid=(0.2, 0.5, 0.8), n_groups: int = 6, n_sim: int = 2000,
-                n_perm: int = 400, alpha: float = 0.05,
+                n_perm: int = 400, alpha: float = 0.05, n_reps: int = 1,
                 seed: int = DEFAULT_SEED) -> dict:
     """Simulation power for the within-matched-set permutation test.
 
@@ -453,6 +453,16 @@ def power_curve(noise_sd: float, n_sets_grid=(12, 24, 36, 50, 75, 100),
 
     Simulating the actual test, rather than quoting a noncentral F, keeps the power
     statement consistent with the test the paper reports.
+
+    ``n_reps`` is load-bearing and an earlier version of this function did not have it.
+    The randomization test consumes the mean over a cell's replicate calls, so m
+    replicates shrink the residual on the tested statistic by roughly sqrt(m). Simulating
+    a single call per cell therefore describes a design nobody ran and understates power
+    by about a factor of two at these sample sizes. Pass the m the cell actually has.
+
+    ``noise_sd`` cancels: the statistic is scale-equivariant and the effect is specified
+    as d * noise_sd, so power depends only on (n_sets, n_groups, n_reps, d). It is kept
+    for a readable call site and defaults to 1.
     """
     rng = np.random.default_rng(seed + 4)
     out = {}
@@ -461,7 +471,10 @@ def power_curve(noise_sd: float, n_sets_grid=(12, 24, 36, 50, 75, 100),
             rejects = 0
             for _ in range(n_sim):
                 prof = rng.normal(0.0, noise_sd, size=(n_sets, 1))
-                X = prof + rng.normal(0.0, noise_sd, size=(n_sets, n_groups))
+                # Average the cell's replicate calls, which is what the test is given.
+                noise = rng.normal(0.0, noise_sd,
+                                   size=(n_sets, n_groups, n_reps)).mean(axis=2)
+                X = prof + noise
                 X[:, 0] -= d * noise_sd
                 m = X.mean(axis=0)
                 obs = float(m.max() - m.min())

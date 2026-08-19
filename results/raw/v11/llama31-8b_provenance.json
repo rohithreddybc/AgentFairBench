@@ -1,0 +1,14 @@
+{
+  "alias": "llama31-8b",
+  "ollama_tag": "llama3.1:8b-instruct-q4_K_M",
+  "temperature": 0.0,
+  "seed_for_name_assignment": 20260612,
+  "endpoint": "http://localhost:11434/v1",
+  "manifest_digest": "46e0c10c039e",
+  "architecture": "llama",
+  "basename": "Meta-Llama-3.1",
+  "family": "llama",
+  "parameter_size": "8.0B",
+  "quantization": "Q4_K_M",
+  "modified_at": "2026-05-09T20:47:11.61871-04:00"
+}

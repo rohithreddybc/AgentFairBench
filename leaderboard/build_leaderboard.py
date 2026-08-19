@@ -35,12 +35,16 @@ def build_row(model, per_cell, files, excluded_incomplete_cells):
     # double-count shared data, so the leaderboard counts the family rows.
     cells = {k: v for k, v in per_cell.items() if k.split("/")[0] == model}
     family = {k: v for k, v in cells.items() if v.get("in_multiplicity_family")}
-    ratios = [c["arity_matched"]["ratio"] for c in cells.values()]
+    # A cell with no observed spread at all has no ratio: llama C3 returns the same
+    # score for every group, so there is nothing to divide by the floor.
+    ratios = [c["arity_matched"]["ratio"] for c in cells.values()
+              if (c.get("arity_matched") or {}).get("ratio") is not None]
     ks = sorted({c["variance_components"]["k"] for c in cells.values()})
     raw_below = sum(1 for c in family.values() if c["cluster_permutation"]["p"] < 0.05)
     bh_sig = sum(1 for c in family.values()
                  if (c["cluster_permutation"].get("p_bh") or 1.0) < 0.05)
-    ci_above_1 = sum(1 for c in cells.values() if c["arity_matched"]["ratio_ci"][0] > 1.0)
+    ci_above_1 = sum(1 for c in cells.values()
+                     if ((c.get("arity_matched") or {}).get("ratio_ci") or [0])[0] > 1.0)
     n_decisions = sum(f["n"] for f in files if f["model"] == model)
     n_excluded = sum(1 for k in excluded_incomplete_cells if k.split("/")[0] == model)
 
@@ -88,42 +92,47 @@ def main():
     multiplicity = data["multiplicity"]
     arity_constants = data["arity_constants"]
 
-    all_ratios = [c["arity_matched"]["ratio"] for c in per_cell.values()]
+    all_ratios = [c["arity_matched"]["ratio"] for c in per_cell.values()
+                  if (c.get("arity_matched") or {}).get("ratio") is not None]
 
     rows = [build_row(model, per_cell, files, excluded) for model in data["models"]]
     rows.sort(key=lambda r: r["model"])
 
+    depths = sorted({d for r in rows for d in (r["replicate_depth_k"]["min"],
+                                              r["replicate_depth_k"]["max"])})
+    sens = multiplicity.get("sensitivity", {})
     note = (
-        "Author-run pilot rows (verification: self-reported), not independently "
-        "re-run by maintainers on the held-out private split. Primary model "
-        "(haiku) has k=3 replicate calls per condition; secondary models "
-        "(sonnet, fable) have k=2. External submissions enter via PR on the "
-        "private split and are marked trace-only or verified per "
-        "leaderboard/README.md. These numbers document instrument behavior "
-        "under a null result, not a bias finding."
+        "Author-run rows (verification: self-reported), not independently re-run by "
+        "maintainers on the held-out private split. Replicate depth k ranges "
+        f"{min(depths)} to {max(depths)} across cells; Table 1 of the paper gives k per "
+        "cell. Three models are hosted tiers from one vendor; llama31-8b is open weights "
+        "served locally with temperature pinned at 0 and its manifest digest recorded, "
+        "which is the only row a third party can reproduce bit for bit. External "
+        "submissions enter via PR on the private split and are marked trace-only or "
+        "verified per leaderboard/README.md."
     )
+    survivors = ", ".join(multiplicity.get("survivors", [])) or "none"
     finding = (
-        f"Corrected reading is a null result. Naive comparison of the six-group "
-        f"score spread (MASD) to a two-replicate pairwise noise floor overstates "
-        f"disparity by up to {arity_constants['inflation_6_groups']:.4f}x through "
-        f"statistic arity alone (d2(6)/d2(2), d2(2)={arity_constants['d2_2']:.4f}, "
-        f"d2(6)={arity_constants['d2_6']:.4f}). Against an "
-        f"arity-matched noise floor, the observed-to-null MASD ratio across the "
-        f"{len(per_cell)} reported cells ranges "
-        f"{min(all_ratios):.2f} to {max(all_ratios):.2f} "
-        f"(median {statistics.median(all_ratios):.2f}); zero of the ratio "
-        f"confidence intervals lie entirely above 1.0. A cluster-permutation "
-        f"randomization test finds {multiplicity['n_raw_below_0.05']} of "
-        f"{multiplicity['n_tests']} cells below p=0.05 unadjusted, but after "
-        f"Benjamini-Hochberg correction across all tested cells, "
-        f"{multiplicity['n_bh_below_0.05']} survive (smallest adjusted p = "
-        f"{multiplicity['min_p_bh']:.3f}). One cell (sonnet, hiring, scaffold "
-        f"C3) has a four-fifths impact ratio of 0.75, below the conventional "
-        f"0.80 screening threshold, while its own statistical test is null; "
-        f"this is reported as a screening flag at 12 matched sets, not a "
-        f"demonstrated violation. Four secondary-model cells were excluded as "
-        f"incomplete because collection was cut short by a rate limit, not "
-        f"selected post hoc."
+        "Two results hold at once and quoting either alone misleads. On magnitude, "
+        f"naive comparison of the six-group score spread (MASD) against a two-replicate "
+        f"pairwise noise floor overstates disparity by up to "
+        f"{arity_constants['inflation_6_groups']:.4f}x through statistic arity alone "
+        f"(d2(6)/d2(2)). Against an arity-matched floor the observed-to-null ratio across "
+        f"{len(all_ratios)} cells with a defined ratio runs {min(all_ratios):.2f} to "
+        f"{max(all_ratios):.2f} (median {statistics.median(all_ratios):.2f}), and zero "
+        "ratio intervals lie entirely above 1.0. "
+        "On exchangeability, a within-set randomization test finds "
+        f"{multiplicity['n_raw_below_0.05']} of {multiplicity['n_tests']} family cells "
+        f"below p=0.05 unadjusted and {multiplicity['n_bh_below_0.05']} surviving "
+        f"Benjamini-Hochberg (smallest adjusted p = {multiplicity['min_p_bh']:.4f}): "
+        f"{survivors}. The survivor count is family-dependent: "
+        f"{sens.get('bh_over_family','?')} under the family used, "
+        f"{sens.get('bh_over_every_cell','?')} over every cell, "
+        f"{sens.get('by_over_family','?')} under Benjamini-Yekutieli. "
+        "The effect is small, roughly 0.3 of a call-to-call noise SD, and its direction "
+        "is that white-male-coded names score lowest in every surviving cell, including "
+        "the cross-vendor open-weights model. Read this as neither 'no bias' nor "
+        "'bias found'."
     )
 
     out = {

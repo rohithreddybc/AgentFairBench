@@ -1,21 +1,23 @@
 {
   "release": "v1.1.0",
-  "commit": "b6cc5c2ea3761f1d354460aed04e5902a2e7ee26",
-  "n_decisions": 5029,
+  "commit": "391c14b78bdc056126e02ac6d9db3b63d8a8354e",
+  "n_decisions": 5607,
   "models_evaluated": [
     "fable",
     "haiku",
+    "llama31-8b",
     "sonnet"
   ],
   "model_identifier_note": "The June 2026 run recorded the versioned string claude-haiku-4-5 on every call. The August 2026 replicates were collected through a client that accepts a model tier and does not return the resolved version, so those records carry the tier. We record what was observed rather than back-filling an identifier.",
   "api_parameters_note": "The collection client exposes neither temperature nor a sampling seed, so decoding was not pinned and this is not recoverable from the traces. The released OpenAI-compatible adapter sends the identical prompt and schema and does expose temperature, defaulting to 0, for a decoding-pinned replication.",
   "headline": {
-    "cells_reported": 28,
+    "cells_reported": 30,
     "cells_with_ratio_interval_above_one": 0,
-    "randomization_tests": 19,
-    "significant_after_bh": 3,
+    "randomization_tests": 21,
+    "significant_after_bh": 4,
     "significant_cells": [
       "sonnet/hiring/C0+expanded",
+      "llama31-8b/hiring/C0+expanded",
       "fable/hiring/C3+expanded",
       "sonnet/hiring/C3+expanded"
     ]
@@ -25,7 +27,7 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 1701493,
+  "total_bytes": 1757404,
   "n_files": 44,
   "files": {
     "public_split": [
@@ -85,8 +87,8 @@
       },
       {
         "path": "results/raw/v11/gpt-oss-20b_r2.jsonl",
-        "bytes": 17733,
-        "sha256": "357291f3170235269fdfa76bc251ed6b441a468925418f01a65e762dcdeb33cc"
+        "bytes": 23923,
+        "sha256": "6be961e67a67ac54ee0399e51454b4844be30000cc4b155cbaaf46d723b5f5e2"
       },
       {
         "path": "results/raw/v11/haiku_r2.jsonl",
@@ -100,13 +102,13 @@
       },
       {
         "path": "results/raw/v11/llama31-8b_r1.jsonl",
-        "bytes": 55681,
-        "sha256": "7de9dd4c2ab68d45569654cb93867debadec088d66821bcc56386855cb39d99d"
+        "bytes": 56260,
+        "sha256": "5e5fe2f8aa7ed24b1f719471ab7920710cc54b5c37cdae6d7c77e63fbb7160d8"
       },
       {
         "path": "results/raw/v11/llama31-8b_r2.jsonl",
-        "bytes": 45174,
-        "sha256": "73b2525fe2d4151d9b07105beef804674fd21686439495e6ef9445b07ff74359"
+        "bytes": 55389,
+        "sha256": "3dc923a4fc89475bba40489ce3cc4d830f4b013d336542e7ef340ce7d765e918"
       },
       {
         "path": "results/raw/v11/sonnet_r1.jsonl",
@@ -122,13 +124,13 @@
     "analysis_outputs": [
       {
         "path": "results/v11/analysis.json",
-        "bytes": 124228,
-        "sha256": "6445519a408d43900c55fa3b182864c9270aa3a21d8030e5d953abe375e7807e"
+        "bytes": 152299,
+        "sha256": "26e18106b66c3dd1844a8b7d7ee6927297c3ec962dc80aa0fbac8ea5146ec659"
       },
       {
         "path": "results/v11/tables.md",
-        "bytes": 7072,
-        "sha256": "34c5ae0520673f8aad7a41a3adba5c58e79d6866d65a0f5eefc1025673937b8c"
+        "bytes": 7394,
+        "sha256": "27f6c6bc1e1d4774f6403237b102b83d0085adcbda5bf05532640a0d2169a4bb"
       },
       {
         "path": "results/v11/profile_standards_check.md",
@@ -149,8 +151,8 @@
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 22878,
-        "sha256": "8a65ae79a50cb460799d08e08f6a39850b230518cde82ddf31a6f4307c6f9c26"
+        "bytes": 31022,
+        "sha256": "e28f0f69de63fa6b7275a13baa4f6fd874ec6bbb4515480f2342d4b8a86c9839"
       },
       {
         "path": "scripts/make_figures.py",
@@ -211,8 +213,8 @@
       },
       {
         "path": "harness/agentfairbench/repeated.py",
-        "bytes": 23299,
-        "sha256": "251202c4ae850b1b5c9266d1275ee63dcd2b0be95aece4c3b40f2b57e9b723df"
+        "bytes": 24156,
+        "sha256": "d98cc4b8ab9b61f02645ea80ddfe42d782399da87d57934d2ffb2a76ee719a54"
       },
       {
         "path": "harness/agentfairbench/runner.py",
@@ -255,13 +257,13 @@
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
-        "bytes": 4814,
-        "sha256": "f24c0c6c2a476cade761811cae7284421dc5a9048eb4e156626dc2ce50c63b7c"
+        "bytes": 5584,
+        "sha256": "7019b25380d04775f59d94af0ebe07d91ca05af9fd67848634ca395ca1afbc60"
       },
       {
         "path": "leaderboard/build_leaderboard.py",
-        "bytes": 9878,
-        "sha256": "b410a9147f434af4831a6187086b2e10d3ad7a6f8fbdd01984b5d21e2d34a905"
+        "bytes": 10641,
+        "sha256": "d375fd3439c7c5ef2257e42dfcb0ca4fa18a78c794a2e150625f722a3630e687"
       }
     ]
   },
