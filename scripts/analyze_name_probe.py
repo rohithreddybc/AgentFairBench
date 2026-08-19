@@ -13,14 +13,42 @@ is a limitation rather than a reassurance, and they are reported with the same w
 Writes results/name_probe/summary.json and prints a readable digest.
 """
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "harness"))
+from agentfairbench.agreement import panel_reliability
 
 ROOT = Path(__file__).resolve().parent.parent
 PROBE = ROOT / "results" / "name_probe"
 
 RACE_OF = {"white": "White", "black": "Black", "hispanic": "Hispanic"}
 GENDER_OF = {"male": "Male", "female": "Female"}
+
+
+
+
+def _intended(r):
+    return r.get("intended") or r.get("intended_cell")
+
+
+def _rating_field(rating, *keys):
+    for k in keys:
+        if k in rating and rating[k] is not None:
+            return rating[k]
+    return None
+
+
+def _label(model_alias, r):
+    """One normalized (race, gender, ses, familiarity) reading from a rating row,
+    tolerant of both the hosted-probe schema and the local-rater schema."""
+    g = r["rating"]
+    race = _rating_field(g, "perceived_race", "race")
+    gender = _rating_field(g, "perceived_gender", "gender")
+    ses = _rating_field(g, "perceived_ses", "socioeconomic")
+    fam = _rating_field(g, "familiarity")
+    return race, gender, ses, (float(fam) if fam is not None else 0.0)
 
 
 def intended_parts(cell: str):
@@ -45,19 +73,18 @@ def main():
         per_name = defaultdict(lambda: {"race": Counter(), "gender": Counter(),
                                         "ses": Counter(), "fam": []})
         for r in rows:
-            want_race, want_gender = intended_parts(r["intended"])
-            got = r["rating"]
-            gr, gg = got.get("perceived_race"), got.get("perceived_gender")
+            want_race, want_gender = intended_parts(_intended(r))
+            gr, gg, gs, gf = _label(model, r)
             race_hit += (gr == want_race)
             gender_hit += (gg == want_gender)
             both_hit += (gr == want_race and gg == want_gender)
-            ses_by_race[want_race][got.get("perceived_ses")] += 1
-            fam_by_race[want_race].append(float(got.get("familiarity", 0)))
+            ses_by_race[want_race][gs] += 1
+            fam_by_race[want_race].append(gf)
             p = per_name[r["name"]]
             p["race"][gr] += 1
             p["gender"][gg] += 1
-            p["ses"][got.get("perceived_ses")] += 1
-            p["fam"].append(float(got.get("familiarity", 0)))
+            p["ses"][gs] += 1
+            p["fam"].append(gf)
 
         n = len(rows)
         # a name counts as unanimous when all raters agree on race and gender
@@ -100,6 +127,41 @@ def main():
             v = fam_by_race.get(race, [])
             if v:
                 print(f"    {race:9s} {sum(v)/len(v):.2f}")
+
+    # Cross-annotator agreement. Each model gives a majority race and gender label per name;
+    # the panel statistic is how much the independent models agree, which is what makes the
+    # coding a measurement rather than one model's opinion. These are model annotators, not
+    # human raters, and the appendix labels them that way.
+    race_by_rater, gender_by_rater = {}, {}
+    for f in files:
+        rows = [json.loads(l) for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
+        rows = [r for r in rows if r.get("rating")]
+        if not rows:
+            continue
+        alias = rows[0].get("alias") or rows[0]["model"]
+        rc, gc = defaultdict(Counter), defaultdict(Counter)
+        for r in rows:
+            gr, gg, _s, _f = _label(alias, r)
+            if gr:
+                rc[r["name"]][gr] += 1
+            if gg:
+                gc[r["name"]][gg] += 1
+        race_by_rater[alias] = {nm: c.most_common(1)[0][0] for nm, c in rc.items()}
+        gender_by_rater[alias] = {nm: c.most_common(1)[0][0] for nm, c in gc.items()}
+
+    panel = {
+        "raters": sorted(race_by_rater),
+        "n_raters": len(race_by_rater),
+        "race": panel_reliability(race_by_rater,
+                                  ["White", "Black", "Hispanic", "Asian", "Unsure"]),
+        "gender": panel_reliability(gender_by_rater, ["Male", "Female", "Unsure"]),
+    }
+    summary["_panel_agreement"] = panel
+    print("\n=== cross-annotator agreement over", panel["n_raters"], "models ===")
+    print(f"  race   : unanimous {100*panel['race']['unanimous_rate']:.0f}%  "
+          f"Fleiss kappa {panel['race']['fleiss_kappa']:.3f}")
+    print(f"  gender : unanimous {100*panel['gender']['unanimous_rate']:.0f}%  "
+          f"Fleiss kappa {panel['gender']['fleiss_kappa']:.3f}")
 
     out = PROBE / "summary.json"
     out.write_text(json.dumps(summary, indent=2), encoding="utf-8")

@@ -288,3 +288,25 @@ def test_min_detectable_effect_runs_and_is_from_grid():
     for n_sets in (12, 100):
         mde = R.min_detectable_effect(table, n_sets=n_sets, target=0.8)
         assert mde is None or mde in (0.2, 0.8)
+
+
+# --------------------------------------------------------------------------
+# 11. degenerate floor: a near-deterministic model must be flagged, not trusted
+# --------------------------------------------------------------------------
+
+def test_ratio_flags_degenerate_floor():
+    # A model with almost no call-to-call noise gives a near-zero noise floor. The ratio
+    # there divides by nearly nothing, so the cell must be flagged rather than reported as
+    # a magnitude statement. A tiny group shift keeps the observed MASD nonzero.
+    recs = _repeated_records(noise_sd=0.02, group_shift={"g0": 0.5}, seed=303)
+    out = R.masd_to_noise_ratio(recs, n_boot=400, seed=303)
+    cell = next(iter(out.values()))
+    assert cell.get("floor_degenerate") is True
+
+
+def test_ratio_not_flagged_when_floor_is_healthy():
+    # Ordinary noise gives a floor well above the threshold, so the cell is not flagged.
+    recs = _repeated_records(noise_sd=NOISE_SD, seed=304)
+    out = R.masd_to_noise_ratio(recs, n_boot=400, seed=304)
+    cell = next(iter(out.values()))
+    assert cell.get("floor_degenerate") is False

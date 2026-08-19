@@ -1,0 +1,39 @@
+model llama3.1:8b-instruct-q4_K_M -> alias llama31-8b
+  digest 46e0c10c039e  8.0B Q4_K_M  temperature 0.0
+
+replicate 1: 300 on disk, 420 to collect
+    25/420  ok=25 fail=0  0.18/s  eta 36.8 min
+    50/420  ok=50 fail=0  0.21/s  eta 29.3 min
+    75/420  ok=75 fail=0  0.22/s  eta 25.8 min
+    100/420  ok=100 fail=0  0.23/s  eta 23.1 min
+    125/420  ok=125 fail=0  0.23/s  eta 20.9 min
+    150/420  ok=150 fail=0  0.24/s  eta 18.9 min
+    175/420  ok=175 fail=0  0.24/s  eta 16.9 min
+    200/420  ok=200 fail=0  0.24/s  eta 15.1 min
+    225/420  ok=225 fail=0  0.24/s  eta 13.4 min
+    250/420  ok=250 fail=0  0.24/s  eta 11.7 min
+    275/420  ok=275 fail=0  0.24/s  eta 9.9 min
+    300/420  ok=300 fail=0  0.24/s  eta 8.2 min
+    325/420  ok=325 fail=0  0.25/s  eta 6.4 min
+    350/420  ok=350 fail=0  0.25/s  eta 4.7 min
+    375/420  ok=375 fail=0  0.25/s  eta 3.0 min
+    400/420  ok=400 fail=0  0.25/s  eta 1.3 min
+    420/420  ok=420 fail=0  0.25/s  eta 0.0 min
+
+replicate 2: 405 on disk, 315 to collect
+    25/315  ok=25 fail=0  0.25/s  eta 19.4 min
+    50/315  ok=50 fail=0  0.25/s  eta 17.6 min
+    75/315  ok=75 fail=0  0.25/s  eta 15.7 min
+    100/315  ok=100 fail=0  0.26/s  eta 14.0 min
+    125/315  ok=125 fail=0  0.26/s  eta 12.4 min
+    150/315  ok=150 fail=0  0.26/s  eta 10.7 min
+    175/315  ok=175 fail=0  0.26/s  eta 9.1 min
+    200/315  ok=200 fail=0  0.26/s  eta 7.5 min
+    225/315  ok=225 fail=0  0.26/s  eta 5.9 min
+    250/315  ok=250 fail=0  0.26/s  eta 4.2 min
+    275/315  ok=275 fail=0  0.26/s  eta 2.6 min
+    300/315  ok=300 fail=0  0.26/s  eta 1.0 min
+    315/315  ok=315 fail=0  0.26/s  eta 0.0 min
+
+total ok 735, failed 0 -> C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\results\raw\v11
+=== LLAMA LADDER DONE ===

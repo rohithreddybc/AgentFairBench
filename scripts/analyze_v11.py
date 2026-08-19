@@ -75,6 +75,10 @@ def load_records():
             dec = r.get("decision") or {}
             if not dec:
                 continue
+            # Backstop only: the released trace files are deduplicated on disk with the
+            # usable row kept over a failed retry, and a validator check fails the build if
+            # any duplicate survives. This keeps the first occurrence, which is safe because
+            # the files reaching it are already clean, and reports anything it still drops.
             # A duplicate is normally a failed call followed by a successful retry, so the
             # usable row wins rather than the first one. Dropping by position would keep
             # the failure and discard the retry.
@@ -527,15 +531,25 @@ def main():
     print(f"\nwrote {dest}")
     write_tables(out)
 
+    # Cells whose noise floor is degenerate (a near-deterministic model) are held out
+    # of the ratio summary, because the ratio there divides by nearly zero and is not a
+    # magnitude statement. They still enter the randomization test below.
     ratios = [(n, e["arity_matched"].get("ratio")) for n, e in per_cell.items()
-              if isinstance(e.get("arity_matched"), dict) and e["arity_matched"].get("ratio")]
+              if isinstance(e.get("arity_matched"), dict)
+              and e["arity_matched"].get("ratio")
+              and not e["arity_matched"].get("floor_degenerate")]
+    degen = [n for n, e in per_cell.items()
+             if isinstance(e.get("arity_matched"), dict)
+             and e["arity_matched"].get("floor_degenerate")]
     if ratios:
         vals = [v for _, v in ratios]
         above = [n for n, v in ratios if v > 1.0]
-        print(f"\narity-matched MASD/noise ratio over {len(vals)} cells: "
+        print(f"\narity-matched MASD/noise ratio over {len(vals)} stable-floor cells: "
               f"min {min(vals):.2f} median {sorted(vals)[len(vals)//2]:.2f} max {max(vals):.2f}")
         print(f"cells above the noise floor (ratio > 1): {len(above)}/{len(vals)}"
               + (f" -> {above}" if above else ""))
+        if degen:
+            print(f"held out, degenerate floor (near-deterministic model): {degen}")
     ps = [e["cluster_permutation"].get("p") for e in per_cell.values()
           if isinstance(e.get("cluster_permutation"), dict)]
     ps = [p for p in ps if p is not None]

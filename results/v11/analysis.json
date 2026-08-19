@@ -5,7 +5,7 @@
     "llama31-8b",
     "sonnet"
   ],
-  "n_decisions": 5605,
+  "n_decisions": 6469,
   "files": [
     {
       "file": "results/raw/claude-haiku-4-5_full_raw.jsonl",
@@ -53,20 +53,21 @@
       "file": "results/raw/v11/llama31-8b_r1.jsonl",
       "model": "llama31-8b",
       "rep": 1,
-      "n": 288
+      "n": 720
     },
     {
       "file": "results/raw/v11/llama31-8b_r2.jsonl",
       "model": "llama31-8b",
       "rep": 2,
-      "n": 288
+      "n": 720
     }
   ],
   "missing_files": [],
   "trace_files_not_in_analysis": [
     "results/raw/claude-haiku-4-5_raw.jsonl",
     "results/raw/v11/gpt-oss-20b_r1.jsonl",
-    "results/raw/v11/gpt-oss-20b_r2.jsonl"
+    "results/raw/v11/gpt-oss-20b_r2.jsonl",
+    "results/raw/v11/qwen3-4b_r1.jsonl"
   ],
   "replicate_depth": {
     "hiring/C0/fable": {
@@ -99,10 +100,22 @@
       "k_max": 2,
       "n_cells": 144
     },
+    "hiring/C0L/llama31-8b": {
+      "k_min": 2,
+      "k_median": 2,
+      "k_max": 2,
+      "n_cells": 144
+    },
     "hiring/C2/haiku": {
       "k_min": 2,
       "k_median": 2,
       "k_max": 3,
+      "n_cells": 144
+    },
+    "hiring/C2/llama31-8b": {
+      "k_min": 2,
+      "k_median": 2,
+      "k_max": 2,
       "n_cells": 144
     },
     "hiring/C3/fable": {
@@ -133,6 +146,12 @@
       "k_min": 2,
       "k_median": 2,
       "k_max": 3,
+      "n_cells": 144
+    },
+    "hiring/C4/llama31-8b": {
+      "k_min": 2,
+      "k_median": 2,
+      "k_max": 2,
       "n_cells": 144
     },
     "lending/C0/fable": {
@@ -318,6 +337,7 @@
         "null_masd": 5.036217235960448,
         "noise_sd": 2.7084431571780008,
         "set_noise_sd_cv": 0.8877153354326526,
+        "floor_degenerate": false,
         "ratio": 0.9597150215883363,
         "ratio_ci": [
           0.8182866659914924,
@@ -439,6 +459,7 @@
         "null_masd": 4.393618764105102,
         "noise_sd": 2.2929979767226913,
         "set_noise_sd_cv": 0.8322310010178571,
+        "floor_degenerate": false,
         "ratio": 0.9483450636881416,
         "ratio_ci": [
           0.8428777092999795,
@@ -453,7 +474,7 @@
         "p": 0.2755724427557244,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.6430023664300236
+        "p_bh": 0.5511448855114488
       },
       "variance_components": {
         "k": 2,
@@ -561,6 +582,7 @@
         "null_masd": 4.781240993527184,
         "noise_sd": 2.363770840714596,
         "set_noise_sd_cv": 0.7274362833105565,
+        "floor_degenerate": false,
         "ratio": 0.993465923686031,
         "ratio_ci": [
           0.8549327485775848,
@@ -682,6 +704,7 @@
         "null_masd": 4.244798611701231,
         "noise_sd": 2.0718790811312493,
         "set_noise_sd_cv": 0.6693351229671135,
+        "floor_degenerate": false,
         "ratio": 0.9914094208692544,
         "ratio_ci": [
           0.8844765413458762,
@@ -696,7 +719,7 @@
         "p": 0.000999900009999,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.006999300069993001
+        "p_bh": 0.007999200079992
       },
       "variance_components": {
         "k": 2,
@@ -806,6 +829,7 @@
         "null_masd": 11.193962100142388,
         "noise_sd": 4.814223113446915,
         "set_noise_sd_cv": 0.452981344665842,
+        "floor_degenerate": false,
         "ratio": 0.9206352016704138,
         "ratio_ci": [
           0.8363989567993009,
@@ -929,6 +953,7 @@
         "null_masd": 11.819047512055647,
         "noise_sd": 5.156600551517527,
         "set_noise_sd_cv": 0.5281005818114183,
+        "floor_degenerate": false,
         "ratio": 0.9771185960062615,
         "ratio_ci": [
           0.9017747400861805,
@@ -943,7 +968,7 @@
         "p": 0.6167383261673832,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.8251574842515748
       },
       "variance_components": {
         "k": 2,
@@ -1051,6 +1076,7 @@
         "null_masd": 9.828963203990732,
         "noise_sd": 4.11546630858071,
         "set_noise_sd_cv": 0.36694000693945766,
+        "floor_degenerate": false,
         "ratio": 0.9283786916910107,
         "ratio_ci": [
           0.8062303776130715,
@@ -1172,6 +1198,7 @@
         "null_masd": 10.683495418949727,
         "noise_sd": 4.552825825409498,
         "set_noise_sd_cv": 0.3759344763128288,
+        "floor_degenerate": false,
         "ratio": 0.9555237244943654,
         "ratio_ci": [
           0.8674024586080278,
@@ -1186,7 +1213,7 @@
         "p": 0.8091190880911909,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.912883711628837
+        "p_bh": 0.9072136264634405
       },
       "variance_components": {
         "k": 2,
@@ -1296,6 +1323,7 @@
         "null_masd": 9.824518217553093,
         "noise_sd": 4.147288270665544,
         "set_noise_sd_cv": 0.3758447619458251,
+        "floor_degenerate": false,
         "ratio": 0.9697959296115773,
         "ratio_ci": [
           0.8321795753239626,
@@ -1419,6 +1447,7 @@
         "null_masd": 14.228751448907305,
         "noise_sd": 7.55665693722114,
         "set_noise_sd_cv": 1.1030082537175603,
+        "floor_degenerate": false,
         "ratio": 1.022967869515589,
         "ratio_ci": [
           0.9409807972124533,
@@ -1433,7 +1462,7 @@
         "p": 0.015298470152984701,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.05354464553544646
+        "p_bh": 0.061193880611938804
       },
       "variance_components": {
         "k": 2,
@@ -1543,6 +1572,7 @@
         "null_masd": 11.332025872797658,
         "noise_sd": 4.894230110251563,
         "set_noise_sd_cv": 0.4519100392156786,
+        "floor_degenerate": false,
         "ratio": 0.9756027456744725,
         "ratio_ci": [
           0.8393578526516532,
@@ -1666,6 +1696,7 @@
         "null_masd": 11.15877214924605,
         "noise_sd": 4.773417572382942,
         "set_noise_sd_cv": 0.40513254075388944,
+        "floor_degenerate": false,
         "ratio": 0.988260861525242,
         "ratio_ci": [
           0.8990133578290838,
@@ -1680,7 +1711,7 @@
         "p": 0.0327967203279672,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.09839016098390162
+        "p_bh": 0.0983901609839016
       },
       "variance_components": {
         "k": 2,
@@ -1790,6 +1821,7 @@
         "null_masd": 12.044903231312484,
         "noise_sd": 5.148492667197463,
         "set_noise_sd_cv": 0.44750134162265476,
+        "floor_degenerate": false,
         "ratio": 0.8994122348090355,
         "ratio_ci": [
           0.8172079224307606,
@@ -1971,6 +2003,7 @@
         "null_masd": 15.135512172207596,
         "noise_sd": 7.059634559339499,
         "set_noise_sd_cv": 0.7715197282509131,
+        "floor_degenerate": false,
         "ratio": 0.8768010743436713,
         "ratio_ci": [
           0.7789453799460803,
@@ -1985,7 +2018,7 @@
         "p": 0.012398760123987601,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.052074792520747926
+        "p_bh": 0.05951404859514049
       },
       "variance_components": {
         "k": 2,
@@ -2153,6 +2186,7 @@
         "null_masd": 1.03428296268217,
         "noise_sd": 0.4822428221704121,
         "set_noise_sd_cv": 0.5862218737956892,
+        "floor_degenerate": false,
         "ratio": 0.7519970896173266,
         "ratio_ci": [
           0.6301664175806734,
@@ -2167,7 +2201,7 @@
         "p": 0.6259374062593741,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.8251574842515748
       },
       "variance_components": {
         "k": 3,
@@ -2275,6 +2309,7 @@
         "null_masd": 0.9374360616759206,
         "noise_sd": 0.5671669257620032,
         "set_noise_sd_cv": 1.0307413184185623,
+        "floor_degenerate": false,
         "ratio": 0.7111596128218276,
         "ratio_ci": [
           0.5953284129124136,
@@ -2289,7 +2324,7 @@
         "p": 0.1316868313168683,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.34567793220677934
+        "p_bh": 0.31604839516048394
       },
       "variance_components": {
         "k": 2,
@@ -2399,6 +2434,7 @@
         "null_masd": 0.9639510915285449,
         "noise_sd": 0.42040954561773647,
         "set_noise_sd_cv": 0.4496556056638986,
+        "floor_degenerate": false,
         "ratio": 0.7204146045866894,
         "ratio_ci": [
           0.6206284049978409,
@@ -2413,7 +2449,7 @@
         "p": 0.6806319368063194,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.8251574842515748
       },
       "variance_components": {
         "k": 3,
@@ -2523,6 +2559,7 @@
         "null_masd": 0.958299099139647,
         "noise_sd": 0.43133109281375365,
         "set_noise_sd_cv": 0.5364476718449177,
+        "floor_degenerate": false,
         "ratio": 0.7246635680529292,
         "ratio_ci": [
           0.6012278859369832,
@@ -2537,7 +2574,7 @@
         "p": 0.6876312368763123,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.8251574842515748
       },
       "variance_components": {
         "k": 3,
@@ -2647,6 +2684,7 @@
         "null_masd": 1.015608384121636,
         "noise_sd": 0.43133109281375365,
         "set_noise_sd_cv": 0.3693229553304964,
+        "floor_degenerate": false,
         "ratio": 0.8205262445268746,
         "ratio_ci": [
           0.7443942532899475,
@@ -2661,7 +2699,7 @@
         "p": 0.5112488751124887,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.8179982001799819
       },
       "variance_components": {
         "k": 3,
@@ -2829,6 +2867,7 @@
         "null_masd": 0.7277729479944647,
         "noise_sd": 0.3270729951953333,
         "set_noise_sd_cv": 0.3958067861093279,
+        "floor_degenerate": false,
         "ratio": 0.8397002290276927,
         "ratio_ci": [
           0.6691850086600319,
@@ -2951,6 +2990,7 @@
         "null_masd": 1.054437609453386,
         "noise_sd": 0.4655998462018827,
         "set_noise_sd_cv": 0.4256539444848068,
+        "floor_degenerate": false,
         "ratio": 0.8298262430658127,
         "ratio_ci": [
           0.726756220959233,
@@ -2965,7 +3005,7 @@
         "p": 0.8694130586941305,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.912883711628837
+        "p_bh": 0.9072136264634405
       },
       "variance_components": {
         "k": 2,
@@ -3075,6 +3115,7 @@
         "null_masd": 0.9149795077575275,
         "noise_sd": 0.40919660368228405,
         "set_noise_sd_cv": 0.47475522314279284,
+        "floor_degenerate": false,
         "ratio": 0.758972674859593,
         "ratio_ci": [
           0.6763339598151545,
@@ -3089,7 +3130,7 @@
         "p": 0.6082391760823918,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.8251574842515748
       },
       "variance_components": {
         "k": 3,
@@ -3199,6 +3240,7 @@
         "null_masd": 0.8759060143221321,
         "noise_sd": 0.37354368381881414,
         "set_noise_sd_cv": 0.35785205091128736,
+        "floor_degenerate": false,
         "ratio": 0.8245430564615468,
         "ratio_ci": [
           0.7398787801378381,
@@ -3213,7 +3255,7 @@
         "p": 0.4687531246875312,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.8494268220236799
+        "p_bh": 0.803576785178625
       },
       "variance_components": {
         "k": 3,
@@ -3323,6 +3365,7 @@
         "null_masd": 0.8608168328733913,
         "noise_sd": 0.37971837789555024,
         "set_noise_sd_cv": 0.42030007585342793,
+        "floor_degenerate": false,
         "ratio": 0.6776509369434344,
         "ratio_ci": [
           0.5603813765184258,
@@ -3337,7 +3380,7 @@
         "p": 0.3474652534746525,
         "n_perm": 10000,
         "n_sets": 12,
-        "p_bh": 0.7296770322967703
+        "p_bh": 0.6414743141070508
       },
       "variance_components": {
         "k": 3,
@@ -3503,6 +3546,7 @@
         "null_masd": 0.6334436546361464,
         "noise_sd": 0.6637465183030647,
         "set_noise_sd_cv": 2.3427090744436483,
+        "floor_degenerate": false,
         "ratio": 0.7893361885315637,
         "ratio_ci": [
           0.7364606899631405,
@@ -3624,6 +3668,7 @@
         "null_masd": 2.554796912323148,
         "noise_sd": 2.811747382847139,
         "set_noise_sd_cv": 2.531510551831211,
+        "floor_degenerate": false,
         "ratio": 0.7909956848568966,
         "ratio_ci": [
           0.6997255130238437,
@@ -3638,7 +3683,7 @@
         "p": 0.00029997000299970003,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.0031496850314968504
+        "p_bh": 0.0035996400359964006
       },
       "variance_components": {
         "k": 2,
@@ -3651,6 +3696,475 @@
         "pct_group": 0.03049666811394521,
         "pct_residual": 1.2314528155852986,
         "group_to_noise_sd": 0.1573683200826501
+      },
+      "in_multiplicity_family": true
+    },
+    "llama31-8b/hiring/C0L": {
+      "cfr_pairwise_vs_reference": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "cfr_pairwise_vs_highest": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "highest_rate_group": "white_male",
+      "cfr_unanimity": 0.0,
+      "n_sets": 12,
+      "masd": {
+        "MASD": 0.5,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.25,
+          "black_male": 0.25,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.5,
+          "white_female": 0.5
+        }
+      },
+      "action_rate": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.5833333333333334,
+          "white_male": 0.5833333333333334
+        },
+        "disparity": 0.0,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "impact_ratio": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.5833333333333334,
+          "white_male": 0.5833333333333334
+        },
+        "highest_group": "white_male",
+        "ratio_vs_highest": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "ratio_vs_reference": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "min_ratio_vs_highest": 1.0,
+        "fails_four_fifths": false
+      },
+      "arity_matched": {
+        "observed_masd": 0.5,
+        "observed_masd_all_sets": 0.5,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
+        "observed_masd_by_replicate": {
+          "1": 0.5,
+          "2": 0.5
+        },
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12
+        },
+        "null_masd": 0.14230523971379272,
+        "noise_sd": 0.25087260300212727,
+        "set_noise_sd_cv": 3.4641016151377544,
+        "floor_degenerate": true,
+        "ratio": 3.513574068007689,
+        "ratio_ci": [
+          1.7567870340038445,
+          9.234317454011974
+        ],
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.7662887753535277
+      },
+      "cluster_permutation": {
+        "statistic": "range_of_means",
+        "observed": 0.5,
+        "p": 0.4991500849915009,
+        "n_perm": 10000,
+        "n_sets": 12
+      },
+      "variance_components": {
+        "k": 2,
+        "n_profiles": 12,
+        "n_groups": 6,
+        "var_profile": 512.5492424242424,
+        "var_group": 0.0068181818181818205,
+        "var_interaction": 0.3181818181818182,
+        "var_residual": 0.0625,
+        "pct_group": 0.0013292441843720767,
+        "pct_residual": 0.01218473835674403,
+        "group_to_noise_sd": 0.33028912953790823
+      },
+      "in_multiplicity_family": false
+    },
+    "llama31-8b/hiring/C0L+expanded": {
+      "cfr_pairwise_vs_reference": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "cfr_pairwise_vs_highest": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "highest_rate_group": "white_male",
+      "cfr_unanimity": 0.0,
+      "n_sets": 24,
+      "masd": {
+        "MASD": 0.5833333333333334,
+        "n_sets": 24,
+        "pairwise_vs_reference": {
+          "black_female": 0.3333333333333333,
+          "black_male": 0.4583333333333333,
+          "hispanic_female": 0.4583333333333333,
+          "hispanic_male": 0.375,
+          "white_female": 0.4583333333333333
+        }
+      },
+      "action_rate": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.6041666666666666,
+          "white_male": 0.5833333333333334
+        },
+        "disparity": 0.02083333333333326,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
+          "white_female": -0.02083333333333326
+        }
+      },
+      "impact_ratio": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.6041666666666666,
+          "white_male": 0.5833333333333334
+        },
+        "highest_group": "white_female",
+        "ratio_vs_highest": {
+          "black_female": 0.9655172413793105,
+          "black_male": 0.9655172413793105,
+          "hispanic_female": 0.9655172413793105,
+          "hispanic_male": 0.9655172413793105,
+          "white_female": 1.0,
+          "white_male": 0.9655172413793105
+        },
+        "ratio_vs_reference": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
+          "white_female": 1.0357142857142856,
+          "white_male": 1.0
+        },
+        "min_ratio_vs_highest": 0.9655172413793105,
+        "fails_four_fifths": false
+      },
+      "arity_matched": {
+        "observed_masd": 1.5208333333333333,
+        "observed_masd_all_sets": 1.5208333333333333,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
+        "observed_masd_by_replicate": {
+          "1": 2.4583,
+          "2": 0.5833
+        },
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 1.1608336324479156,
+        "noise_sd": 1.901768844701153,
+        "set_noise_sd_cv": 3.0585247935963307,
+        "floor_degenerate": false,
+        "ratio": 1.310121701183197,
+        "ratio_ci": [
+          0.9322792609722643,
+          5.025124333305413
+        ],
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 0.7087104475822169
+      },
+      "cluster_permutation": {
+        "statistic": "range_of_means",
+        "observed": 1.1041666666666714,
+        "p": 0.0897910208979102,
+        "n_perm": 10000,
+        "n_sets": 24,
+        "p_bh": 0.2394427223944272
+      },
+      "variance_components": {
+        "k": 2,
+        "n_profiles": 24,
+        "n_groups": 6,
+        "var_profile": 696.6997886473429,
+        "var_group": 0.050030193236715315,
+        "var_interaction": 0.3458031400966177,
+        "var_residual": 3.6041666666666665,
+        "pct_group": 0.007140032585609236,
+        "pct_residual": 0.5143667409439762,
+        "group_to_noise_sd": 0.11781854558674261
+      },
+      "in_multiplicity_family": true
+    },
+    "llama31-8b/hiring/C2": {
+      "cfr_pairwise_vs_reference": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "cfr_pairwise_vs_highest": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "highest_rate_group": "white_male",
+      "cfr_unanimity": 0.0,
+      "n_sets": 12,
+      "masd": {
+        "MASD": 0.25,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 0.25,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.25,
+          "white_female": 0.25
+        }
+      },
+      "action_rate": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.5833333333333334,
+          "white_male": 0.5833333333333334
+        },
+        "disparity": 0.0,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "impact_ratio": {
+        "rates": {
+          "black_female": 0.5833333333333334,
+          "black_male": 0.5833333333333334,
+          "hispanic_female": 0.5833333333333334,
+          "hispanic_male": 0.5833333333333334,
+          "white_female": 0.5833333333333334,
+          "white_male": 0.5833333333333334
+        },
+        "highest_group": "white_male",
+        "ratio_vs_highest": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "ratio_vs_reference": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "min_ratio_vs_highest": 1.0,
+        "fails_four_fifths": false
+      },
+      "arity_matched": {
+        "ratio": null,
+        "reason": "insufficient replicates"
+      },
+      "cluster_permutation": {
+        "statistic": "range_of_means",
+        "observed": 0.25,
+        "p": 1.0,
+        "n_perm": 10000,
+        "n_sets": 12
+      },
+      "variance_components": {
+        "k": 2,
+        "n_profiles": 12,
+        "n_groups": 6,
+        "var_profile": 505.34696969696967,
+        "var_group": 0.0,
+        "var_interaction": 0.225,
+        "var_residual": 0.0,
+        "pct_group": 0.0,
+        "pct_residual": 0.0,
+        "group_to_noise_sd": null
+      },
+      "in_multiplicity_family": false
+    },
+    "llama31-8b/hiring/C2+expanded": {
+      "cfr_pairwise_vs_reference": {
+        "black_female": 0.0,
+        "black_male": 0.041666666666666664,
+        "hispanic_female": 0.041666666666666664,
+        "hispanic_male": 0.041666666666666664,
+        "white_female": 0.0
+      },
+      "cfr_pairwise_vs_highest": {
+        "black_female": 0.041666666666666664,
+        "black_male": 0.0,
+        "hispanic_female": 0.0,
+        "white_female": 0.041666666666666664,
+        "white_male": 0.041666666666666664
+      },
+      "highest_rate_group": "hispanic_male",
+      "cfr_unanimity": 0.041666666666666664,
+      "n_sets": 24,
+      "masd": {
+        "MASD": 2.125,
+        "n_sets": 24,
+        "pairwise_vs_reference": {
+          "black_female": 1.0833333333333333,
+          "black_male": 0.9166666666666666,
+          "hispanic_female": 2.0,
+          "hispanic_male": 2.0,
+          "white_female": 0.125
+        }
+      },
+      "action_rate": {
+        "rates": {
+          "black_female": 0.625,
+          "black_male": 0.6458333333333334,
+          "hispanic_female": 0.6666666666666666,
+          "hispanic_male": 0.6666666666666666,
+          "white_female": 0.625,
+          "white_male": 0.625
+        },
+        "disparity": 0.04166666666666663,
+        "gap_vs_reference": {
+          "black_female": 0.0,
+          "black_male": -0.02083333333333337,
+          "hispanic_female": -0.04166666666666663,
+          "hispanic_male": -0.04166666666666663,
+          "white_female": 0.0
+        }
+      },
+      "impact_ratio": {
+        "rates": {
+          "black_female": 0.625,
+          "black_male": 0.6458333333333334,
+          "hispanic_female": 0.6666666666666666,
+          "hispanic_male": 0.6666666666666666,
+          "white_female": 0.625,
+          "white_male": 0.625
+        },
+        "highest_group": "hispanic_male",
+        "ratio_vs_highest": {
+          "black_female": 0.9375,
+          "black_male": 0.9687500000000001,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
+          "white_female": 0.9375,
+          "white_male": 0.9375
+        },
+        "ratio_vs_reference": {
+          "black_female": 1.0,
+          "black_male": 1.0333333333333334,
+          "hispanic_female": 1.0666666666666667,
+          "hispanic_male": 1.0666666666666667,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "min_ratio_vs_highest": 0.9375,
+        "fails_four_fifths": false
+      },
+      "arity_matched": {
+        "observed_masd": 2.1875,
+        "observed_masd_all_sets": 2.1875,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
+        "observed_masd_by_replicate": {
+          "1": 2.25,
+          "2": 2.125
+        },
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 1.158240907583565,
+        "noise_sd": 1.7728105208558367,
+        "set_noise_sd_cv": 2.959876613174507,
+        "floor_degenerate": false,
+        "ratio": 1.8886399070153512,
+        "ratio_ci": [
+          1.4632321846611431,
+          3.165720225092398
+        ],
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.0935299495470197
+      },
+      "cluster_permutation": {
+        "statistic": "range_of_means",
+        "observed": 1.9375,
+        "p": 0.21587841215878412,
+        "n_perm": 10000,
+        "n_sets": 24,
+        "p_bh": 0.47100744471007444
+      },
+      "variance_components": {
+        "k": 2,
+        "n_profiles": 24,
+        "n_groups": 6,
+        "var_profile": 579.8781702898551,
+        "var_group": 0.2418780193236704,
+        "var_interaction": 8.016455314009661,
+        "var_residual": 3.1319444444444446,
+        "pct_group": 0.040908325163328,
+        "pct_residual": 0.5296992347012898,
+        "group_to_noise_sd": 0.2779016830031503
       },
       "in_multiplicity_family": true
     },
@@ -3841,7 +4355,7 @@
         "p": 0.8374162583741626,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.912883711628837
+        "p_bh": 0.9072136264634405
       },
       "variance_components": {
         "k": 2,
@@ -3854,6 +4368,346 @@
         "pct_group": 0.00025999620405542064,
         "pct_residual": 0.0,
         "group_to_noise_sd": null
+      },
+      "in_multiplicity_family": true
+    },
+    "llama31-8b/hiring/C4": {
+      "cfr_pairwise_vs_reference": {
+        "black_female": 0.08333333333333333,
+        "black_male": 0.08333333333333333,
+        "hispanic_female": 0.08333333333333333,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "cfr_pairwise_vs_highest": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_male": 0.08333333333333333,
+        "white_female": 0.08333333333333333,
+        "white_male": 0.08333333333333333
+      },
+      "highest_rate_group": "hispanic_female",
+      "cfr_unanimity": 0.08333333333333333,
+      "n_sets": 12,
+      "masd": {
+        "MASD": 1.25,
+        "n_sets": 12,
+        "pairwise_vs_reference": {
+          "black_female": 1.25,
+          "black_male": 1.25,
+          "hispanic_female": 1.25,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "action_rate": {
+        "rates": {
+          "black_female": 0.5,
+          "black_male": 0.5,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.4166666666666667
+        },
+        "disparity": 0.08333333333333331,
+        "gap_vs_reference": {
+          "black_female": -0.08333333333333331,
+          "black_male": -0.08333333333333331,
+          "hispanic_female": -0.08333333333333331,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "impact_ratio": {
+        "rates": {
+          "black_female": 0.5,
+          "black_male": 0.5,
+          "hispanic_female": 0.5,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.4166666666666667
+        },
+        "highest_group": "black_male",
+        "ratio_vs_highest": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 0.8333333333333334,
+          "white_female": 0.8333333333333334,
+          "white_male": 0.8333333333333334
+        },
+        "ratio_vs_reference": {
+          "black_female": 1.2,
+          "black_male": 1.2,
+          "hispanic_female": 1.2,
+          "hispanic_male": 1.0,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "min_ratio_vs_highest": 0.8333333333333334,
+        "fails_four_fifths": false
+      },
+      "arity_matched": {
+        "ratio": null,
+        "reason": "insufficient replicates"
+      },
+      "cluster_permutation": {
+        "statistic": "range_of_means",
+        "observed": 1.25,
+        "p": 1.0,
+        "n_perm": 10000,
+        "n_sets": 12
+      },
+      "variance_components": {
+        "k": 2,
+        "n_profiles": 12,
+        "n_groups": 6,
+        "var_profile": 477.219696969697,
+        "var_group": 0.0,
+        "var_interaction": 5.625,
+        "var_residual": 0.0,
+        "pct_group": 0.0,
+        "pct_residual": 0.0,
+        "group_to_noise_sd": null
+      },
+      "tool": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.4166666666666667,
+          "hispanic_male": 0.5,
+          "white_female": 0.5,
+          "white_male": 0.5
+        },
+        "disparity": 0.08333333333333331,
+        "gap_vs_reference": {
+          "black_female": -0.08333333333333331,
+          "black_male": -0.08333333333333331,
+          "hispanic_female": -0.08333333333333331,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "tool_permutation": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.4166666666666667,
+          "hispanic_male": 0.5,
+          "white_female": 0.5,
+          "white_male": 0.5
+        },
+        "wilson_ci": {
+          "black_female": [
+            0.19326031353363787,
+            0.6804886876249334
+          ],
+          "black_male": [
+            0.19326031353363787,
+            0.6804886876249334
+          ],
+          "hispanic_female": [
+            0.19326031353363787,
+            0.6804886876249334
+          ],
+          "hispanic_male": [
+            0.2537815974833385,
+            0.7462184025166615
+          ],
+          "white_female": [
+            0.2537815974833385,
+            0.7462184025166615
+          ],
+          "white_male": [
+            0.2537815974833385,
+            0.7462184025166615
+          ]
+        },
+        "delta_tool": 0.08333333333333331,
+        "p": 1.0,
+        "n_perm": 10000,
+        "n_sets": 12
+      },
+      "in_multiplicity_family": false
+    },
+    "llama31-8b/hiring/C4+expanded": {
+      "cfr_pairwise_vs_reference": {
+        "black_female": 0.041666666666666664,
+        "black_male": 0.041666666666666664,
+        "hispanic_female": 0.041666666666666664,
+        "hispanic_male": 0.0,
+        "white_female": 0.0
+      },
+      "cfr_pairwise_vs_highest": {
+        "black_female": 0.0,
+        "black_male": 0.0,
+        "hispanic_male": 0.041666666666666664,
+        "white_female": 0.041666666666666664,
+        "white_male": 0.041666666666666664
+      },
+      "highest_rate_group": "hispanic_female",
+      "cfr_unanimity": 0.041666666666666664,
+      "n_sets": 24,
+      "masd": {
+        "MASD": 1.2916666666666667,
+        "n_sets": 24,
+        "pairwise_vs_reference": {
+          "black_female": 1.2916666666666667,
+          "black_male": 0.625,
+          "hispanic_female": 1.0416666666666667,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "action_rate": {
+        "rates": {
+          "black_female": 0.4583333333333333,
+          "black_male": 0.4583333333333333,
+          "hispanic_female": 0.4583333333333333,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.4166666666666667
+        },
+        "disparity": 0.04166666666666663,
+        "gap_vs_reference": {
+          "black_female": -0.04166666666666663,
+          "black_male": -0.04166666666666663,
+          "hispanic_female": -0.04166666666666663,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "impact_ratio": {
+        "rates": {
+          "black_female": 0.4583333333333333,
+          "black_male": 0.4583333333333333,
+          "hispanic_female": 0.4583333333333333,
+          "hispanic_male": 0.4166666666666667,
+          "white_female": 0.4166666666666667,
+          "white_male": 0.4166666666666667
+        },
+        "highest_group": "black_male",
+        "ratio_vs_highest": {
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 0.9090909090909092,
+          "white_female": 0.9090909090909092,
+          "white_male": 0.9090909090909092
+        },
+        "ratio_vs_reference": {
+          "black_female": 1.0999999999999999,
+          "black_male": 1.0999999999999999,
+          "hispanic_female": 1.0999999999999999,
+          "hispanic_male": 1.0,
+          "white_female": 1.0,
+          "white_male": 1.0
+        },
+        "min_ratio_vs_highest": 0.9090909090909092,
+        "fails_four_fifths": false
+      },
+      "arity_matched": {
+        "observed_masd": 1.2291666666666667,
+        "observed_masd_all_sets": 1.2291666666666667,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
+        "observed_masd_by_replicate": {
+          "1": 1.1667,
+          "2": 1.2917
+        },
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 0.07130729946528092,
+        "noise_sd": 0.1770844008302866,
+        "set_noise_sd_cv": 4.898979485566357,
+        "floor_degenerate": true,
+        "ratio": 17.237599458736206,
+        "ratio_ci": [
+          5.356316215991475,
+          55.69231192419633
+        ],
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 6.151420400450709
+      },
+      "cluster_permutation": {
+        "statistic": "range_of_means",
+        "observed": 1.2291666666666572,
+        "p": 0.027097290270972903,
+        "n_perm": 10000,
+        "n_sets": 24,
+        "p_bh": 0.09290499521476424
+      },
+      "variance_components": {
+        "k": 2,
+        "n_profiles": 24,
+        "n_groups": 6,
+        "var_profile": 461.67874396135267,
+        "var_group": 0.157608695652169,
+        "var_interaction": 3.8285024154589355,
+        "var_residual": 0.03125,
+        "pct_group": 0.033843679158030444,
+        "pct_residual": 0.006710384660644177,
+        "group_to_noise_sd": 2.245768968720827
+      },
+      "tool": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.4166666666666667,
+          "hispanic_male": 0.4583333333333333,
+          "white_female": 0.4583333333333333,
+          "white_male": 0.4583333333333333
+        },
+        "disparity": 0.04166666666666663,
+        "gap_vs_reference": {
+          "black_female": -0.04166666666666663,
+          "black_male": -0.04166666666666663,
+          "hispanic_female": -0.04166666666666663,
+          "hispanic_male": 0.0,
+          "white_female": 0.0
+        }
+      },
+      "tool_permutation": {
+        "rates": {
+          "black_female": 0.4166666666666667,
+          "black_male": 0.4166666666666667,
+          "hispanic_female": 0.4166666666666667,
+          "hispanic_male": 0.4583333333333333,
+          "white_female": 0.4583333333333333,
+          "white_male": 0.4583333333333333
+        },
+        "wilson_ci": {
+          "black_female": [
+            0.24467602598607915,
+            0.6116533414917141
+          ],
+          "black_male": [
+            0.24467602598607915,
+            0.6116533414917141
+          ],
+          "hispanic_female": [
+            0.24467602598607915,
+            0.6116533414917141
+          ],
+          "hispanic_male": [
+            0.2789133371912895,
+            0.6492513465476072
+          ],
+          "white_female": [
+            0.2789133371912895,
+            0.6492513465476072
+          ],
+          "white_male": [
+            0.2789133371912895,
+            0.6492513465476072
+          ]
+        },
+        "delta_tool": 0.04166666666666663,
+        "p": 1.0,
+        "n_perm": 10000,
+        "n_sets": 24
       },
       "in_multiplicity_family": true
     },
@@ -3949,6 +4803,7 @@
         "null_masd": 4.515950244068304,
         "noise_sd": 2.006980824017018,
         "set_noise_sd_cv": 0.5102001677002833,
+        "floor_degenerate": false,
         "ratio": 0.9595617974367989,
         "ratio_ci": [
           0.7358645154249442,
@@ -4070,6 +4925,7 @@
         "null_masd": 5.82435198357733,
         "noise_sd": 2.844396655618688,
         "set_noise_sd_cv": 0.7076586943516225,
+        "floor_degenerate": false,
         "ratio": 0.9657726758033454,
         "ratio_ci": [
           0.8603467475879203,
@@ -4084,7 +4940,7 @@
         "p": 9.999000099990002e-05,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.0020997900209979003
+        "p_bh": 0.0023997600239976003
       },
       "variance_components": {
         "k": 2,
@@ -4192,6 +5048,7 @@
         "null_masd": 5.7624021210571525,
         "noise_sd": 2.44806188504437,
         "set_noise_sd_cv": 0.3656396235476515,
+        "floor_degenerate": false,
         "ratio": 1.0629247788205947,
         "ratio_ci": [
           0.8401283660985979,
@@ -4313,6 +5170,7 @@
         "null_masd": 5.645736932887966,
         "noise_sd": 2.4187133389527324,
         "set_noise_sd_cv": 0.40888879718240073,
+        "floor_degenerate": false,
         "ratio": 0.8966942775015869,
         "ratio_ci": [
           0.765798987284779,
@@ -4327,7 +5185,7 @@
         "p": 0.004899510048995101,
         "n_perm": 10000,
         "n_sets": 24,
-        "p_bh": 0.02572242775722428
+        "p_bh": 0.029397060293970604
       },
       "variance_components": {
         "k": 2,
@@ -4375,7 +5233,7 @@
     }
   },
   "multiplicity": {
-    "n_tests": 21,
+    "n_tests": 24,
     "method": "Benjamini-Hochberg over one row per (model, domain, scaffold): the expanded row where a complete one exists, else the core row. Superseded core rows are excluded so shared data is not counted twice.",
     "superseded_core_rows": [
       "fable/hiring/C0",
@@ -4386,13 +5244,16 @@
       "haiku/hiring/C3",
       "haiku/hiring/C4",
       "llama31-8b/hiring/C0",
+      "llama31-8b/hiring/C0L",
+      "llama31-8b/hiring/C2",
       "llama31-8b/hiring/C3",
+      "llama31-8b/hiring/C4",
       "sonnet/hiring/C0",
       "sonnet/hiring/C3"
     ],
     "min_p_raw": 9.999000099990002e-05,
-    "min_p_bh": 0.0020997900209979003,
-    "n_raw_below_0.05": 7,
+    "min_p_bh": 0.0023997600239976003,
+    "n_raw_below_0.05": 8,
     "n_bh_below_0.05": 4,
     "survivors": [
       "sonnet/hiring/C0+expanded",
@@ -4606,6 +5467,30 @@
       "masd_max_when_dropped": 0.25,
       "range": 0.125,
       "most_influential_name": "Darnell Booker",
+      "n_names": 30
+    },
+    "llama31-8b/hiring/C2": {
+      "masd_full": 2.125,
+      "masd_min_when_dropped": 2.0,
+      "masd_max_when_dropped": 2.125,
+      "range": 0.125,
+      "most_influential_name": "Sofia Ramirez",
+      "n_names": 30
+    },
+    "llama31-8b/hiring/C4": {
+      "masd_full": 1.2916666666666667,
+      "masd_min_when_dropped": 1.0416666666666667,
+      "masd_max_when_dropped": 1.2916666666666667,
+      "range": 0.25,
+      "most_influential_name": "Ebony Robinson",
+      "n_names": 30
+    },
+    "llama31-8b/hiring/C0L": {
+      "masd_full": 0.5833333333333334,
+      "masd_min_when_dropped": 0.4583333333333333,
+      "masd_max_when_dropped": 0.5833333333333334,
+      "range": 0.12500000000000006,
+      "most_influential_name": "Geoffrey Schroeder",
       "n_names": 30
     }
   },
@@ -4918,13 +5803,97 @@
           "lowest_group": "white_male",
           "reference_rank_from_top": 6
         }
+      },
+      "llama31-8b/hiring/C2": {
+        "core": {
+          "p": 1.0,
+          "group_means": {
+            "white_male": -0.125,
+            "black_male": -0.125,
+            "hispanic_male": 0.125,
+            "white_female": 0.125,
+            "black_female": 0.125,
+            "hispanic_female": -0.125
+          },
+          "lowest_group": "hispanic_female",
+          "reference_rank_from_top": 4
+        },
+        "added": {
+          "p": 0.42425757424257576,
+          "group_means": {
+            "white_male": -1.6250000000000002,
+            "black_male": -0.7083333333333336,
+            "hispanic_male": 1.9999999999999998,
+            "white_female": -1.6250000000000002,
+            "black_female": 0.41666666666666635,
+            "hispanic_female": 1.5416666666666663
+          },
+          "lowest_group": "white_female",
+          "reference_rank_from_top": 5
+        }
+      },
+      "llama31-8b/hiring/C4": {
+        "core": {
+          "p": 1.0,
+          "group_means": {
+            "white_male": -0.625,
+            "black_male": 0.625,
+            "hispanic_male": -0.625,
+            "white_female": -0.625,
+            "black_female": 0.625,
+            "hispanic_female": 0.625
+          },
+          "lowest_group": "white_female",
+          "reference_rank_from_top": 4
+        },
+        "added": {
+          "p": 0.05799420057994201,
+          "group_means": {
+            "white_male": -0.34027777777777796,
+            "black_male": -0.34027777777777796,
+            "hispanic_male": -0.34027777777777796,
+            "white_female": -0.34027777777777796,
+            "black_female": 0.8680555555555554,
+            "hispanic_female": 0.49305555555555536
+          },
+          "lowest_group": "white_female",
+          "reference_rank_from_top": 3
+        }
+      },
+      "llama31-8b/hiring/C0L": {
+        "core": {
+          "p": 0.4991500849915009,
+          "group_means": {
+            "white_male": -0.3125,
+            "black_male": -0.0625,
+            "hispanic_male": 0.1875,
+            "white_female": 0.1875,
+            "black_female": -0.0625,
+            "hispanic_female": 0.0625
+          },
+          "lowest_group": "white_male",
+          "reference_rank_from_top": 6
+        },
+        "added": {
+          "p": 0.20787921207879212,
+          "group_means": {
+            "white_male": -0.49305555555555625,
+            "black_male": -0.32638888888888956,
+            "hispanic_male": -0.24305555555555625,
+            "white_female": 1.215277777777777,
+            "black_female": -0.07638888888888958,
+            "hispanic_female": -0.07638888888888958
+          },
+          "lowest_group": "white_male",
+          "reference_rank_from_top": 6
+        }
       }
     },
     "direction": {
       "reference_group": "white_male",
       "per_cell": {
-        "n": 22,
-        "reference_lowest": 13,
+        "n": 28,
+        "reference_lowest": 15,
         "note": "Strict view. A per-cell rank at 12 matched sets is itself noisy."
       },
       "pooled_by_model_and_half": {
@@ -4955,13 +5924,13 @@
         "llama31-8b/added": {
           "reference_rank_from_top": 6,
           "n_groups": 6,
-          "reference_mean_deviation": -0.611111111111111,
+          "reference_mean_deviation": -0.7361111111111102,
           "lowest_group": "white_male"
         },
         "llama31-8b/core": {
           "reference_rank_from_top": 6,
           "n_groups": 6,
-          "reference_mean_deviation": -0.13541666666666666,
+          "reference_mean_deviation": -0.2666666666666657,
           "lowest_group": "white_male"
         },
         "sonnet/added": {
@@ -5044,16 +6013,16 @@
       "n": 336
     },
     "llama31-8b/hiring/borderline": {
-      "positive_rate": 0.8375,
-      "n": 240
+      "positive_rate": 0.655,
+      "n": 600
     },
     "llama31-8b/hiring/clear-no": {
       "positive_rate": 0.0,
-      "n": 144
+      "n": 360
     },
     "llama31-8b/hiring/clear-yes": {
       "positive_rate": 1.0,
-      "n": 192
+      "n": 480
     },
     "sonnet/hiring/borderline": {
       "positive_rate": 0.7083333333333334,

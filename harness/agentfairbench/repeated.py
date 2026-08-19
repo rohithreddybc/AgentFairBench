@@ -341,6 +341,13 @@ def masd_to_noise_ratio(records, n_groups: int = 6, n_boot: int = 4000,
             "null_masd": float(den.mean()),
             "noise_sd": floor["noise_sd"],
             "set_noise_sd_cv": floor["set_noise_sd_cv"],
+            # A near-deterministic model has almost no call-to-call noise, so the null
+            # spread approaches zero and the ratio divides by nearly nothing. A half-point
+            # observed spread over a 0.07-point floor reads as a ratio near seventeen and
+            # says nothing about disparity. Flag those cells; the randomization test, which
+            # needs no floor, is the instrument to trust there. The threshold is a quarter
+            # of a score point, below every genuine floor and above only the degenerate.
+            "floor_degenerate": bool(float(den.mean()) < 0.25),
             "ratio": point,
             "ratio_ci": ci,
             "ci_method": "BCa over matched sets",

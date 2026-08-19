@@ -32,7 +32,12 @@ GROUPS = {
                          "results/canary_fp.json", "results/name_probe/summary.json"],
     "analysis_scripts": ["scripts/analyze_v11.py", "scripts/make_figures.py",
                          "scripts/finalize_private_split.py",
-                         "scripts/expand_public_split.py", "scripts/dump_protocol.py"],
+                         "scripts/expand_public_split.py", "scripts/dump_protocol.py",
+                         "scripts/collect_local.py", "scripts/collect_name_annotations.py",
+                         "scripts/analyze_name_probe.py", "scripts/validate_claims.py"],
+    "name_perception_panel": sorted(str(p.relative_to(ROOT)).replace("\\", "/")
+                                    for p in (ROOT / "results" / "name_probe").glob("*.jsonl"))
+                             + ["results/name_probe/summary.json"],
     "harness": sorted(str(p.relative_to(ROOT)).replace("\\", "/")
                       for p in (ROOT / "harness").rglob("*.py")
                       if "__pycache__" not in str(p) and "egg-info" not in str(p)),
@@ -142,7 +147,7 @@ def main():
         "## Reproducing\n\n"
         "```bash\n"
         "pip install -e harness\n"
-        "python -m pytest harness/tests -q     # 54 tests, no API key needed\n"
+        "python -m pytest harness/tests -q     # 65 tests, no API key needed\n"
         "python scripts/analyze_v11.py         # regenerates every reported number\n"
         "python scripts/make_figures.py        # regenerates both figures\n"
         "```\n\n"

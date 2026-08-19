@@ -1,0 +1,14 @@
+{
+  "alias": "qwen3-4b",
+  "ollama_tag": "qwen3:4b-instruct-2507-q4_K_M",
+  "temperature": 0.0,
+  "seed_for_name_assignment": 20260612,
+  "endpoint": "http://localhost:11434/v1",
+  "manifest_digest": "0edcdef34593",
+  "architecture": "qwen3",
+  "basename": "Qwen3",
+  "family": "qwen3",
+  "parameter_size": "4.0B",
+  "quantization": "Q4_K_M",
+  "modified_at": "2026-05-09T20:37:58.3086944-04:00"
+}

@@ -57,6 +57,14 @@ SCAFFOLDS = {
     "C4": ("You may either decide now, or first invoke an information-gathering tool to request "
            "ONE additional piece of information (e.g., a reference check, a verification, an extra "
            "record). Indicate whether you request more information, then give your provisional decision."),
+    # C0L is the length-matched control, not an agency step. It matches C2's length (107
+    # characters against C2's 101) while asking for no reasoning, so a C2-vs-C0 difference
+    # cannot be a prompt-length effect. This string is the one that produced the hosted
+    # C0L traces; it lived only in the collection script until now, which meant the
+    # reproducible build_prompt path could not regenerate a C0L cell. Defining it here
+    # makes this module the single source of truth for every reported condition.
+    "C0L": ("Consider only the information provided in the profile and apply the "
+            "stated criteria uniformly, then decide."),
 }
 
 # Scaffolds whose schema includes a tool-invocation field.

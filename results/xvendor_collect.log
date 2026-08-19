@@ -1,0 +1,30 @@
+model llama3.1:8b-instruct-q4_K_M -> alias llama31-8b
+  digest 46e0c10c039e  8.0B Q4_K_M  temperature 0.0
+
+replicate 1: 288 on disk, 432 to collect
+Traceback (most recent call last):
+  File "C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\scripts\collect_local.py", line 179, in <module>
+    main()
+  File "C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\scripts\collect_local.py", line 148, in main
+    prompt = build_prompt(it.profile.domain, sc, it.names[g],
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\harness\agentfairbench\scaffolds.py", line 77, in build_prompt
+    sc = SCAFFOLDS[scaffold]
+         ~~~~~~~~~^^^^^^^^^^
+KeyError: 'C0L'
+=== llama done, starting qwen ===
+model qwen3:4b-instruct-2507-q4_K_M -> alias qwen3-4b
+  digest 0edcdef34593  4.0B Q4_K_M  temperature 0.0
+
+replicate 1: 0 on disk, 720 to collect
+Traceback (most recent call last):
+  File "C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\scripts\collect_local.py", line 179, in <module>
+    main()
+  File "C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\scripts\collect_local.py", line 148, in main
+    prompt = build_prompt(it.profile.domain, sc, it.names[g],
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rohit\Documents\Research Papers\Researchpaper8-AgentFairBench\harness\agentfairbench\scaffolds.py", line 77, in build_prompt
+    This is byte-identical to the prompt the collection client sent for the released
+         ^^^^^^^^^^^^^^^^^^^
+KeyError: 'C0L'
+=== qwen done ===

@@ -1,8 +1,8 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "f9de66a8149a174406fbec3b27f9596eae214387",
+  "commit_at_generation": "48fa3b01d0d2b3d266a050fee29f64518db0f24b",
   "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
-  "n_decisions": 5605,
+  "n_decisions": 6469,
   "models_evaluated": [
     "fable",
     "haiku",
@@ -12,9 +12,9 @@
   "model_identifier_note": "The June 2026 run recorded the versioned string claude-haiku-4-5 on every call. The August 2026 replicates were collected through a client that accepts a model tier and does not return the resolved version, so those records carry the tier. We record what was observed rather than back-filling an identifier.",
   "api_parameters_note": "The collection client exposes neither temperature nor a sampling seed, so decoding was not pinned and this is not recoverable from the traces. The released OpenAI-compatible adapter sends the identical prompt and schema and does expose temperature, defaulting to 0, for a decoding-pinned replication.",
   "headline": {
-    "cells_reported": 30,
+    "cells_reported": 34,
     "cells_with_ratio_interval_above_one": 0,
-    "randomization_tests": 21,
+    "randomization_tests": 24,
     "significant_after_bh": 4,
     "significant_cells": [
       "sonnet/hiring/C0+expanded",
@@ -28,8 +28,8 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 1782178,
-  "n_files": 47,
+  "total_bytes": 2146934,
+  "n_files": 60,
   "files": {
     "public_split": [
       {
@@ -103,13 +103,18 @@
       },
       {
         "path": "results/raw/v11/llama31-8b_r1.jsonl",
-        "bytes": 55390,
-        "sha256": "613f87cb2bffd8bde1714535b8e37d8fe4e3094e701cb20ceaeb64cdc1afc2ed"
+        "bytes": 142642,
+        "sha256": "568b68ddc3b2a7cabc18cb2afe698e34d9b4811c8fd892180128f1992a6d3d0c"
       },
       {
         "path": "results/raw/v11/llama31-8b_r2.jsonl",
-        "bytes": 55389,
-        "sha256": "3dc923a4fc89475bba40489ce3cc4d830f4b013d336542e7ef340ce7d765e918"
+        "bytes": 142641,
+        "sha256": "50baa94bc9ca1054f739a496475841a68cbbca9975bc99b1b95edc82101c8bdd"
+      },
+      {
+        "path": "results/raw/v11/qwen3-4b_r1.jsonl",
+        "bytes": 4704,
+        "sha256": "4e70fde1206ec31aa4da8644fea0c2161b90f6ff4fae2589b24f08a3eadc7d94"
       },
       {
         "path": "results/raw/v11/sonnet_r1.jsonl",
@@ -125,13 +130,13 @@
     "analysis_outputs": [
       {
         "path": "results/v11/analysis.json",
-        "bytes": 160291,
-        "sha256": "f049f07cb914d7aa829b76e01ac9a78e53b1881bb884f509890c818d98e21033"
+        "bytes": 189979,
+        "sha256": "9f186ecf550d4f6bdf41c850469f072c64f3d4c60291f99b7d22d06534f09ca6"
       },
       {
         "path": "results/v11/tables.md",
-        "bytes": 7418,
-        "sha256": "6acea9f21095d84bf160fedfef06339235e2e6e43887638544b9e9a5622b3bbd"
+        "bytes": 8445,
+        "sha256": "5799940c980df25a16da348a516d109dc2e081a8e9326191fd1c62c89355801f"
       },
       {
         "path": "results/v11/profile_standards_check.md",
@@ -145,15 +150,15 @@
       },
       {
         "path": "results/name_probe/summary.json",
-        "bytes": 10231,
-        "sha256": "6f33ae66e5ba7dadba7081779ab2fead533668a537586e5ab8d448b6beaa4aa8"
+        "bytes": 21268,
+        "sha256": "89c85cae6fc7474b40f7965c5ab2330c26e40c48aa56a88319958922483a06b3"
       }
     ],
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 31942,
-        "sha256": "a627fa818cdd18837b4e6e4bbac7e3962fb8f5d448ceae989448b5a92c9de062"
+        "bytes": 32912,
+        "sha256": "45a90677d1e35c2f3365cfe13c17e926e3f13a5228c0ed25a9fc3936043e5afa"
       },
       {
         "path": "scripts/make_figures.py",
@@ -174,6 +179,53 @@
         "path": "scripts/dump_protocol.py",
         "bytes": 30435,
         "sha256": "3a4ab0d33bd9481cc823c2be17bd6b093ad8de9b64d99a8bdc041d0d31c0d136"
+      },
+      {
+        "path": "scripts/collect_local.py",
+        "bytes": 7914,
+        "sha256": "bec9db2160863967a618a3f66f2254bcf064d3b43d398ec1762ab7bc189196b0"
+      },
+      {
+        "path": "scripts/collect_name_annotations.py",
+        "bytes": 4535,
+        "sha256": "8b8ab490c59b6dbb2b46e798099d92a5dca481013cc761b5368524324fad61a3"
+      },
+      {
+        "path": "scripts/analyze_name_probe.py",
+        "bytes": 7222,
+        "sha256": "9ba7d672cdea3d2b6e23d21553ee376c1f82f2e0e3361d578f3ac4276125aa32"
+      },
+      {
+        "path": "scripts/validate_claims.py",
+        "bytes": 14842,
+        "sha256": "298e3bc8965449f921c2fb8c51160ca58a82cb7c4c645808cd3e152771ab32ac"
+      }
+    ],
+    "name_perception_panel": [
+      {
+        "path": "results/name_probe/haiku.jsonl",
+        "bytes": 17917,
+        "sha256": "7a92c3f7e957236f3a60306114db11ac7ffa1fa8ab592cf841f5aa77aac39a1f"
+      },
+      {
+        "path": "results/name_probe/llama31-8b.jsonl",
+        "bytes": 20418,
+        "sha256": "757ee0ebda0e30a1762747e357956393519ce65bcaf2122b98c40fca96a9d89a"
+      },
+      {
+        "path": "results/name_probe/qwen3-4b.jsonl",
+        "bytes": 20445,
+        "sha256": "0638012e81863e231f729ba13faf54387dcbf4d7f3455b53ed005da9540bc07f"
+      },
+      {
+        "path": "results/name_probe/sonnet.jsonl",
+        "bytes": 17980,
+        "sha256": "3642cbafe2b6127cdba3cb5bd49f26dcb3d503b2dff04d92003854ae7ce645bd"
+      },
+      {
+        "path": "results/name_probe/summary.json",
+        "bytes": 21268,
+        "sha256": "89c85cae6fc7474b40f7965c5ab2330c26e40c48aa56a88319958922483a06b3"
       }
     ],
     "harness": [
@@ -181,6 +233,11 @@
         "path": "harness/agentfairbench/__init__.py",
         "bytes": 652,
         "sha256": "8308511a7760b7a1d85e82f100729a94fcb9192b1ba75c70875e63d5175d9a5c"
+      },
+      {
+        "path": "harness/agentfairbench/agreement.py",
+        "bytes": 4469,
+        "sha256": "26f0720c4b66cdf930cbadc51e5c63a2763764d81896ae72b1f6ccebcd713a76"
       },
       {
         "path": "harness/agentfairbench/canary.py",
@@ -214,8 +271,8 @@
       },
       {
         "path": "harness/agentfairbench/repeated.py",
-        "bytes": 30288,
-        "sha256": "e4375ad7871ba60f5e609305a62feb760421f0f6d215fccbfe2e479d5c43dd4d"
+        "bytes": 30892,
+        "sha256": "593b5cdec82feabca458502c57ed8965563e2245b0ae3a4cdba11554cb055e7c"
       },
       {
         "path": "harness/agentfairbench/runner.py",
@@ -224,8 +281,13 @@
       },
       {
         "path": "harness/agentfairbench/scaffolds.py",
-        "bytes": 5972,
-        "sha256": "2e521cf6d605b159d1bf7d9365a0ffc2f72d78f1c5efa13a3530f00eb95d187f"
+        "bytes": 6631,
+        "sha256": "0fb47bcac8f2f448e2fec51e5fa2e652e299986f4cad3fb9a888e92e69e7408f"
+      },
+      {
+        "path": "harness/tests/test_agreement.py",
+        "bytes": 3039,
+        "sha256": "19455fc861fec7a5027b12caf90b4725bbde7ca64e52316dd768b9c1517915f3"
       },
       {
         "path": "harness/tests/test_canary.py",
@@ -244,8 +306,8 @@
       },
       {
         "path": "harness/tests/test_repeated.py",
-        "bytes": 11961,
-        "sha256": "8300b196bc27eb12a4e1dedd3ee3df972600d80198c1fa3e7aff6760f8beba35"
+        "bytes": 13069,
+        "sha256": "162867232737106f936f34de0b5c953c1eb7da6cea99522f0b1d37881a21d82f"
       }
     ],
     "protocol": [
@@ -264,7 +326,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "0f7fe39040f32eabd441c3df663fd6430a61e468065d37cb92a03bccb77e1338"
+        "sha256": "946e927ab8c4d5a8b7e18f995b8d3fdc5ce8ecaa84b8ccde720e582fd9081225"
       }
     ],
     "model_provenance": [
@@ -272,13 +334,18 @@
         "path": "results/raw/v11/llama31-8b_provenance.json",
         "bytes": 405,
         "sha256": "342ba308d36f5b5a24e93121dd4e9f97b3c09da86a4252e9442e488829c35b11"
+      },
+      {
+        "path": "results/raw/v11/qwen3-4b_provenance.json",
+        "bytes": 398,
+        "sha256": "f40d96d237939c856b364fe5dd2295c0da2c103aef0361ab1a16370801a1e029"
       }
     ],
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
-        "bytes": 5580,
-        "sha256": "b3ca57de42b22d64d8c37d3c6bd5562895a6a9979bc129e09c7447f2918c7fd4"
+        "bytes": 5588,
+        "sha256": "25e3c273a172ddcd143043f106b8de42ac67bc438bc92f683762669feff71145"
       },
       {
         "path": "leaderboard/build_leaderboard.py",
