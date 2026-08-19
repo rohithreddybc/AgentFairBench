@@ -37,6 +37,12 @@ GROUPS = {
                       for p in (ROOT / "harness").rglob("*.py")
                       if "__pycache__" not in str(p) and "egg-info" not in str(p)),
     "protocol": ["PROTOCOL_APPENDIX.md", "PROTOCOL.md"],
+    # Reviewer 2 asked for environment information and the exact model identifier by name,
+    # so both belong in the manifest rather than merely in the repository. The provenance
+    # file is where the served model's manifest digest and pinned temperature live.
+    "environment": ["ENVIRONMENT.md"],
+    "model_provenance": sorted(str(p.relative_to(ROOT)).replace("\\", "/")
+                               for p in (ROOT / "results" / "raw").rglob("*_provenance.json")),
     "leaderboard": ["leaderboard/results.json", "leaderboard/build_leaderboard.py"],
 }
 
@@ -75,8 +81,12 @@ def main():
     mult = analysis.get("multiplicity") or {}
 
     manifest = {
-        "release": "v1.1.0",
-        "commit": git("rev-parse", "HEAD"),
+        "release": "v1.1.1",
+        # HEAD at generation time. The manifest is regenerated and committed together with
+        # the artifacts it describes, so this names the parent of the release commit; the
+        # tag is what a reader should resolve. Stated rather than left to be discovered.
+        "commit_at_generation": git("rev-parse", "HEAD"),
+        "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
         "n_decisions": analysis.get("n_decisions"),
         "models_evaluated": analysis.get("models"),
         "model_identifier_note": (
@@ -146,7 +156,7 @@ def main():
         fh.write(env)
 
     print(f"wrote {out}")
-    print(f"  {manifest['n_files']} files, {total/1e6:.1f} MB, commit {manifest['commit'][:8]}")
+    print(f"  {manifest['n_files']} files, {total/1e6:.1f} MB, commit {manifest['commit_at_generation'][:8]}")
     if missing:
         print("  MISSING (listed in the manifest so the gap is visible):")
         for m in missing:

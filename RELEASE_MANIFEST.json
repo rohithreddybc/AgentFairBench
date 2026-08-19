@@ -1,7 +1,8 @@
 {
-  "release": "v1.1.0",
-  "commit": "1ef163835d9b180a86afa054987c95482d3f37d5",
-  "n_decisions": 5607,
+  "release": "v1.1.1",
+  "commit_at_generation": "54b93e7a2356895821434e90740a7a5c2dfce4cd",
+  "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
+  "n_decisions": 5605,
   "models_evaluated": [
     "fable",
     "haiku",
@@ -27,8 +28,8 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 1781199,
-  "n_files": 45,
+  "total_bytes": 1782178,
+  "n_files": 47,
   "files": {
     "public_split": [
       {
@@ -102,8 +103,8 @@
       },
       {
         "path": "results/raw/v11/llama31-8b_r1.jsonl",
-        "bytes": 56260,
-        "sha256": "5e5fe2f8aa7ed24b1f719471ab7920710cc54b5c37cdae6d7c77e63fbb7160d8"
+        "bytes": 55390,
+        "sha256": "613f87cb2bffd8bde1714535b8e37d8fe4e3094e701cb20ceaeb64cdc1afc2ed"
       },
       {
         "path": "results/raw/v11/llama31-8b_r2.jsonl",
@@ -124,13 +125,13 @@
     "analysis_outputs": [
       {
         "path": "results/v11/analysis.json",
-        "bytes": 160787,
-        "sha256": "5d287e6062fc1fc824f7d430e9f8e7ee05ba3a7f3dec32def731fe820112a782"
+        "bytes": 160291,
+        "sha256": "f049f07cb914d7aa829b76e01ac9a78e53b1881bb884f509890c818d98e21033"
       },
       {
         "path": "results/v11/tables.md",
         "bytes": 7418,
-        "sha256": "ecc9ecabfc5216710a42244e28f2837541c028d768ec03088d35fde0e04e4538"
+        "sha256": "6acea9f21095d84bf160fedfef06339235e2e6e43887638544b9e9a5622b3bbd"
       },
       {
         "path": "results/v11/profile_standards_check.md",
@@ -151,8 +152,8 @@
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 31022,
-        "sha256": "e28f0f69de63fa6b7275a13baa4f6fd874ec6bbb4515480f2342d4b8a86c9839"
+        "bytes": 31942,
+        "sha256": "a627fa818cdd18837b4e6e4bbac7e3962fb8f5d448ceae989448b5a92c9de062"
       },
       {
         "path": "scripts/make_figures.py",
@@ -259,11 +260,25 @@
         "sha256": "0a8ad520aa0aaed464d2df6b20d442a4fd509087d3b636a8cf4ee00347d717cb"
       }
     ],
+    "environment": [
+      {
+        "path": "ENVIRONMENT.md",
+        "bytes": 1020,
+        "sha256": "0f7fe39040f32eabd441c3df663fd6430a61e468065d37cb92a03bccb77e1338"
+      }
+    ],
+    "model_provenance": [
+      {
+        "path": "results/raw/v11/llama31-8b_provenance.json",
+        "bytes": 405,
+        "sha256": "342ba308d36f5b5a24e93121dd4e9f97b3c09da86a4252e9442e488829c35b11"
+      }
+    ],
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
         "bytes": 5580,
-        "sha256": "68c3df8258237f6c619409779efb50124509d6191d7f46f69efe03bd61c68d82"
+        "sha256": "b3ca57de42b22d64d8c37d3c6bd5562895a6a9979bc129e09c7447f2918c7fd4"
       },
       {
         "path": "leaderboard/build_leaderboard.py",

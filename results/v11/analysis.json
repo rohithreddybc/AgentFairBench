@@ -5,7 +5,7 @@
     "llama31-8b",
     "sonnet"
   ],
-  "n_decisions": 5607,
+  "n_decisions": 5605,
   "files": [
     {
       "file": "results/raw/claude-haiku-4-5_full_raw.jsonl",
@@ -53,7 +53,7 @@
       "file": "results/raw/v11/llama31-8b_r1.jsonl",
       "model": "llama31-8b",
       "rep": 1,
-      "n": 290
+      "n": 288
     },
     {
       "file": "results/raw/v11/llama31-8b_r2.jsonl",
@@ -120,7 +120,7 @@
     "hiring/C3/llama31-8b": {
       "k_min": 2,
       "k_median": 2,
-      "k_max": 3,
+      "k_max": 2,
       "n_cells": 144
     },
     "hiring/C3/sonnet": {
@@ -3689,15 +3689,15 @@
           "black_male": 0.75,
           "hispanic_female": 0.75,
           "hispanic_male": 0.75,
-          "white_female": 0.76,
-          "white_male": 0.76
+          "white_female": 0.75,
+          "white_male": 0.75
         },
-        "disparity": 0.010000000000000009,
+        "disparity": 0.0,
         "gap_vs_reference": {
-          "black_female": 0.010000000000000009,
-          "black_male": 0.010000000000000009,
-          "hispanic_female": 0.010000000000000009,
-          "hispanic_male": 0.010000000000000009,
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
           "white_female": 0.0
         }
       },
@@ -3707,27 +3707,27 @@
           "black_male": 0.75,
           "hispanic_female": 0.75,
           "hispanic_male": 0.75,
-          "white_female": 0.76,
-          "white_male": 0.76
+          "white_female": 0.75,
+          "white_male": 0.75
         },
         "highest_group": "white_male",
         "ratio_vs_highest": {
-          "black_female": 0.9868421052631579,
-          "black_male": 0.9868421052631579,
-          "hispanic_female": 0.9868421052631579,
-          "hispanic_male": 0.9868421052631579,
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
           "white_female": 1.0,
           "white_male": 1.0
         },
         "ratio_vs_reference": {
-          "black_female": 0.9868421052631579,
-          "black_male": 0.9868421052631579,
-          "hispanic_female": 0.9868421052631579,
-          "hispanic_male": 0.9868421052631579,
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
           "white_female": 1.0,
           "white_male": 1.0
         },
-        "min_ratio_vs_highest": 0.9868421052631579,
+        "min_ratio_vs_highest": 1.0,
         "fails_four_fifths": false
       },
       "arity_matched": {
@@ -3790,15 +3790,15 @@
           "black_male": 0.75,
           "hispanic_female": 0.75,
           "hispanic_male": 0.75,
-          "white_female": 0.7551020408163265,
-          "white_male": 0.7551020408163265
+          "white_female": 0.75,
+          "white_male": 0.75
         },
-        "disparity": 0.005102040816326481,
+        "disparity": 0.0,
         "gap_vs_reference": {
-          "black_female": 0.005102040816326481,
-          "black_male": 0.005102040816326481,
-          "hispanic_female": 0.005102040816326481,
-          "hispanic_male": 0.005102040816326481,
+          "black_female": 0.0,
+          "black_male": 0.0,
+          "hispanic_female": 0.0,
+          "hispanic_male": 0.0,
           "white_female": 0.0
         }
       },
@@ -3808,27 +3808,27 @@
           "black_male": 0.75,
           "hispanic_female": 0.75,
           "hispanic_male": 0.75,
-          "white_female": 0.7551020408163265,
-          "white_male": 0.7551020408163265
+          "white_female": 0.75,
+          "white_male": 0.75
         },
         "highest_group": "white_male",
         "ratio_vs_highest": {
-          "black_female": 0.9932432432432433,
-          "black_male": 0.9932432432432433,
-          "hispanic_female": 0.9932432432432433,
-          "hispanic_male": 0.9932432432432433,
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
           "white_female": 1.0,
           "white_male": 1.0
         },
         "ratio_vs_reference": {
-          "black_female": 0.9932432432432433,
-          "black_male": 0.9932432432432433,
-          "hispanic_female": 0.9932432432432433,
-          "hispanic_male": 0.9932432432432433,
+          "black_female": 1.0,
+          "black_male": 1.0,
+          "hispanic_female": 1.0,
+          "hispanic_male": 1.0,
           "white_female": 1.0,
           "white_male": 1.0
         },
-        "min_ratio_vs_highest": 0.9932432432432433,
+        "min_ratio_vs_highest": 1.0,
         "fails_four_fifths": false
       },
       "arity_matched": {
@@ -4961,7 +4961,7 @@
         "llama31-8b/core": {
           "reference_rank_from_top": 6,
           "n_groups": 6,
-          "reference_mean_deviation": -0.13060897435897445,
+          "reference_mean_deviation": -0.13541666666666666,
           "lowest_group": "white_male"
         },
         "sonnet/added": {
@@ -5053,7 +5053,7 @@
     },
     "llama31-8b/hiring/clear-yes": {
       "positive_rate": 1.0,
-      "n": 194
+      "n": 192
     },
     "sonnet/hiring/borderline": {
       "positive_rate": 0.7083333333333334,

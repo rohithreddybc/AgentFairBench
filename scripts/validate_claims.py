@@ -211,6 +211,76 @@ def _c16(text):
     return not bad, f"table rows disagreeing with the analysis: {bad[:6]}"
 
 
+
+@check("survivor count is not contradicted anywhere")
+def _c17(text):
+    """Presence checks cannot catch a contradiction: the manuscript can say "four survive"
+    in one section and "three surviving cells" in another and satisfy both. This looks for
+    the wrong count stated as a fact about survivors."""
+    n = MULT["n_bh_below_0.05"]
+    words = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+    wrong = [w for k, w in words.items() if k != n]
+    phrases = []
+    for w in wrong:
+        phrases += [f"{w} surviving cell", f"{w} survive", f"{w} hiring cells\nshow",
+                    f"{w} significant cells", f"{w} cells survive",
+                    f"{w} hiring cells nonetheless"]
+    hits = [ph for ph in phrases if ph.replace("\\n", "\n") in text]
+    return not hits, f"{n} cells survive; contradicted by: {hits}"
+
+
+@check("abstract length within IEEE Access guidance")
+def _c18(text):
+    words = len((SEC / "00_abstract.md").read_text(encoding="utf-8").split())
+    return 150 <= words <= 250, f"abstract is {words} words; IEEE Access asks for 150-250"
+
+
+@check("test count in prose matches the suite")
+def _c19(text):
+    import re as _re
+    import subprocess
+    try:
+        out = subprocess.run([sys.executable, "-m", "pytest",
+                              str(ROOT / "harness" / "tests"), "-q", "--collect-only"],
+                             capture_output=True, text=True, timeout=180).stdout
+        m = _re.search(r"(\d+) tests? collected", out)
+        actual = int(m.group(1)) if m else None
+    except Exception as e:
+        return False, f"could not collect tests: {e}"
+    if actual is None:
+        return False, "could not parse the collected test count"
+    claimed = _re.findall(r"suite runs (\d+) tests", text)
+    ok = claimed and all(int(c) == actual for c in claimed)
+    return ok, f"suite has {actual} tests; prose claims {claimed}"
+
+
+@check("effect-size range covers every survivor")
+def _c20(text):
+    gs = [PER[n]["variance_components"]["group_to_noise_sd"] for n in MULT["survivors"]]
+    rs = [PER[n]["cluster_permutation"]["observed"] for n in MULT["survivors"]]
+    need = [f"{min(gs):.2f}", f"{max(gs):.2f}"]
+    missing = [w for w in need if w not in text]
+    return not missing, (f"group-to-noise SD spans {min(gs):.2f}-{max(gs):.2f}, "
+                         f"points {min(rs):.2f}-{max(rs):.2f}; missing {missing}")
+
+
+@check("no duplicate cells in any released trace")
+def _c21(text):
+    import collections
+    raw = ROOT / "results" / "raw"
+    bad = {}
+    for f in sorted(raw.rglob("*.jsonl")):
+        keys = []
+        for line in f.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                r = json.loads(line)
+                keys.append((r["domain"], r["scaffold"], r["profile_id"], r["group"]))
+        dup = sum(c - 1 for c in collections.Counter(keys).values() if c > 1)
+        if dup:
+            bad[f.name] = dup
+    return not bad, f"duplicate rows per file: {bad or 'none'}"
+
+
 def main():
     text = body()
     fails = []

@@ -2,7 +2,7 @@
   "benchmark": "AgentFairBench",
   "version": "1.1",
   "generated_from": "results/v11/analysis.json",
-  "n_decisions": 5607,
+  "n_decisions": 5605,
   "models": [
     "fable",
     "haiku",
@@ -83,7 +83,7 @@
       "model": "llama31-8b",
       "verification": "self-reported",
       "reference_group": "white_male",
-      "n_decisions": 578,
+      "n_decisions": 576,
       "n_cells_reported": 4,
       "n_cells_excluded_incomplete": 0,
       "replicate_depth_k": {

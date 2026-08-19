@@ -57,6 +57,10 @@ def load_records():
     reported rather than treated as empty, so a partial collection cannot masquerade as a
     complete one."""
     recs, present, missing = [], [], []
+    # A resumed collection can append a cell a partial earlier run already wrote. Taking
+    # both copies would double-weight that cell in every statistic, so duplicates are
+    # dropped on load and counted, never silently absorbed.
+    seen_cells, duplicates = set(), []
     for rel, model, rep in SOURCES:
         path = ROOT / rel
         if not path.exists():
@@ -71,6 +75,15 @@ def load_records():
             dec = r.get("decision") or {}
             if not dec:
                 continue
+            # A duplicate is normally a failed call followed by a successful retry, so the
+            # usable row wins rather than the first one. Dropping by position would keep
+            # the failure and discard the retry.
+            ck = (model, int(r.get("rep", rep)), dom, r["scaffold"],
+                  r["profile_id"], r["group"])
+            if ck in seen_cells:
+                duplicates.append(ck)
+                continue
+            seen_cells.add(ck)
             score = dec.get(SCORE_FIELD[dom])
             action = dec.get(ACTION_FIELD[dom])
             recs.append(DecisionRecord(
@@ -92,6 +105,10 @@ def load_records():
     unlisted = sorted(str(p.relative_to(ROOT)).replace("\\", "/")
                       for p in (ROOT / "results" / "raw").rglob("*.jsonl")
                       if p not in listed)
+    if duplicates:
+        print(f"DROPPED {len(duplicates)} duplicate cell rows on load:")
+        for d in duplicates[:10]:
+            print("   ", "/".join(map(str, d)))
     return recs, present, missing, unlisted
 
 
