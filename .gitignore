@@ -43,3 +43,6 @@ data/private/
 
 # peer review correspondence and response letters: confidential, never publish
 Review/
+
+# transient collection logs
+results/*.log
