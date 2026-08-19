@@ -76,19 +76,64 @@ def _cells(records):
     return out
 
 
-def _noise_pool(cell) -> np.ndarray:
-    """Deviations of each replicate from its own (profile, group) mean, scaled so the
-    pool is an unbiased sample of single-call noise. These are pure sampling
-    variability: identical input, identical scaffold, identical name."""
-    pool = []
-    for groups in cell.values():
+def _set_deviations(cell):
+    """Replicate deviations, kept grouped by matched set instead of poured into one bucket.
+
+    Returns {profile_id: array of deviations}. Each deviation is a replicate minus its own
+    (profile, group) mean, rescaled by sqrt(k/(k-1)) so it is an unbiased draw from that
+    cell's single-call noise.
+    """
+    out = {}
+    for pid, groups in cell.items():
+        dev = []
         for vals in groups.values():
             k = len(vals)
             if k < 2:
                 continue
             v = np.asarray(vals, dtype=float)
-            pool.append((v - v.mean()) * math.sqrt(k / (k - 1.0)))
-    return np.concatenate(pool) if pool else np.array([])
+            dev.append((v - v.mean()) * math.sqrt(k / (k - 1.0)))
+        if dev:
+            out[pid] = np.concatenate(dev)
+    return out
+
+
+def _noise_pool(cell) -> np.ndarray:
+    """All replicate deviations in one array. Kept for the noise-SD summary and for
+    callers that want the raw scale; the floor itself no longer pools this way."""
+    per_set = _set_deviations(cell)
+    return np.concatenate(list(per_set.values())) if per_set else np.array([])
+
+
+def _shape_pool_and_scales(cell):
+    """Separate the shape of the noise from its scale, which is what makes the floor
+    heteroscedasticity-aware.
+
+    Pooling raw deviations across matched sets and drawing six of them treats every set as
+    if it had the average noise scale. E[max - min] is convex in scale, so a pool mixing
+    wide and narrow sets gives a null spread strictly larger than the truth, and the
+    inflation is worst exactly where profiles differ most in how noisily they are scored.
+    Splitting the two lets each set contribute its own sigma while every set shares the
+    pooled shape, which keeps the shape estimate large enough to be stable.
+
+    Returns (standardized pool, {profile_id: sigma_s}).
+    """
+    per_set = _set_deviations(cell)
+    scales, z = {}, []
+    for pid, dev in per_set.items():
+        s = float(dev.std(ddof=1)) if dev.size > 1 else 0.0
+        scales[pid] = s
+        if s > 0:
+            z.append(dev / s)
+    pool = np.concatenate(z) if z else np.array([])
+    return pool, scales
+
+
+def _expected_unit_range(pool, n_groups, n_draw, rng):
+    """E[max - min] of n_groups draws from the standardized pool, per unit sigma."""
+    if pool.size < n_groups:
+        return None
+    d = rng.choice(pool, size=(n_draw, n_groups), replace=True)
+    return float((d.max(axis=1) - d.min(axis=1)).mean())
 
 
 def replicate_count(records) -> dict:
@@ -109,40 +154,70 @@ def replicate_count(records) -> dict:
 
 def repeated_noise_floor(records, n_groups: int = 6, n_boot: int = 4000,
                          seed: int = DEFAULT_SEED) -> dict:
-    """Six-group spread expected from pure call-to-call noise.
+    """Six-group spread expected from pure call-to-call noise, at each set's own scale.
 
-    For each matched set we draw ``n_groups`` deviations from the replicate noise pool
-    and take max minus min. Averaging over matched sets gives a null MASD on exactly
-    the same scale, and with exactly the same arity, as the observed statistic.
-
-    Returns the null mean, its Monte-Carlo interval, and the noise SD it implies.
+    The null spread for matched set s is sigma_s times the expected range of n_groups
+    draws from the pooled standardized deviations. Averaging over sets gives a null MASD
+    on the same scale and the same arity as the observed statistic, without assuming every
+    profile is scored as noisily as the average one.
     """
     rng = np.random.default_rng(seed)
     out = {}
     for key, prof in _cells(records).items():
-        pool = _noise_pool(prof)
-        if pool.size < n_groups:
+        pool, scales = _shape_pool_and_scales(prof)
+        unit = _expected_unit_range(pool, n_groups, n_boot, rng)
+        if unit is None or not scales:
             out[key] = {"null_masd": None, "reason": "insufficient replicates"}
             continue
-        n_sets = len(prof)
-        draws = rng.choice(pool, size=(n_boot, n_sets, n_groups), replace=True)
-        spreads = draws.max(axis=2) - draws.min(axis=2)
-        per_iter = spreads.mean(axis=1)
+        sig = np.array([scales[p] for p in sorted(scales)], dtype=float)
+        per_set_null = unit * sig
+        raw = _noise_pool(prof)
         out[key] = {
-            "null_masd": float(per_iter.mean()),
-            "null_masd_ci": [float(np.quantile(per_iter, 0.025)),
-                             float(np.quantile(per_iter, 0.975))],
-            "noise_sd": float(pool.std(ddof=1)),
-            "n_sets": n_sets,
+            "null_masd": float(per_set_null.mean()),
+            "unit_range": unit,
+            "noise_sd": float(raw.std(ddof=1)) if raw.size > 1 else 0.0,
+            "mean_set_noise_sd": float(sig.mean()),
+            "set_noise_sd_cv": float(sig.std(ddof=1) / sig.mean()) if sig.mean() > 0 and sig.size > 1 else 0.0,
+            "n_sets": len(scales),
             "pool_n": int(pool.size),
         }
     return out
 
 
+def observed_masd_per_set(records) -> dict:
+    """MASD per matched set, averaged over that set's own replicates.
+
+    The set is the unit of analysis, so the set is what gets averaged. Averaging
+    per-replicate MASD instead gives every replicate equal weight regardless of how many
+    sets it covers, which silently down-weights the sets a short replicate missed. In this
+    data the June run covers only twelve of the twenty-four hiring profiles, so the
+    per-replicate average pulled the estimate toward the smaller, older subset.
+
+    Each value is a mean of single-call ranges, which is the scale the null is built on.
+    """
+    by_set: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
+    for r in records:
+        if r.score is None:
+            continue
+        rep = getattr(r, "rep", None)
+        rep = 1 if rep is None else rep
+        by_set[(r.domain, r.scaffold, r.model)][r.profile_id][rep][r.group] = float(r.score)
+    out = {}
+    for key, profiles in by_set.items():
+        per_set = {}
+        for pid, reps in profiles.items():
+            ranges = [max(g.values()) - min(g.values())
+                      for g in reps.values() if len(g) >= 2]
+            if ranges:
+                per_set[pid] = float(np.mean(ranges))
+        out[key] = per_set
+    return out
+
+
 def observed_masd_per_replicate(records) -> dict:
-    """MASD computed separately within each replicate, so the observed statistic and
-    the null are both single-call quantities. Returns the per-replicate values, which
-    is what gives the ratio an interval."""
+    """Per-replicate MASD, reported for transparency only. The headline estimator is
+    :func:`observed_masd_per_set`; this is what shows a reader how much a short replicate
+    differs from a full one."""
     by_rep: dict = defaultdict(lambda: defaultdict(lambda: defaultdict(dict)))
     for r in records:
         if r.score is None:
@@ -157,57 +232,120 @@ def observed_masd_per_replicate(records) -> dict:
             spreads = [max(g.values()) - min(g.values())
                        for g in prof.values() if len(g) >= 2]
             if spreads:
-                vals[rep] = float(np.mean(spreads))
+                vals[rep] = {"masd": float(np.mean(spreads)), "n_sets": len(spreads)}
         out[key] = vals
     return out
 
 
+def _bca_interval(theta_hat, boot, jack, alpha=0.05):
+    """Bias-corrected and accelerated interval.
+
+    The bootstrap distribution of this ratio is noticeably off-centre in cells where one
+    or two sets carry most of the spread, so a plain percentile interval is misplaced.
+    BCa corrects both the median bias and the skew, and falls back to the percentile
+    interval when the acceleration is degenerate.
+    """
+    boot = np.asarray([b for b in boot if b is not None and np.isfinite(b)], dtype=float)
+    if boot.size < 20:
+        return None
+    lo_q, hi_q = alpha / 2.0, 1.0 - alpha / 2.0
+    prop = float((boot < theta_hat).mean())
+    if prop <= 0.0 or prop >= 1.0:
+        return [float(np.quantile(boot, lo_q)), float(np.quantile(boot, hi_q))]
+    from math import erf, sqrt as _sqrt
+
+    def ppf(p):
+        lo, hi = -8.0, 8.0
+        for _ in range(200):
+            mid = 0.5 * (lo + hi)
+            if 0.5 * (1.0 + erf(mid / _sqrt(2.0))) < p:
+                lo = mid
+            else:
+                hi = mid
+        return 0.5 * (lo + hi)
+
+    def cdf(x):
+        return 0.5 * (1.0 + erf(x / _sqrt(2.0)))
+
+    z0 = ppf(prop)
+    jack = np.asarray([j for j in jack if j is not None and np.isfinite(j)], dtype=float)
+    a = 0.0
+    if jack.size > 2:
+        d = jack.mean() - jack
+        denom = 6.0 * (float((d ** 2).sum()) ** 1.5)
+        if denom > 0:
+            a = float((d ** 3).sum()) / denom
+    out = []
+    for q in (lo_q, hi_q):
+        zq = ppf(q)
+        adj = z0 + (z0 + zq) / max(1e-12, (1.0 - a * (z0 + zq)))
+        out.append(float(np.quantile(boot, min(max(cdf(adj), 1e-6), 1 - 1e-6))))
+    return [min(out), max(out)]
+
+
 def masd_to_noise_ratio(records, n_groups: int = 6, n_boot: int = 4000,
                         seed: int = DEFAULT_SEED) -> dict:
-    """Observed MASD divided by the arity-matched noise floor, with an interval.
+    """Observed MASD divided by the arity-matched noise floor, with a BCa interval.
 
-    The interval is what the v1.0 manuscript could not supply: it comes from
-    resampling matched sets and replicates jointly, so it carries both the
-    matched-set sampling error and the replicate-to-replicate error.
+    Numerator and denominator are both averages over matched sets, so the bootstrap
+    resamples matched sets and recomputes both from the same resample. An earlier version
+    resampled a single replicate for the numerator while re-simulating the denominator
+    from fresh Monte-Carlo draws each iteration. That traced the sampling distribution of a
+    statistic nobody reports and injected simulation noise on top of it, which widened
+    every interval and did so in the direction that makes a null harder to reject.
+
+    The expected unit range is estimated once at high precision and held fixed, so what the
+    interval carries is sampling error across matched sets, not Monte-Carlo error.
     """
     rng = np.random.default_rng(seed + 1)
     floors = repeated_noise_floor(records, n_groups, n_boot, seed)
-    observed = observed_masd_per_replicate(records)
+    per_set_obs = observed_masd_per_set(records)
+    per_rep = observed_masd_per_replicate(records)
     cells = _cells(records)
     out = {}
     for key, floor in floors.items():
-        obs = observed.get(key, {})
+        obs = per_set_obs.get(key, {})
         if floor.get("null_masd") in (None, 0) or not obs:
             out[key] = {"ratio": None, "reason": floor.get("reason", "no observed MASD")}
             continue
-        obs_mean = float(np.mean(list(obs.values())))
-        prof = cells[key]
-        pids = list(prof)
-        pool = _noise_pool(prof)
-        reps = sorted(obs)
-        ratios = []
-        for _ in range(n_boot):
-            idx = rng.integers(0, len(pids), len(pids))
-            rep = reps[rng.integers(0, len(reps))]
-            num = []
-            for i in idx:
-                groups = prof[pids[i]]
-                vals = [v[min(rep, len(v)) - 1] for v in groups.values() if v]
-                if len(vals) >= 2:
-                    num.append(max(vals) - min(vals))
-            draws = rng.choice(pool, size=(len(idx), n_groups), replace=True)
-            den = float((draws.max(axis=1) - draws.min(axis=1)).mean())
-            if num and den > 0:
-                ratios.append(float(np.mean(num)) / den)
+        _pool, scales = _shape_pool_and_scales(cells[key])
+        unit = floor["unit_range"]
+        pids = sorted(set(obs) & set(scales))
+        if len(pids) < 2:
+            out[key] = {"ratio": None, "reason": "too few matched sets with replicates"}
+            continue
+        num = np.array([obs[p] for p in pids], dtype=float)
+        den = np.array([unit * scales[p] for p in pids], dtype=float)
+
+        def ratio_of(sel):
+            d = den[sel].mean()
+            return float(num[sel].mean() / d) if d > 0 else None
+
+        point = ratio_of(np.arange(len(pids)))
+        boot = [ratio_of(rng.integers(0, len(pids), len(pids))) for _ in range(n_boot)]
+        jack = [ratio_of(np.delete(np.arange(len(pids)), i)) for i in range(len(pids))]
+        ci = _bca_interval(point, boot, jack) if point is not None else None
+        reps = per_rep.get(key, {})
+        all_sets = float(np.mean(list(obs.values()))) if obs else None
         out[key] = {
-            "observed_masd": obs_mean,
-            "observed_masd_by_replicate": {int(k): v for k, v in sorted(obs.items())},
-            "null_masd": floor["null_masd"],
+            # Restricted to sets that carry at least two replicates, because a set with a
+            # single call supplies no noise estimate and so cannot appear in the
+            # denominator. Numerator and denominator must run over the same sets.
+            "observed_masd": point and float(num.mean()),
+            "observed_masd_all_sets": all_sets,
+            "n_sets_in_ratio": len(pids),
+            "n_sets_with_masd": len(obs),
+            "observed_masd_by_replicate": {int(k): round(v["masd"], 4)
+                                           for k, v in sorted(reps.items())},
+            "replicate_set_coverage": {int(k): v["n_sets"] for k, v in sorted(reps.items())},
+            "null_masd": float(den.mean()),
             "noise_sd": floor["noise_sd"],
-            "ratio": obs_mean / floor["null_masd"],
-            "ratio_ci": [float(np.quantile(ratios, 0.025)),
-                         float(np.quantile(ratios, 0.975))] if ratios else None,
-            "naive_ratio": obs_mean / (floor["noise_sd"] * d2(2)) if floor["noise_sd"] else None,
+            "set_noise_sd_cv": floor["set_noise_sd_cv"],
+            "ratio": point,
+            "ratio_ci": ci,
+            "ci_method": "BCa over matched sets",
+            "naive_ratio": (float(num.mean()) / (floor["noise_sd"] * d2(2))
+                            if floor["noise_sd"] else None),
         }
     return out
 

@@ -255,8 +255,8 @@
     three hiring cells once the sample is large enough to see it.</p>
     <p>On magnitude: naively comparing the six-group score spread (MASD) against a two-replicate
     pairwise noise floor overstates disparity by up to <b>2.25x</b> through statistic arity alone.
-    Against an <b>arity-matched</b> floor the observed-to-null ratio runs <b>0.46 to 1.00</b>
-    (median <b>0.82</b>), and <b>zero of 30</b> cells have a ratio confidence interval lying
+    Against an <b>arity-matched</b> floor the observed-to-null ratio runs <b>0.68 to 1.06</b>
+    (median <b>0.92</b>), and <b>zero of 30</b> cells have a ratio confidence interval lying
     entirely above 1.0.</p>
     <p>On exchangeability: a within-set randomization test on the range of per-group means finds
     <b>4 of 21</b> cells significant after Benjamini-Hochberg (smallest adjusted p = 0.0021). All four are hiring, none is on the primary tier, and all appear only at the expanded 24
@@ -273,7 +273,7 @@
 
   <div class="stats">
     <div class="stat"><span class="n">30 / 4</span><span class="l">Cells reported / excluded</span></div>
-    <div class="stat"><span class="n">0.63-1.00</span><span class="l">Arity-matched ratio range</span></div>
+    <div class="stat"><span class="n">0.68-1.06</span><span class="l">Arity-matched ratio range</span></div>
     <div class="stat"><span class="n">4 / 21</span><span class="l">BH-significant after correction</span></div>
     <div class="stat"><span class="n">5607</span><span class="l">Decisions, 3 model tiers</span></div>
   </div>
@@ -318,31 +318,41 @@
       <tr>
         <td class="model">fable</td>
         <td><span class="badge badge-self">&#9675; self-reported</span></td>
-        <td class="num">383</td>
-        <td class="num">2 / 2</td>
+        <td class="num">671</td>
+        <td class="num">4 / 2</td>
         <td class="num">k=2</td>
-        <td class="num">0.76-0.82</td>
-        <td class="num">0 / 2</td>
+        <td class="num">0.95-0.99</td>
+        <td class="num">1 / 4</td>
         <td>-</td>
       </tr>
       <tr>
         <td class="model">haiku</td>
         <td><span class="badge badge-self">&#9675; self-reported</span></td>
-        <td class="num">3024</td>
-        <td class="num">15 / 0</td>
+        <td class="num">3744</td>
+        <td class="num">20 / 0</td>
         <td class="num">k=2-3</td>
-        <td class="num">0.63-0.92</td>
-        <td class="num">0 / 15</td>
+        <td class="num">0.68-1.02</td>
+        <td class="num">0 / 20</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td class="model">llama31-8b</td>
+        <td><span class="badge badge-self">&#9675; self-reported</span></td>
+        <td class="num">578</td>
+        <td class="num">4 / 0</td>
+        <td class="num">k=2</td>
+        <td class="num">0.79-0.79</td>
+        <td class="num">1 / 4</td>
         <td>-</td>
       </tr>
       <tr>
         <td class="model">sonnet</td>
         <td><span class="badge badge-self">&#9675; self-reported</span></td>
-        <td class="num">326</td>
-        <td class="num">2 / 2</td>
+        <td class="num">614</td>
+        <td class="num">4 / 2</td>
         <td class="num">k=2</td>
-        <td class="num">0.89-1.00</td>
-        <td class="num">0 / 2</td>
+        <td class="num">0.90-1.06</td>
+        <td class="num">2 / 4</td>
         <td>4/5ths</td>
       </tr>
     </table>

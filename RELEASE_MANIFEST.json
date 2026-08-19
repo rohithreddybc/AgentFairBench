@@ -1,6 +1,6 @@
 {
   "release": "v1.1.0",
-  "commit": "391c14b78bdc056126e02ac6d9db3b63d8a8354e",
+  "commit": "1ef163835d9b180a86afa054987c95482d3f37d5",
   "n_decisions": 5607,
   "models_evaluated": [
     "fable",
@@ -27,8 +27,8 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 1757404,
-  "n_files": 44,
+  "total_bytes": 1781199,
+  "n_files": 45,
   "files": {
     "public_split": [
       {
@@ -124,13 +124,13 @@
     "analysis_outputs": [
       {
         "path": "results/v11/analysis.json",
-        "bytes": 152299,
-        "sha256": "26e18106b66c3dd1844a8b7d7ee6927297c3ec962dc80aa0fbac8ea5146ec659"
+        "bytes": 160787,
+        "sha256": "5d287e6062fc1fc824f7d430e9f8e7ee05ba3a7f3dec32def731fe820112a782"
       },
       {
         "path": "results/v11/tables.md",
-        "bytes": 7394,
-        "sha256": "27f6c6bc1e1d4774f6403237b102b83d0085adcbda5bf05532640a0d2169a4bb"
+        "bytes": 7418,
+        "sha256": "ecc9ecabfc5216710a42244e28f2837541c028d768ec03088d35fde0e04e4538"
       },
       {
         "path": "results/v11/profile_standards_check.md",
@@ -213,8 +213,8 @@
       },
       {
         "path": "harness/agentfairbench/repeated.py",
-        "bytes": 24156,
-        "sha256": "d98cc4b8ab9b61f02645ea80ddfe42d782399da87d57934d2ffb2a76ee719a54"
+        "bytes": 30288,
+        "sha256": "e4375ad7871ba60f5e609305a62feb760421f0f6d215fccbfe2e479d5c43dd4d"
       },
       {
         "path": "harness/agentfairbench/runner.py",
@@ -230,6 +230,11 @@
         "path": "harness/tests/test_canary.py",
         "bytes": 2836,
         "sha256": "51014eee101526a5e37987a42fa4ab45f48343493b28c0312cf06f3c256a3ff2"
+      },
+      {
+        "path": "harness/tests/test_estimator_units.py",
+        "bytes": 9155,
+        "sha256": "ac545ef1b9afe198d3523e2a5d591027914ee7c964ad0731d65a818228d4e369"
       },
       {
         "path": "harness/tests/test_metrics.py",
@@ -257,8 +262,8 @@
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
-        "bytes": 5584,
-        "sha256": "7019b25380d04775f59d94af0ebe07d91ca05af9fd67848634ca395ca1afbc60"
+        "bytes": 5580,
+        "sha256": "68c3df8258237f6c619409779efb50124509d6191d7f46f69efe03bd61c68d82"
       },
       {
         "path": "leaderboard/build_leaderboard.py",

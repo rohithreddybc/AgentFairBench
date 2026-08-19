@@ -303,19 +303,28 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 4.833333333333334,
+        "observed_masd": 4.833333333333333,
+        "observed_masd_all_sets": 4.833333333333333,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
           "1": 4.25,
-          "2": 5.416666666666667
+          "2": 5.4167
         },
-        "null_masd": 6.387472331153382,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12
+        },
+        "null_masd": 5.036217235960448,
         "noise_sd": 2.7084431571780008,
-        "ratio": 0.7566895139036293,
+        "set_noise_sd_cv": 0.8877153354326526,
+        "ratio": 0.9597150215883363,
         "ratio_ci": [
-          0.409690520697675,
-          1.3219922248324047
+          0.8182866659914924,
+          1.2133980072416126
         ],
-        "naive_ratio": 1.5815100746479582
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.581510074647958
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -415,19 +424,28 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 4.166666666666666,
+        "observed_masd": 4.166666666666667,
+        "observed_masd_all_sets": 4.166666666666667,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
           "1": 3.75,
-          "2": 4.583333333333333
+          "2": 4.5833
         },
-        "null_masd": 5.440317529145275,
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 4.393618764105102,
         "noise_sd": 2.2929979767226913,
-        "ratio": 0.7658866682587345,
+        "set_noise_sd_cv": 0.8322310010178571,
+        "ratio": 0.9483450636881416,
         "ratio_ci": [
-          0.49241945963729156,
-          1.1554898924757133
+          0.8428777092999795,
+          1.0814355931548678
         ],
-        "naive_ratio": 1.6103861524833198
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.61038615248332
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -529,17 +547,26 @@
       },
       "arity_matched": {
         "observed_masd": 4.75,
+        "observed_masd_all_sets": 4.75,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
           "1": 4.25,
           "2": 5.25
         },
-        "null_masd": 5.773792033431105,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12
+        },
+        "null_masd": 4.781240993527184,
         "noise_sd": 2.363770840714596,
-        "ratio": 0.8226829044927149,
+        "set_noise_sd_cv": 0.7274362833105565,
+        "ratio": 0.993465923686031,
         "ratio_ci": [
-          0.46206977780507064,
-          1.366001736383103
+          0.8549327485775848,
+          1.2319177119696876
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.7808739423437494
       },
       "cluster_permutation": {
@@ -640,19 +667,28 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 4.208333333333334,
+        "observed_masd": 4.208333333333333,
+        "observed_masd_all_sets": 4.208333333333333,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
           "1": 3.875,
-          "2": 4.541666666666667
+          "2": 4.5417
         },
-        "null_masd": 5.002132295678737,
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 4.244798611701231,
         "noise_sd": 2.0718790811312493,
-        "ratio": 0.8413078832338854,
+        "set_noise_sd_cv": 0.6693351229671135,
+        "ratio": 0.9914094208692544,
         "ratio_ci": [
-          0.5469250333628307,
-          1.2349745012198254
+          0.8844765413458762,
+          1.1488010185514013
         ],
-        "naive_ratio": 1.8000752771942774
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.800075277194277
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -754,18 +790,28 @@
       },
       "arity_matched": {
         "observed_masd": 10.305555555555555,
+        "observed_masd_all_sets": 10.305555555555555,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 7.833333333333333,
-          "2": 13.333333333333334,
+          "1": 7.8333,
+          "2": 13.3333,
           "3": 9.75
         },
-        "null_masd": 12.086990125418154,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 11.193962100142388,
         "noise_sd": 4.814223113446915,
-        "ratio": 0.8526155352674313,
+        "set_noise_sd_cv": 0.452981344665842,
+        "ratio": 0.9206352016704138,
         "ratio_ci": [
-          0.4391670948151703,
-          1.4032824965217188
+          0.8363989567993009,
+          1.0794386869629116
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.8970996150079655
       },
       "cluster_permutation": {
@@ -866,20 +912,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 10.722222222222223,
+        "observed_masd": 11.548611111111112,
+        "observed_masd_all_sets": 11.548611111111112,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
-          "1": 7.833333333333333,
-          "2": 12.958333333333334,
+          "1": 7.8333,
+          "2": 12.9583,
           "3": 11.375
         },
-        "null_masd": 12.805328343501934,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 24,
+          "3": 24
+        },
+        "null_masd": 11.819047512055647,
         "noise_sd": 5.156600551517527,
-        "ratio": 0.8373250520876504,
+        "set_noise_sd_cv": 0.5281005818114183,
+        "ratio": 0.9771185960062615,
         "ratio_ci": [
-          0.6168849234613057,
-          1.267178016512168
+          0.9017747400861805,
+          1.069095452503573
         ],
-        "naive_ratio": 1.8427492956042175
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.984774662299102
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -981,17 +1037,26 @@
       },
       "arity_matched": {
         "observed_masd": 9.125,
+        "observed_masd_all_sets": 9.125,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "2": 7.666666666666667,
-          "3": 10.583333333333334
+          "2": 7.6667,
+          "3": 10.5833
         },
-        "null_masd": 10.38345060276876,
+        "replicate_set_coverage": {
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 9.828963203990732,
         "noise_sd": 4.11546630858071,
-        "ratio": 0.878802273838218,
+        "set_noise_sd_cv": 0.36694000693945766,
+        "ratio": 0.9283786916910107,
         "ratio_ci": [
-          0.7431705572359188,
-          1.3878854261494236
+          0.8062303776130715,
+          1.1481738767975243
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.9649828448104338
       },
       "cluster_permutation": {
@@ -1092,19 +1157,28 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 10.208333333333332,
+        "observed_masd": 10.208333333333334,
+        "observed_masd_all_sets": 10.208333333333334,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
           "2": 9.25,
-          "3": 11.166666666666666
+          "3": 11.1667
         },
-        "null_masd": 11.480070100650169,
+        "replicate_set_coverage": {
+          "2": 24,
+          "3": 24
+        },
+        "null_masd": 10.683495418949727,
         "noise_sd": 4.552825825409498,
-        "ratio": 0.8892222123935626,
+        "set_noise_sd_cv": 0.3759344763128288,
+        "ratio": 0.9555237244943654,
         "ratio_ci": [
-          0.7722945066428077,
-          1.2167950630600026
+          0.8674024586080278,
+          1.0792147585133174
         ],
-        "naive_ratio": 1.9870955338343508
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.987095533834351
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -1206,18 +1280,28 @@
       },
       "arity_matched": {
         "observed_masd": 9.527777777777779,
+        "observed_masd_all_sets": 9.527777777777779,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 8.833333333333334,
-          "2": 7.833333333333333,
-          "3": 11.916666666666666
+          "1": 8.8333,
+          "2": 7.8333,
+          "3": 11.9167
         },
-        "null_masd": 10.395719520098988,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 9.824518217553093,
         "noise_sd": 4.147288270665544,
-        "ratio": 0.9165096999160915,
+        "set_noise_sd_cv": 0.3758447619458251,
+        "ratio": 0.9697959296115773,
         "ratio_ci": [
-          0.5464574927179773,
-          1.4842831313320615
+          0.8321795753239626,
+          1.0858974989911705
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 2.035974510409927
       },
       "cluster_permutation": {
@@ -1318,20 +1402,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 12.763888888888888,
+        "observed_masd": 14.555555555555557,
+        "observed_masd_all_sets": 14.555555555555557,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
-          "1": 8.833333333333334,
-          "2": 13.666666666666666,
-          "3": 15.791666666666666
+          "1": 8.8333,
+          "2": 13.6667,
+          "3": 15.7917
         },
-        "null_masd": 15.00615477578116,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 24,
+          "3": 24
+        },
+        "null_masd": 14.228751448907305,
         "noise_sd": 7.55665693722114,
-        "ratio": 0.8505769185780273,
+        "set_noise_sd_cv": 1.1030082537175603,
+        "ratio": 1.022967869515589,
         "ratio_ci": [
-          0.5226963144185982,
-          1.707568658626271
+          0.9409807972124533,
+          1.10064621966158
         ],
-        "naive_ratio": 1.4969188228068941
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.7070412690986132
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -1433,18 +1527,28 @@
       },
       "arity_matched": {
         "observed_masd": 11.055555555555555,
+        "observed_masd_all_sets": 11.055555555555555,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 12.166666666666666,
-          "2": 10.666666666666666,
-          "3": 10.333333333333334
+          "1": 12.1667,
+          "2": 10.6667,
+          "3": 10.3333
         },
-        "null_masd": 12.25257733306484,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 11.332025872797658,
         "noise_sd": 4.894230110251563,
-        "ratio": 0.9023044911311028,
+        "set_noise_sd_cv": 0.4519100392156786,
+        "ratio": 0.9756027456744725,
         "ratio_ci": [
-          0.6462361763394456,
-          1.3654868216331337
+          0.8393578526516532,
+          1.1386896553878092
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 2.0018942281952814
       },
       "cluster_permutation": {
@@ -1545,20 +1649,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 11.222222222222221,
+        "observed_masd": 11.027777777777777,
+        "observed_masd_all_sets": 11.027777777777777,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
-          "1": 12.166666666666666,
-          "2": 10.666666666666666,
-          "3": 10.833333333333334
+          "1": 12.1667,
+          "2": 10.6667,
+          "3": 10.8333
         },
-        "null_masd": 11.99920270765157,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 24,
+          "3": 24
+        },
+        "null_masd": 11.15877214924605,
         "noise_sd": 4.773417572382942,
-        "ratio": 0.9352473239797934,
+        "set_noise_sd_cv": 0.40513254075388944,
+        "ratio": 0.988260861525242,
         "ratio_ci": [
-          0.7371712463936254,
-          1.1672486946652703
+          0.8990133578290838,
+          1.0970557970837795
         ],
-        "naive_ratio": 2.0835041866623767
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 2.0474038665964445
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -1660,18 +1774,28 @@
       },
       "arity_matched": {
         "observed_masd": 10.833333333333334,
+        "observed_masd_all_sets": 10.833333333333334,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 7.916666666666667,
-          "2": 11.833333333333334,
+          "1": 7.9167,
+          "2": 11.8333,
           "3": 12.75
         },
-        "null_masd": 12.735381967574668,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 12.044903231312484,
         "noise_sd": 5.148492667197463,
-        "ratio": 0.8506484816015644,
+        "set_noise_sd_cv": 0.44750134162265476,
+        "ratio": 0.8994122348090355,
         "ratio_ci": [
-          0.3989256688729863,
-          1.4259869033321146
+          0.8172079224307606,
+          0.9735489367214223
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.864777190725026
       },
       "cluster_permutation": {
@@ -1830,20 +1954,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 11.972222222222223,
+        "observed_masd": 13.270833333333334,
+        "observed_masd_all_sets": 13.270833333333334,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
-          "1": 7.916666666666667,
+          "1": 7.9167,
           "2": 12.25,
           "3": 15.75
         },
-        "null_masd": 15.917413991031435,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 24,
+          "3": 24
+        },
+        "null_masd": 15.135512172207596,
         "noise_sd": 7.059634559339499,
-        "ratio": 0.7521461858671199,
+        "set_noise_sd_cv": 0.7715197282509131,
+        "ratio": 0.8768010743436713,
         "ratio_ci": [
-          0.4897781653454254,
-          1.4548544343258847
+          0.7789453799460803,
+          0.9466986549845192
         ],
-        "naive_ratio": 1.5029256261998174
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.6659459812458532
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -2002,20 +2136,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 0.7777777777777777,
+        "observed_masd": 0.7777777777777778,
+        "observed_masd_all_sets": 0.7777777777777778,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 0.6666666666666666,
-          "2": 0.6666666666666666,
+          "1": 0.6667,
+          "2": 0.6667,
           "3": 1.0
         },
-        "null_masd": 1.1051961636674215,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 1.03428296268217,
         "noise_sd": 0.4822428221704121,
-        "ratio": 0.7037463604622397,
+        "set_noise_sd_cv": 0.5862218737956892,
+        "ratio": 0.7519970896173266,
         "ratio_ci": [
-          0.3194986621021537,
-          1.487190200975501
+          0.6301664175806734,
+          0.8511832688391338
         ],
-        "naive_ratio": 1.4293372073081934
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.4293372073081936
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -2117,17 +2261,26 @@
       },
       "arity_matched": {
         "observed_masd": 0.6666666666666666,
+        "observed_masd_all_sets": 0.6666666666666666,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "2": 0.9166666666666666,
-          "3": 0.4166666666666667
+          "2": 0.9167,
+          "3": 0.4167
         },
-        "null_masd": 1.062369013167689,
+        "replicate_set_coverage": {
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.9374360616759206,
         "noise_sd": 0.5671669257620032,
-        "ratio": 0.6275283431684928,
+        "set_noise_sd_cv": 1.0307413184185623,
+        "ratio": 0.7111596128218276,
         "ratio_ci": [
-          0.12856486930664499,
-          0.9428090415820632
+          0.5953284129124136,
+          0.8494677423188987
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.0417002886902471
       },
       "cluster_permutation": {
@@ -2230,18 +2383,28 @@
       },
       "arity_matched": {
         "observed_masd": 0.6944444444444443,
+        "observed_masd_all_sets": 0.6944444444444443,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 0.6666666666666666,
+          "1": 0.6667,
           "2": 0.75,
-          "3": 0.6666666666666666
+          "3": 0.6667
         },
-        "null_masd": 1.0331998766095754,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.9639510915285449,
         "noise_sd": 0.42040954561773647,
-        "ratio": 0.6721298174398257,
+        "set_noise_sd_cv": 0.4496556056638986,
+        "ratio": 0.7204146045866894,
         "ratio_ci": [
-          0.37113480951260275,
-          1.0497813183356477
+          0.6206284049978409,
+          0.8332642497017931
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.463894840906734
       },
       "cluster_permutation": {
@@ -2344,18 +2507,28 @@
       },
       "arity_matched": {
         "observed_masd": 0.6944444444444443,
+        "observed_masd_all_sets": 0.6944444444444443,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
           "1": 0.5,
-          "2": 0.6666666666666666,
-          "3": 0.9166666666666666
+          "2": 0.6667,
+          "3": 0.9167
         },
-        "null_masd": 1.0604079241344482,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.958299099139647,
         "noise_sd": 0.43133109281375365,
-        "ratio": 0.6548842465613227,
+        "set_noise_sd_cv": 0.5364476718449177,
+        "ratio": 0.7246635680529292,
         "ratio_ci": [
-          0.27994168488950605,
-          1.1757550765359253
+          0.6012278859369832,
+          0.8423522133843603
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.4268281956744775
       },
       "cluster_permutation": {
@@ -2458,18 +2631,28 @@
       },
       "arity_matched": {
         "observed_masd": 0.8333333333333334,
+        "observed_masd_all_sets": 0.8333333333333334,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 0.8333333333333334,
-          "2": 0.9166666666666666,
+          "1": 0.8333,
+          "2": 0.9167,
           "3": 0.75
         },
-        "null_masd": 1.0582646206095128,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 1.015608384121636,
         "noise_sd": 0.43133109281375365,
-        "ratio": 0.787452700491273,
+        "set_noise_sd_cv": 0.3693229553304964,
+        "ratio": 0.8205262445268746,
         "ratio_ci": [
-          0.4762896722078402,
-          1.1793839502289374
+          0.7443942532899475,
+          0.9199035632823701
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.7121938348093733
       },
       "cluster_permutation": {
@@ -2629,20 +2812,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 0.6111111111111112,
+        "observed_masd": 0.611111111111111,
+        "observed_masd_all_sets": 0.611111111111111,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 0.4166666666666667,
-          "2": 0.5833333333333334,
-          "3": 0.8333333333333334
+          "1": 0.4167,
+          "2": 0.5833,
+          "3": 0.8333
         },
-        "null_masd": 0.7588059943815515,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.7277729479944647,
         "noise_sd": 0.3270729951953333,
-        "ratio": 0.8053588343212603,
+        "set_noise_sd_cv": 0.3958067861093279,
+        "ratio": 0.8397002290276927,
         "ratio_ci": [
-          0.2624453295839119,
-          1.6329931618554518
+          0.6691850086600319,
+          1.1065799416059754
         ],
-        "naive_ratio": 1.655847865968197
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.6558478659681966
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -2744,17 +2937,26 @@
       },
       "arity_matched": {
         "observed_masd": 0.875,
+        "observed_masd_all_sets": 0.875,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
           "2": 1.0,
           "3": 0.75
         },
-        "null_masd": 1.0839946955589777,
+        "replicate_set_coverage": {
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 1.054437609453386,
         "noise_sd": 0.4655998462018827,
-        "ratio": 0.8071995219024513,
+        "set_noise_sd_cv": 0.4256539444848068,
+        "ratio": 0.8298262430658127,
         "ratio_ci": [
-          0.3689252771408073,
-          1.0814574300500137
+          0.726756220959233,
+          0.9371471533220953
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.6654828520603315
       },
       "cluster_permutation": {
@@ -2856,20 +3058,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 0.6944444444444445,
+        "observed_masd": 0.6944444444444443,
+        "observed_masd_all_sets": 0.6944444444444443,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
           "1": 0.75,
-          "2": 0.5833333333333334,
+          "2": 0.5833,
           "3": 0.75
         },
-        "null_masd": 0.9981840805295813,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.9149795077575275,
         "noise_sd": 0.40919660368228405,
-        "ratio": 0.6957077937728787,
+        "set_noise_sd_cv": 0.47475522314279284,
+        "ratio": 0.758972674859593,
         "ratio_ci": [
-          0.3160631926171843,
-          1.179462158713701
+          0.6763339598151545,
+          0.8345347009986955
         ],
-        "naive_ratio": 1.504008976026586
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.5040089760265856
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -2970,20 +3182,30 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 0.7222222222222223,
+        "observed_masd": 0.7222222222222222,
+        "observed_masd_all_sets": 0.7222222222222222,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 0.8333333333333334,
+          "1": 0.8333,
           "2": 0.5,
-          "3": 0.8333333333333334
+          "3": 0.8333
         },
-        "null_masd": 0.9016163494894415,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.8759060143221321,
         "noise_sd": 0.37354368381881414,
-        "ratio": 0.8010305299268312,
+        "set_noise_sd_cv": 0.35785205091128736,
+        "ratio": 0.8245430564615468,
         "ratio_ci": [
-          0.3265986323710904,
-          1.3844942024426656
+          0.7398787801378381,
+          0.9956903597657297
         ],
-        "naive_ratio": 1.7134616571488164
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.7134616571488162
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -3085,18 +3307,28 @@
       },
       "arity_matched": {
         "observed_masd": 0.5833333333333334,
+        "observed_masd_all_sets": 0.5833333333333334,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 0.16666666666666666,
-          "2": 0.6666666666666666,
-          "3": 0.9166666666666666
+          "1": 0.1667,
+          "2": 0.6667,
+          "3": 0.9167
         },
-        "null_masd": 0.9112186894880603,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12,
+          "3": 12
+        },
+        "null_masd": 0.8608168328733913,
         "noise_sd": 0.37971837789555024,
-        "ratio": 0.6401683153152411,
+        "set_noise_sd_cv": 0.42030007585342793,
+        "ratio": 0.6776509369434344,
         "ratio_ci": [
-          0.0,
-          1.2830660557435696
+          0.5603813765184258,
+          0.8506968552010495
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.3614450514067866
       },
       "cluster_permutation": {
@@ -3257,17 +3489,26 @@
       },
       "arity_matched": {
         "observed_masd": 0.5,
+        "observed_masd_all_sets": 0.5,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
           "1": 0.5,
           "2": 0.5
         },
-        "null_masd": 1.0918612584996776,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12
+        },
+        "null_masd": 0.6334436546361464,
         "noise_sd": 0.6637465183030647,
-        "ratio": 0.4579336395606234,
+        "set_noise_sd_cv": 2.3427090744436483,
+        "ratio": 0.7893361885315637,
         "ratio_ci": [
-          0.0,
-          1.414213562373095
+          0.7364606899631405,
+          0.8503915551955935
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 0.6675944061586094
       },
       "cluster_permutation": {
@@ -3369,17 +3610,26 @@
       },
       "arity_matched": {
         "observed_masd": 2.0208333333333335,
+        "observed_masd_all_sets": 2.0208333333333335,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
-          "1": 1.6666666666666667,
+          "1": 1.6667,
           "2": 2.375
         },
-        "null_masd": 3.7023669121189386,
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 2.554796912323148,
         "noise_sd": 2.811747382847139,
-        "ratio": 0.5458220055712334,
+        "set_noise_sd_cv": 2.531510551831211,
+        "ratio": 0.7909956848568966,
         "ratio_ci": [
-          0.07576144084141583,
-          1.8859548006789786
+          0.6997255130238437,
+          0.8819712811771537
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 0.6369409011555618
       },
       "cluster_permutation": {
@@ -3482,7 +3732,7 @@
       },
       "arity_matched": {
         "ratio": null,
-        "reason": "no observed MASD"
+        "reason": "insufficient replicates"
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -3583,7 +3833,7 @@
       },
       "arity_matched": {
         "ratio": null,
-        "reason": "no observed MASD"
+        "reason": "insufficient replicates"
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -3684,19 +3934,28 @@
         "fails_four_fifths": false
       },
       "arity_matched": {
-        "observed_masd": 4.333333333333334,
+        "observed_masd": 4.333333333333333,
+        "observed_masd_all_sets": 4.333333333333333,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 4.666666666666667,
+          "1": 4.6667,
           "2": 4.0
         },
-        "null_masd": 4.8429154187815655,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12
+        },
+        "null_masd": 4.515950244068304,
         "noise_sd": 2.006980824017018,
-        "ratio": 0.8947778267049649,
+        "set_noise_sd_cv": 0.5102001677002833,
+        "ratio": 0.9595617974367989,
         "ratio_ci": [
-          0.4465937565388721,
-          1.4849242404917498
+          0.7358645154249442,
+          1.170808441376421
         ],
-        "naive_ratio": 1.9134795066329886
+        "ci_method": "BCa over matched sets",
+        "naive_ratio": 1.9134795066329882
       },
       "cluster_permutation": {
         "statistic": "range_of_means",
@@ -3797,17 +4056,26 @@
       },
       "arity_matched": {
         "observed_masd": 5.625,
+        "observed_masd_all_sets": 5.625,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
-          "1": 6.208333333333333,
-          "2": 5.041666666666667
+          "1": 6.2083,
+          "2": 5.0417
         },
-        "null_masd": 6.743581618132819,
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 5.82435198357733,
         "noise_sd": 2.844396655618688,
-        "ratio": 0.8341264803372344,
+        "set_noise_sd_cv": 0.7076586943516225,
+        "ratio": 0.9657726758033454,
         "ratio_ci": [
-          0.487105332652862,
-          1.2482839813048638
+          0.8603467475879203,
+          1.0909916114832654
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.7525778079595815
       },
       "cluster_permutation": {
@@ -3910,17 +4178,26 @@
       },
       "arity_matched": {
         "observed_masd": 6.125,
+        "observed_masd_all_sets": 6.125,
+        "n_sets_in_ratio": 12,
+        "n_sets_with_masd": 12,
         "observed_masd_by_replicate": {
-          "1": 6.416666666666667,
-          "2": 5.833333333333333
+          "1": 6.4167,
+          "2": 5.8333
         },
-        "null_masd": 6.110684220492672,
+        "replicate_set_coverage": {
+          "1": 12,
+          "2": 12
+        },
+        "null_masd": 5.7624021210571525,
         "noise_sd": 2.44806188504437,
-        "ratio": 1.0023427457533018,
+        "set_noise_sd_cv": 0.3656396235476515,
+        "ratio": 1.0629247788205947,
         "ratio_ci": [
-          0.6481699707508176,
-          1.457987023948084
+          0.8401283660985979,
+          1.3960404135542417
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 2.217321364120565
       },
       "cluster_permutation": {
@@ -4022,17 +4299,26 @@
       },
       "arity_matched": {
         "observed_masd": 5.0625,
+        "observed_masd_all_sets": 5.0625,
+        "n_sets_in_ratio": 24,
+        "n_sets_with_masd": 24,
         "observed_masd_by_replicate": {
           "1": 5.5,
           "2": 4.625
         },
-        "null_masd": 6.028225257832428,
+        "replicate_set_coverage": {
+          "1": 24,
+          "2": 24
+        },
+        "null_masd": 5.645736932887966,
         "noise_sd": 2.4187133389527324,
-        "ratio": 0.8397994075324792,
+        "set_noise_sd_cv": 0.40888879718240073,
+        "ratio": 0.8966942775015869,
         "ratio_ci": [
-          0.5738699158948167,
-          1.1825230659917787
+          0.765798987284779,
+          1.1208863248687226
         ],
+        "ci_method": "BCa over matched sets",
         "naive_ratio": 1.8549216799900676
       },
       "cluster_permutation": {
