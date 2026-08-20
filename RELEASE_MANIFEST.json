@@ -1,6 +1,6 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "579d2cc044fc7183ca2ef8a82bc0f072e9d69138",
+  "commit_at_generation": "9f711d2f61d73c45cbbc694fc2c4eaaf69043533",
   "resolve_via": "Check out the commit named in commit_at_generation below. That is the tree these hashes were computed against. The manifest is written before it is committed, so it records its parent commit rather than its own, and a tag name is deliberately not used here because tags have pointed at earlier collections than the manifest described.",
   "n_decisions": 7909,
   "models_evaluated": [
@@ -351,7 +351,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "2de7ba4191fb0a0b23083e3314f2529480e17df16c2da6a68355be7da6192292"
+        "sha256": "da7d2e9bb1a6cb6b44fc53baec4c9117810d37239fa9e36cd5a37c11a9d93c0a"
       }
     ],
     "model_provenance": [
