@@ -76,7 +76,7 @@ python scripts/analyze_v11.py    # every reported number -> results/v11/analysis
 python scripts/make_figures.py   # regenerate the result figures
 ```
 
-Released artifacts: the v1.1 replicated traces (`results/raw/v11/`, 5029 decisions) and the original run (`results/raw/`), the computed metric
+Released artifacts: the v1.1 replicated traces (`results/raw/v11/`, 7909 decisions) and the original run (`results/raw/`), the computed metric
 reports, the profiles and name pools (`data/`), and the full harness and tests. Every number in
 the analysis regenerates from these with one command. The v1.0 release carried a caveat that the
 second run's per-decision scores had not been committed; that no longer applies, because every

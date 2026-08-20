@@ -1,6 +1,6 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "e58075e0f3119a5f9b7c1a670427f1fc08a0d9d3",
+  "commit_at_generation": "aea10351b5d4164854d847bd5f136031cd0a349a",
   "resolve_via": "Check out the commit named in commit_at_generation below. That is the tree these hashes were computed against. The manifest is written before it is committed, so it records its parent commit rather than its own, and a tag name is deliberately not used here because tags have pointed at earlier collections than the manifest described.",
   "n_decisions": 7909,
   "models_evaluated": [
@@ -36,7 +36,7 @@
     "python -m pytest harness/tests -q"
   ],
   "regenerate_note": "Run in this order: the manifest hashes the outputs of everything above it. Figures are written to a directory excluded from the public tree, so they regenerate but are not hash-checked here.",
-  "total_bytes": 2473337,
+  "total_bytes": 2478155,
   "n_files": 60,
   "n_file_entries": 61,
   "file_count_note": "n_files counts unique paths. A file listed under two sections, such as the name-panel summary, is one file and is counted once; n_file_entries is the listing length.",
@@ -59,8 +59,8 @@
       },
       {
         "path": "data/DATASHEET.md",
-        "bytes": 3060,
-        "sha256": "5b2453768cb780eff2da3f72285fa70e93abcba92150ffc0ed70bec185a6db5e"
+        "bytes": 3094,
+        "sha256": "2112f1c7112c97e76b04d8d0757076e791fa46b2e65894d763642277abf80d11"
       }
     ],
     "private_split_commitment": [
@@ -155,8 +155,8 @@
       },
       {
         "path": "results/canary_fp.json",
-        "bytes": 892,
-        "sha256": "5a867e7ffc30b92b313544f486ab647b4daf9e02d18662fbbf250756023a83a4"
+        "bytes": 960,
+        "sha256": "0b082264306463c5a30e2dc38baa2b4b1da92563423c7826bece2f0975683078"
       },
       {
         "path": "results/name_probe/summary.json",
@@ -167,8 +167,8 @@
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 33502,
-        "sha256": "44b88a6bf8d35e1d7896c7d93c084892948097f711aee7e57faaad80ac46509c"
+        "bytes": 33496,
+        "sha256": "05321b14dfdfca3dddd3c7b87263d351d46570028c6fa62ff11ce9f06ccdd6ff"
       },
       {
         "path": "scripts/make_figures.py",
@@ -207,8 +207,8 @@
       },
       {
         "path": "scripts/validate_claims.py",
-        "bytes": 23981,
-        "sha256": "22f4b60924bd09d78414ad53f70f9b31692a7914bcbefa9eb923fd6884a43041"
+        "bytes": 27748,
+        "sha256": "d5a175c9c31ae552ad8e08f8248f154d638105040153f9ca4aef73e226d187b3"
       }
     ],
     "name_perception_panel": [
@@ -341,7 +341,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "db418e16565fcda153da4b24755f930acfefd32e79d6fd202c908e8d7a9a6510"
+        "sha256": "2de7ba4191fb0a0b23083e3314f2529480e17df16c2da6a68355be7da6192292"
       }
     ],
     "model_provenance": [
@@ -359,13 +359,13 @@
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
-        "bytes": 5586,
-        "sha256": "a574f9054fbbe643d99d07ec56ff66632f8343b61534a9e18c92e70e3de35af4"
+        "bytes": 5625,
+        "sha256": "e54390819988888ee58e5e836e71211122e843841dd15372bcbb4a6dfa1783df"
       },
       {
         "path": "leaderboard/build_leaderboard.py",
-        "bytes": 10641,
-        "sha256": "d375fd3439c7c5ef2257e42dfcb0ca4fa18a78c794a2e150625f722a3630e687"
+        "bytes": 11557,
+        "sha256": "22311227abd81a2f42fd093d10d763ed0bcaa7cf81683e152c635dc73bf1d2e4"
       }
     ]
   },

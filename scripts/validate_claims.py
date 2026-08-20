@@ -17,6 +17,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "harness"))
 SEC = ROOT / "paper" / "sections_md"
 A = json.loads((ROOT / "results" / "v11" / "analysis.json").read_text(encoding="utf-8"))
 
@@ -118,7 +119,9 @@ def _c5(text):
 def _c6(text):
     n, s = MULT["n_tests"], MULT["n_bh_below_0.05"]
     words = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
-    ok = (f"{n} cells" in text or f"twenty-one" in text.lower()) and words.get(s, "") in text.lower()
+    # The literal "twenty-one" used to be accepted here as an escape hatch for an older
+    # family size. It let a stale count pass for two revisions.
+    ok = (f"{n} cells" in text or f"{n} reported cells" in text) and words.get(s, "") in text.lower()
     return ok, f"family of {n}, {s} survive: {MULT['survivors']}"
 
 
@@ -318,7 +321,7 @@ def _c26(text):
 def _c27(text):
     """The prose put the floor at 0.083 while the results table printed 0.000 twice."""
     vals = []
-    for cell in PER.values():
+    for cell in FAM.values():
         c = cell.get("cfr_pairwise_vs_reference") or {}
         if c:
             vals.append(max(c.values()))
@@ -553,6 +556,83 @@ def _c34(text):
         if sorted(models) != sorted(A["models"]):
             bad.append(f"models {sorted(models)} != {sorted(A['models'])}")
     return not bad, f"leaderboard: {bad or 'consistent'}"
+
+
+PUBLISHED = ["README.md", "docs/index.html", "data/DATASHEET.md",
+             "leaderboard/README.md", "harness/README.md"]
+
+
+def published_text():
+    out = []
+    for rel in PUBLISHED:
+        p = ROOT / rel
+        if p.exists():
+            out.append(p.read_text(encoding="utf-8", errors="replace"))
+    return "\n".join(out)
+
+
+@check("published docs carry no superseded decision count")
+def _c35(_text):
+    """README and the Pages leaderboard quote the same headline as the paper. Nothing
+    compared them to the analysis, and both sat a full collection behind."""
+    n = A["n_decisions"]
+    stale = set()
+    for m in re.finditer(r"(?<![\d.])(\d{4,6})\s*(?:replicated\s*)?decisions", published_text()):
+        if int(m.group(1)) != n:
+            stale.add(m.group(1))
+    return not stale, f"analysis has {n} decisions; published docs claim {sorted(stale)}"
+
+
+@check("published docs do not contradict the floor-clearing count")
+def _c36(_text):
+    """docs/index.html said "Exactly one cell" and the leaderboard JSON said "zero ratio
+    intervals lie entirely above 1.0", both negating the paper's Finding 2."""
+    n = sum(1 for v in family_stable().values()
+            if len(v["arity_matched"].get("ratio_ci") or []) == 2
+            and v["arity_matched"]["ratio_ci"][0] is not None
+            and v["arity_matched"]["ratio_ci"][0] > 1.0)
+    flat = " ".join(published_text().split()).lower()
+    lb = ROOT / "leaderboard" / "results.json"
+    if lb.exists():
+        flat += " " + " ".join(lb.read_text(encoding="utf-8").split()).lower()
+    bad = []
+    if n > 0:
+        for phrase in ("zero ratio intervals lie entirely above",
+                       "exactly one cell has an interval entirely above"):
+            if phrase in flat:
+                bad.append(phrase)
+    return not bad, f"{n} interval(s) above 1; published text still says: {bad}"
+
+
+@check("published test count matches the suite")
+def _c37(_text):
+    import subprocess
+    r = subprocess.run([sys.executable, "-m", "pytest", str(ROOT / "harness" / "tests"),
+                        "--collect-only", "-q"], capture_output=True, text=True, cwd=ROOT)
+    line = [x for x in r.stdout.splitlines() if "collected" in x]
+    if not line:
+        return True, "could not collect tests"
+    n = int(line[0].split()[0])
+    flat = published_text()
+    stale = {m.group(1) for m in re.finditer(r"(\d+)\s*tests", flat) if int(m.group(1)) != n}
+    stale |= {m.group(1) for m in re.finditer(r"tests-(\d+)%20passing", flat)
+              if int(m.group(1)) != n}
+    return not stale, f"suite has {n} tests; published docs claim {sorted(stale)}"
+
+
+@check("the canary is not claimed to be in the public split")
+def _c38(_text):
+    """The public split is the detector's known-clean control corpus and deliberately does
+    not carry the token. Two published files claimed the opposite."""
+    from agentfairbench.data import CANARY
+    p = ROOT / "data" / "profiles" / "public_dev.jsonl"
+    if not p.exists():
+        return True, "no public split"
+    present = CANARY in p.read_text(encoding="utf-8")
+    flat = " ".join(published_text().split())
+    claims = "public split embeds a contamination canary" in flat
+    return present == claims, (
+        f"canary in public split: {present}; published docs claim it embeds one: {claims}")
 
 
 def main():

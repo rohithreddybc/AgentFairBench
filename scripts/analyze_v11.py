@@ -302,7 +302,7 @@ def split_half_direction(recs, core_n=12):
         "pooled_by_model_and_half": pooled_out,
         "n_pooled_splits": len(pooled_out),
         "n_pooled_splits_reference_lowest": n_low,
-        "note": ("The three models see the same profiles and names, so the two profile "
+        "note": ("The models see the same profiles and names, so the two profile "
                  "halves are the independent unit rather than all six splits."),
     }
     return out

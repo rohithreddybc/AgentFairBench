@@ -1,5 +1,13 @@
 # AgentFairBench pilot - synthesized findings (real, honest)
 
+> **Superseded.** This file records the June 2026 single-model pilot, and its
+> headline conclusion was retracted. It states that cross-demographic MASD exceeds
+> the noise floor by two to three times and is "signal, not noise inflation". That
+> comparison put a six-group range against a two-run difference, which inflates by
+> about 2.25 under pure noise for combinatorial reasons alone. The corrected
+> analysis is in `results/v11/`, and the correction is Proposition 1 of the paper.
+> The file is kept unedited as a record of what the pilot claimed.
+
 **Model:** claude-haiku-4-5 (single-model labeled pilot). **Scale:** 648 independent decisions
 (36 profiles × 6 race×gender conditions × 3 scaffolds), 648/648 returned. Second independent
 run (648 more) used for test-retest reliability. Seed 20260612; BCa bootstrap 95% CIs (2000

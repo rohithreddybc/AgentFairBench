@@ -249,19 +249,15 @@
   <div class="banner">
     <p class="kicker">Read this first</p>
     <p>Two things are true here at once, and the point of the benchmark is that they disagree.
-    Across 6469 decisions on four models spanning two vendors (three hosted tiers plus the
+    Across 7909 decisions on four models spanning two vendors (three hosted tiers plus the
     open-weights <code>llama31-8b</code> run locally at temperature 0), the magnitude statistic
     and the exchangeability test flag different cells. Read either one alone and you will draw
     the wrong conclusion.</p>
     <p>On magnitude: comparing the six-group score spread (MASD) against a two-replicate pairwise
     noise floor overstates disparity by up to <b>2.25x</b> through statistic arity alone. Against
-    an <b>arity-matched</b> floor, over the 32 stable-floor cells the ratio runs <b>0.68 to
-    1.89</b> (median <b>0.93</b>). Exactly one cell has an interval entirely above the floor, the
-    cross-vendor model under elicited reasoning, and its randomization test is null: a wide score
-    spread with no consistent group ordering. Two near-deterministic cross-vendor cells have a
-    degenerate (near-zero) floor and are held out.</p>
+    an <b>arity-matched</b> floor, over the 23 stable-floor cells of the reported family the ratio runs <b>0.68 to 2.40</b> (median <b>0.88</b>). <b>2</b> cells have an interval entirely above the floor, both on the open-weights model and in different domains, and the randomization test is null in both: wide score spreads with no consistent group ordering. 6 near-deterministic cells have a degenerate (near-zero) floor and are held out.</p>
     <p>On exchangeability: a within-set randomization test on the range of per-group means finds
-    <b>4 of 24</b> cells significant after Benjamini-Hochberg (smallest adjusted p = 0.0024). All
+    <b>4 of 34</b> cells significant after Benjamini-Hochberg (smallest adjusted p = 0.0034). All
     four are hiring, none is on the primary tier, one is the open-weights cross-vendor model, and
     all appear only at the expanded 24 matched sets. The effect is small: the group effect's
     standard deviation is 0.16 to 0.31 of call-to-call noise. In every surviving cell the
@@ -277,7 +273,7 @@
     <div class="stat"><span class="n">34 / 4</span><span class="l">Cells reported / excluded</span></div>
     <div class="stat"><span class="n">0.68-1.89</span><span class="l">Ratio range, stable-floor cells</span></div>
     <div class="stat"><span class="n">4 / 24</span><span class="l">BH-significant after correction</span></div>
-    <div class="stat"><span class="n">6469</span><span class="l">Decisions, 4 models</span></div>
+    <div class="stat"><span class="n">7909</span><span class="l">Decisions, 4 models</span></div>
   </div>
 
   <h2>Verification levels</h2>
@@ -299,7 +295,7 @@
     <div class="legend-row">
       <span class="badge badge-self">&#9675; self-reported</span>
       <span class="desc"><b>Author-run pilot</b> - run by the AgentFairBench maintainers themselves
-      on the pilot/dev split, not independently re-run on the held-out private split. All three rows
+      on the pilot/dev split, not independently re-run on the held-out private split. All four rows
       below are self-reported for that reason: they are the authors' own instrument check, not a
       verified submission.</span>
     </div>
@@ -363,7 +359,7 @@
   <div class="flag">
     <b>Four-fifths screening flag, sonnet / hiring / C0, at 24 matched sets.</b> Impact ratio
     <b>0.774</b>, below the 0.80 conventional threshold. Unlike every other flag in this benchmark,
-    this one coincides with a randomization test that survives correction (adjusted p = 0.0019), so
+    this one coincides with a randomization test that survives correction (adjusted p = 0.0034), so
     the two channels agree.
     <p>The direction needs stating plainly, because the number alone invites the wrong reading. The
     selection rate is lowest for <b>white-male-coded names</b> (0.500) and highest for
