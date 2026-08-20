@@ -31,8 +31,23 @@ def body():
 
 
 def ratios():
-    return [e["arity_matched"]["ratio"] for e in PER.values()
+    """Ratios over the cells the paper actually reports.
+
+    This used to iterate every per_cell entry, which includes the superseded twelve-set
+    rows the manuscript explicitly excludes. Every summary check inherited that population,
+    so the validator ratified a caption whose median could not be obtained by sorting the
+    table it captioned. The family is the reported set; the superseded rows stay in the
+    released analysis file and out of the summary statistics.
+    """
+    return [e["arity_matched"]["ratio"] for e in FAM.values()
             if (e.get("arity_matched") or {}).get("ratio") is not None]
+
+
+def family_stable():
+    """Family cells with a usable, non-degenerate ratio."""
+    return {k: v for k, v in FAM.items()
+            if (v.get("arity_matched") or {}).get("ratio") is not None
+            and not v["arity_matched"].get("floor_degenerate")}
 
 
 CHECKS = []
@@ -62,8 +77,8 @@ def _c2(text):
 @check("reported cell count")
 def _c3(text):
     n = len(ratios())
-    return (f"{n} reported cells" in text or f"the {n} reported cells" in text,
-            f"{n} cells have a defined ratio")
+    return (f"{n} have a defined ratio" in text or f"{n} reported cells" in text,
+            f"{n} family cells have a defined ratio")
 
 
 @check("ratio range and median")
@@ -72,10 +87,7 @@ def _c4(text):
     # ratios up to 17.24 that do not belong in the reported range (see _c23). The median
     # sits on a two-decimal rounding boundary (0.9245, reported as 0.93 in the frozen table
     # caption), so we check the two unambiguous range endpoints rather than the last digit.
-    r = sorted(v["arity_matched"]["ratio"] for v in PER.values()
-               if isinstance(v.get("arity_matched"), dict)
-               and v["arity_matched"].get("ratio") is not None
-               and not v["arity_matched"].get("floor_degenerate"))
+    r = sorted(v["arity_matched"]["ratio"] for v in family_stable().values())
     lo, hi = r[0], r[-1]
     want = [f"{lo:.2f}", f"{hi:.2f}"]
     missing = [w for w in want if w not in text]
@@ -350,10 +362,7 @@ def _c28(text):
 
 @check("stable-floor median is stated to two decimals correctly")
 def _c29(text):
-    r = sorted(v["arity_matched"]["ratio"] for v in PER.values()
-               if isinstance(v.get("arity_matched"), dict)
-               and v["arity_matched"].get("ratio") is not None
-               and not v["arity_matched"].get("floor_degenerate"))
+    r = sorted(v["arity_matched"]["ratio"] for v in family_stable().values())
     n = len(r)
     med = r[n // 2] if n % 2 else (r[n // 2 - 1] + r[n // 2]) / 2.0
     flat = " ".join(text.split())
@@ -369,10 +378,8 @@ def _c29(text):
 
 @check("per-set noise scale spread matches the analysis")
 def _c30(text):
-    cvs = [(v["arity_matched"] or {}).get("set_noise_sd_cv") for v in PER.values()
-           if isinstance(v.get("arity_matched"), dict)
-           and v["arity_matched"].get("ratio") is not None
-           and not v["arity_matched"].get("floor_degenerate")]
+    cvs = [(v["arity_matched"] or {}).get("set_noise_sd_cv")
+           for v in family_stable().values()]
     cvs = [c for c in cvs if c is not None]
     if not cvs:
         return True, "no set_noise_sd_cv recorded"

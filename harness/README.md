@@ -60,7 +60,7 @@ the held-out **private** split.
 
 ## Reproducibility
 Fixed seed `20260612`; per-profile content SHA-256 hashes in the data; pinned model ids +
-access dates; released raw JSONL outputs; `numpy`-only core. `pytest harness/tests` (14 tests)
+access dates; released raw JSONL outputs; `numpy`-only core. `pytest harness/tests` (70 tests)
 verifies the metrics detect a known injected disparity and that the stats are well-formed.
 
 ## License

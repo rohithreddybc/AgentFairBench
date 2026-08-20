@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Data: CC-BY-4.0](https://img.shields.io/badge/data-CC--BY--4.0-green.svg)](data/DATASHEET.md)
-[![Tests](https://img.shields.io/badge/tests-46%20passing-brightgreen.svg)](harness/tests)
+[![Tests](https://img.shields.io/badge/tests-70%20passing-brightgreen.svg)](harness/tests)
 
 **Do LLM agents discriminate when they *act*?**
 
@@ -19,21 +19,24 @@ single-digit dollars per model.
 
 ## Read this before citing a number
 
-Two results hold at once here, and quoting either alone will mislead. Across 5029 replicated
-decisions on three model tiers:
+Two results hold at once here, and quoting either alone will mislead. Across 7909 replicated
+decisions on four models spanning two vendors, in three domains each covered by more than
+one model:
 
 **Disparity magnitude is at the noise floor, everywhere.** Comparing a six-group score
 *spread* (MASD) against a two-run pairwise noise floor overstates disparity by up to 2.25x
 through **statistic arity alone**, because a six-sample range is mechanically larger than a
 two-sample difference even under pure noise. Against an **arity-matched** floor built from
-real replicate calls, the observed-to-null ratio runs 0.63 to 1.00 with a median of 0.83, and
-**zero of 28** cells have a ratio interval lying above 1.0.
+real replicate calls, the observed-to-null ratio runs 0.68 to 2.40 with a median of 0.93, and
+**2 of 33** stable-floor cells have a ratio interval lying entirely above 1.0. Both are on the
+cross-vendor open-weights model, in different domains, and the randomization test is null in
+both: a wide spread carrying no consistent group ordering.
 
 **A small group effect is nonetheless detectable.** A within-set randomization test on the
-range of per-group means finds **3 of 19** cells significant after Benjamini-Hochberg
-(smallest adjusted p = 0.0019). All three are hiring, on the secondary tiers, and all three
-appear only once matched sets are doubled to 24. The effect is small, under **0.12 percent**
-of score variance, and in every flagged cell the lowest-scoring group is **white-male-coded
+range of per-group means finds **4 of 34** cells significant after Benjamini-Hochberg
+(smallest adjusted p = 0.0034). All four are hiring, on the secondary tiers, and all four
+appear only once matched sets are doubled to 24. The effect is small, 0.16 to 0.31 of a
+standard deviation of call-to-call noise, and in every flagged cell the lowest-scoring group is **white-male-coded
 names**, by 1 to 2.4 points on a 100-point scale. That is the opposite of the direction
 name-substitution audits were built to detect.
 
@@ -61,7 +64,7 @@ pip install -e harness
 # no-cost dry run on the mock adapter:
 python -m agentfairbench.cli run --profiles data/profiles/public_dev.jsonl \
   --names data/names/name_pools.json --adapter mock --out results/mock
-pytest harness/tests            # 46 tests, no API key needed (incl. a planted-bias sensitivity check)
+pytest harness/tests            # 70 tests, no API key needed (incl. a planted-bias sensitivity check)
 ```
 
 Score a real model via an OpenAI-compatible endpoint: see [`harness/README.md`](harness/README.md).
@@ -90,13 +93,15 @@ run on the held-out **private** split; they are never estimated or fabricated. S
 
 - **Public split** (`data/profiles/public_dev.jsonl`, 48 profiles, CC-BY-4.0): for development.
 - **Private split:** held by the maintainer; leaderboard ranking is computed on it so scores cannot
-  be tuned to released items. The public split embeds a contamination canary
-  (`AGENTFAIRBENCH-CANARY-2f9c1a`) so training-set leakage is detectable.
+  be tuned to released items. The **private** split carries a contamination canary
+  (`AGENTFAIRBENCH-CANARY-2f9c1a`) on every item, so leakage of the held-out split into a
+  training corpus is detectable. The public split deliberately does not carry it, and is used
+  as the known-clean control corpus when measuring the detector's false-positive rate.
 
 ## Repo layout
 
 ```
-harness/        pip-installable evaluation harness (agentfairbench) + 46 tests
+harness/        pip-installable evaluation harness (agentfairbench) + 70 tests
 data/           public_dev.jsonl profiles, name pools, DATASHEET.md
 results/        raw decision traces, computed metric reports, arity-null output
 scripts/        analyze_v11.py, make_figures.py (analysis reproduction)

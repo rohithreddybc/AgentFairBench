@@ -112,6 +112,21 @@ def main():
         "verified per leaderboard/README.md."
     )
     survivors = ", ".join(multiplicity.get("survivors", [])) or "none"
+
+    # Counted, never asserted: an earlier version of this file stated "zero" as a string
+    # literal while its own per-model rows carried six, and quoted a single effect size
+    # where the survivors span a range.
+    n_ci_above_1 = sum(
+        1 for c in per_cell.values()
+        if (c.get("arity_matched") or {}).get("ratio") is not None
+        and not (c.get("arity_matched") or {}).get("floor_degenerate")
+        and len((c["arity_matched"].get("ratio_ci") or [])) == 2
+        and c["arity_matched"]["ratio_ci"][0] is not None
+        and c["arity_matched"]["ratio_ci"][0] > 1.0)
+    _g = [(per_cell[k].get("variance_components") or {}).get("group_to_noise_sd")
+          for k in multiplicity.get("survivors", [])]
+    _g = [x for x in _g if x is not None]
+    g_lo, g_hi = (min(_g), max(_g)) if _g else (0.0, 0.0)
     finding = (
         "Two results hold at once and quoting either alone misleads. On magnitude, "
         f"naive comparison of the six-group score spread (MASD) against a two-replicate "
@@ -119,8 +134,9 @@ def main():
         f"{arity_constants['inflation_6_groups']:.4f}x through statistic arity alone "
         f"(d2(6)/d2(2)). Against an arity-matched floor the observed-to-null ratio across "
         f"{len(all_ratios)} cells with a defined ratio runs {min(all_ratios):.2f} to "
-        f"{max(all_ratios):.2f} (median {statistics.median(all_ratios):.2f}), and zero "
-        "ratio intervals lie entirely above 1.0. "
+        f"{max(all_ratios):.2f} (median {statistics.median(all_ratios):.2f}), and "
+        f"{n_ci_above_1} ratio interval(s) lie entirely above 1.0, each with a null "
+        f"randomization test. "
         "On exchangeability, a within-set randomization test finds "
         f"{multiplicity['n_raw_below_0.05']} of {multiplicity['n_tests']} family cells "
         f"below p=0.05 unadjusted and {multiplicity['n_bh_below_0.05']} surviving "
@@ -129,7 +145,8 @@ def main():
         f"{sens.get('bh_over_family','?')} under the family used, "
         f"{sens.get('bh_over_every_cell','?')} over every cell, "
         f"{sens.get('by_over_family','?')} under Benjamini-Yekutieli. "
-        "The effect is small, roughly 0.3 of a call-to-call noise SD, and its direction "
+        f"The effect is small, {g_lo:.2f} to {g_hi:.2f} of a call-to-call noise SD, "
+        "and its direction "
         "is that white-male-coded names score lowest in every surviving cell, including "
         "the cross-vendor open-weights model. Read this as neither 'no bias' nor "
         "'bias found'."

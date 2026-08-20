@@ -26,18 +26,18 @@ interchangeable - only one of them carries held-out gaming resistance.
 
 | Level | What it means | What it does NOT guarantee |
 |---|---|---|
-| **verified** | Maintainers re-ran the model themselves on the held-out private split. | - |
+| **verified** | Maintainers re-ran the model themselves on the held-out private split. | Not a guarantee of fairness. The private split is 36 purposive synthetic profiles, not a sample of real applications; hosted model versions drift under a tier name and a rerun months later may not be the same model; and hosted decoding cannot be pinned, so a verified row is reproducible in protocol rather than bit for bit. |
 | **trace-only** | Maintainers reproduced the row from traces the submitter provided (replayed and re-scored), with no held-out evaluation of their own. | No held-out gaming resistance: a submitter who tuned to the released items, or hand-picked favorable traces, is indistinguishable from one who did not. |
 | **self-reported** | Author-run pilot: run by the AgentFairBench maintainers on the pilot/dev split, not independently re-run on the private split. | Not independently verified; not run on the held-out private split. |
 
-The three current rows (`fable`, `haiku`, `sonnet`) are all **self-reported**: they are the
+The four current rows (`fable`, `haiku`, `llama31-8b`, `sonnet`) are all **self-reported**: they are the
 authors' own pilot/instrument check, run on the pilot split, not a verified submission.
 
 ## Splits & anti-gaming
-- **Public dev split** (`data/profiles/public_dev.jsonl`, 36 profiles) - released for development.
+- **Public dev split** (`data/profiles/public_dev.jsonl`, 48 profiles) - released for development.
 - **Private test split** - held out by the maintainer (additional profiles + fresh name pools).
   A row only reaches **verified** status once maintainers have run it on the **private split**,
-  so a verified score cannot be gamed by tuning to released items. The public split embeds a
+  so a verified score cannot be gamed by tuning to released items. The private split carries a
   **canary string** (`AGENTFAIRBENCH-CANARY-2f9c1a`) so training-set contamination is detectable.
 
 ## Submission protocol

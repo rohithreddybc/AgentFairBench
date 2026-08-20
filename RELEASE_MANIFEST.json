@@ -1,7 +1,7 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "6090ba66e7c33983e429be75d66f3290b92bf197",
-  "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
+  "commit_at_generation": "e58075e0f3119a5f9b7c1a670427f1fc08a0d9d3",
+  "resolve_via": "Check out the commit named in commit_at_generation below. That is the tree these hashes were computed against. The manifest is written before it is committed, so it records its parent commit rather than its own, and a tag name is deliberately not used here because tags have pointed at earlier collections than the manifest described.",
   "n_decisions": 7909,
   "models_evaluated": [
     "fable",
@@ -13,6 +13,7 @@
   "api_parameters_note": "The collection client exposes neither temperature nor a sampling seed, so decoding was not pinned and this is not recoverable from the traces. The released OpenAI-compatible adapter sends the identical prompt and schema and does expose temperature, defaulting to 0, for a decoding-pinned replication.",
   "headline": {
     "cells_reported": 40,
+    "cells_reported_note": "Cells with a defined arity-matched ratio. Cells whose observed spread is exactly zero have no ratio to form and are not counted here; they are listed with a reason in the analysis file.",
     "cells_with_ratio_interval_above_one": 2,
     "cells_with_ratio_interval_above_one_note": "Counted over the stable-floor cells. Cells whose noise floor is degenerate are excluded, because their ratio is uninformative.",
     "randomization_tests": 34,
@@ -25,12 +26,20 @@
     ]
   },
   "regenerate": [
-    "python scripts/analyze_v11.py    # every reported number",
-    "python scripts/make_figures.py   # both figures",
+    "python scripts/analyze_v11.py           # analysis.json and tables.md",
+    "python scripts/canary_fp_analysis.py    # results/canary_fp.json",
+    "python scripts/analyze_name_probe.py    # name_probe/summary.json",
+    "python scripts/reliability.py           # results/reliability.md",
+    "python leaderboard/build_leaderboard.py # leaderboard/results.json",
+    "python scripts/make_figures.py          # both figures",
+    "python scripts/make_release_manifest.py # this file, run last",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 2490071,
+  "regenerate_note": "Run in this order: the manifest hashes the outputs of everything above it. Figures are written to a directory excluded from the public tree, so they regenerate but are not hash-checked here.",
+  "total_bytes": 2473337,
   "n_files": 60,
+  "n_file_entries": 61,
+  "file_count_note": "n_files counts unique paths. A file listed under two sections, such as the name-panel summary, is one file and is counted once; n_file_entries is the listing length.",
   "files": {
     "public_split": [
       {
@@ -158,8 +167,8 @@
     "analysis_scripts": [
       {
         "path": "scripts/analyze_v11.py",
-        "bytes": 33492,
-        "sha256": "b05ef1dcce52bf0ecec1323ed09c463cbba2b76ca24a55a65099d30de677e463"
+        "bytes": 33502,
+        "sha256": "44b88a6bf8d35e1d7896c7d93c084892948097f711aee7e57faaad80ac46509c"
       },
       {
         "path": "scripts/make_figures.py",
@@ -257,8 +266,8 @@
       },
       {
         "path": "harness/agentfairbench/data.py",
-        "bytes": 2403,
-        "sha256": "7cbb6bcc961cdf3695985fdcc5e4851cd78ec2e846525dd8a7f0996039cc236c"
+        "bytes": 3396,
+        "sha256": "4ec16fa7afa6f973f2cbc51947e6badf51eae26f7c7bded9285be085e25f90ff"
       },
       {
         "path": "harness/agentfairbench/metrics.py",
@@ -272,8 +281,8 @@
       },
       {
         "path": "harness/agentfairbench/repeated.py",
-        "bytes": 30892,
-        "sha256": "593b5cdec82feabca458502c57ed8965563e2245b0ae3a4cdba11554cb055e7c"
+        "bytes": 32072,
+        "sha256": "109c2b1e2c3150330626e05d294d7af481bad55f6b10aa52ad5a7cc171326d2b"
       },
       {
         "path": "harness/agentfairbench/runner.py",
@@ -304,6 +313,11 @@
         "path": "harness/tests/test_metrics.py",
         "bytes": 5816,
         "sha256": "178993a6840ebd1e950af7c88218159b398c8ad37105de894f39d86ca7f9dae7"
+      },
+      {
+        "path": "harness/tests/test_profile_integrity.py",
+        "bytes": 2210,
+        "sha256": "9c49b64f4f5efb320b0448f90de4fc75a518b699542d493bca8e1b2d586573d3"
       },
       {
         "path": "harness/tests/test_repeated.py",
@@ -345,8 +359,8 @@
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
-        "bytes": 5445,
-        "sha256": "a9c10ef756f75b76793f174464e6bcf8a7537793ca210300861374c2d7ee7922"
+        "bytes": 5586,
+        "sha256": "a574f9054fbbe643d99d07ec56ff66632f8343b61534a9e18c92e70e3de35af4"
       },
       {
         "path": "leaderboard/build_leaderboard.py",

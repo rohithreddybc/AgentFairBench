@@ -11,6 +11,7 @@ decomposition; then the decision-channel and information-request statistics; the
 Writes results/v11/analysis.json plus markdown tables under results/v11/.
 """
 import json
+import statistics
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -545,7 +546,7 @@ def main():
         vals = [v for _, v in ratios]
         above = [n for n, v in ratios if v > 1.0]
         print(f"\narity-matched MASD/noise ratio over {len(vals)} stable-floor cells: "
-              f"min {min(vals):.2f} median {sorted(vals)[len(vals)//2]:.2f} max {max(vals):.2f}")
+              f"min {min(vals):.2f} median {statistics.median(vals):.2f} max {max(vals):.2f}")
         print(f"cells above the noise floor (ratio > 1): {len(above)}/{len(vals)}"
               + (f" -> {above}" if above else ""))
         if degen:
@@ -593,7 +594,7 @@ def write_tables(out):
     add(f"- Reported cells: **{len(ratios)}**; excluded as incomplete: "
         f"{len(out['excluded_incomplete_cells'])}")
     add(f"- Arity-matched MASD-to-noise ratio: min **{min(ratios):.2f}**, "
-        f"median **{sorted(ratios)[len(ratios)//2]:.2f}**, max **{max(ratios):.2f}**")
+        f"median **{statistics.median(ratios):.2f}**, max **{max(ratios):.2f}**")
     add(f"- Cells with point ratio above 1.0: **{len(above)}/{len(ratios)}**"
         + (f" ({', '.join(above)})" if above else ""))
     add(f"- Cells whose ratio interval lies entirely above 1.0: **{len(ci_above)}/{len(ratios)}**")

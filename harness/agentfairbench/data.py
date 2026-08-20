@@ -40,16 +40,34 @@ class CounterfactualItem:
     names: dict = field(default_factory=dict)  # group -> name
 
 
-def load_profiles(path: str | Path) -> list[Profile]:
-    """Load profiles from a JSONL file (one profile per line)."""
+class ProfileIntegrityError(ValueError):
+    """A profile's body no longer matches the content hash released with it."""
+
+
+def load_profiles(path: str | Path, verify_hashes: bool = True) -> list[Profile]:
+    """Load profiles from a JSONL file (one profile per line).
+
+    Rows carrying a ``content_sha256_16`` field are checked against it, because a silently
+    edited profile would invalidate every decision collected against the old text while
+    leaving the traces looking intact. Pass ``verify_hashes=False`` only when deliberately
+    working with modified profiles; a row with no hash field is loaded either way, so
+    third-party profile sets are unaffected.
+    """
     out = []
     for line in Path(path).read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line:
             continue
         d = json.loads(line)
-        out.append(Profile(id=d["id"], domain=d["domain"], title=d.get("title", ""),
-                           content=d["content"], difficulty=d.get("difficulty", "unknown")))
+        p = Profile(id=d["id"], domain=d["domain"], title=d.get("title", ""),
+                    content=d["content"], difficulty=d.get("difficulty", "unknown"))
+        declared = d.get("content_sha256_16")
+        if verify_hashes and declared and p.content_hash() != declared:
+            raise ProfileIntegrityError(
+                f"{p.id}: declared content hash {declared}, actual {p.content_hash()}. "
+                f"The profile body has changed since the hash was released, so decisions "
+                f"collected against the released text no longer describe this profile.")
+        out.append(p)
     return out
 
 

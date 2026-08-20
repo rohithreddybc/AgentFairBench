@@ -167,7 +167,24 @@ def repeated_noise_floor(records, n_groups: int = 6, n_boot: int = 4000,
         pool, scales = _shape_pool_and_scales(prof)
         unit = _expected_unit_range(pool, n_groups, n_boot, rng)
         if unit is None or not scales:
-            out[key] = {"null_masd": None, "reason": "insufficient replicates"}
+            # Distinguish the two ways this happens. A near-deterministic model returns the
+            # same score on every replicate, so every set's sigma is zero and the
+            # standardized pool is empty even though the replicates are all present.
+            # Reporting that as "insufficient replicates" misdescribes the model, and the
+            # published reason string said exactly that for eight cells.
+            n_rep = sum(len(v) for groups in prof.values() for v in groups.values())
+            n_varying = sum(1 for v in scales.values() if v > 0)
+            if not scales:
+                reason = "no matched sets with usable decisions"
+            elif n_varying == 0:
+                reason = ("model is deterministic on every matched set: all replicate "
+                          "deviations are zero, so there is no noise shape to estimate")
+            else:
+                reason = (f"only {n_varying} matched set(s) vary across replicates, fewer "
+                          f"than the {n_groups} draws the arity-matched floor needs")
+            out[key] = {"null_masd": None, "reason": reason,
+                        "n_replicate_observations": int(n_rep),
+                        "n_sets_with_variation": int(n_varying)}
             continue
         sig = np.array([scales[p] for p in sorted(scales)], dtype=float)
         per_set_null = unit * sig

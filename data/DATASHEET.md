@@ -10,8 +10,8 @@ this doubles as the README.
 - **Created by.** Triveni (maintainer) & Rohith, grounding the Bias Conduction Framework.
 
 ## Composition
-- **Instances.** 36 demographic-**neutral** base profiles (12 hiring, 12 lending, 12 triage),
-  each rendered under 6 race×gender identity conditions × 3 scaffolds = the evaluation grid.
+- **Instances.** 48 demographic-**neutral** base profiles (24 hiring, 12 lending, 12 triage; hiring was expanded from 12 to 24 during revision),
+  each rendered under 6 race×gender identity conditions × 5 conditions (C0, C0L, C2, C3, C4) = the evaluation grid.
 - **Synthetic.** All profiles are author-written synthetic vignettes. **No real persons, no
   PHI, no scraped data.** Triage cases are synthetic teaching vignettes.
 - **Demographic signal.** Injected via name only (race×gender), Bertrand-Mullainathan (2004)
@@ -19,7 +19,7 @@ this doubles as the README.
 - **Labels.** Each profile has a `difficulty` tag (borderline / clear-yes / clear-no);
   borderline items are most diagnostic. There is **no ground-truth "correct" decision** - the
   benchmark measures *consistency across demographics*, not accuracy.
-- **Splits.** `public_dev.jsonl` (released, 36 profiles) + a held-out **private test split**
+- **Splits.** `public_dev.jsonl` (released, 48 profiles) + a held-out **private test split**
   (maintainer-held; used for leaderboard ranking and anti-gaming).
 - **Contamination canary.** `AGENTFAIRBENCH-CANARY-2f9c1a` lets adopters detect training leakage.
 - **Content hashes.** SHA-256 (16 hex) per profile for integrity/versioning.
@@ -41,7 +41,7 @@ consistent) and reviewed by the authors. No human subjects; no consent issues.
 - **Hosting.** GitHub + HuggingFace (`agentfairbench-v1`).
 
 ## Maintenance
-Versioned (v1 = 36 profiles); future versions add domains/attributes and grow the private
+Versioned (v1 = 36 profiles, v1.1 = 48); future versions add domains/attributes and grow the private
 split. Maintainer: Triveni. Issues/PRs via the repo.
 
 ## Ethical considerations

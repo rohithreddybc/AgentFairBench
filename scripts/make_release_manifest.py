@@ -69,6 +69,15 @@ def git(*args):
 
 
 
+
+def _unique_bytes(files):
+    """Total on-disk size, counting a path once even if it is listed twice."""
+    seen = {}
+    for entries in files.values():
+        for e in entries:
+            seen[e["path"]] = e.get("bytes", 0)
+    return sum(seen.values())
+
 def _n_ci_above_one(analysis):
     """Stable-floor cells whose ratio interval lies entirely above one.
 
@@ -108,7 +117,12 @@ def main():
         # the artifacts it describes, so this names the parent of the release commit; the
         # tag is what a reader should resolve. Stated rather than left to be discovered.
         "commit_at_generation": git("rev-parse", "HEAD"),
-        "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
+        "resolve_via": (
+            "Check out the commit named in commit_at_generation below. That is the "
+            "tree these hashes were computed against. The manifest is written before "
+            "it is committed, so it records its parent commit rather than its own, "
+            "and a tag name is deliberately not used here because tags have pointed "
+            "at earlier collections than the manifest described."),
         "n_decisions": analysis.get("n_decisions"),
         "models_evaluated": analysis.get("models"),
         "model_identifier_note": (
@@ -123,7 +137,12 @@ def main():
             "does expose temperature, defaulting to 0, for a decoding-pinned replication."),
         "headline": {
             "cells_reported": len([1 for v in analysis.get("per_cell", {}).values()
-                                   if v.get("arity_matched", {}).get("ratio")]),
+                                   if (v.get("arity_matched") or {}).get("ratio")
+                                   is not None]),
+            "cells_reported_note": (
+                "Cells with a defined arity-matched ratio. Cells whose observed "
+                "spread is exactly zero have no ratio to form and are not counted "
+                "here; they are listed with a reason in the analysis file."),
             "cells_with_ratio_interval_above_one": _n_ci_above_one(analysis),
             "cells_with_ratio_interval_above_one_note": (
                 "Counted over the stable-floor cells. Cells whose noise floor is "
@@ -133,12 +152,26 @@ def main():
             "significant_cells": mult.get("survivors"),
         },
         "regenerate": [
-            "python scripts/analyze_v11.py    # every reported number",
-            "python scripts/make_figures.py   # both figures",
+            "python scripts/analyze_v11.py           # analysis.json and tables.md",
+            "python scripts/canary_fp_analysis.py    # results/canary_fp.json",
+            "python scripts/analyze_name_probe.py    # name_probe/summary.json",
+            "python scripts/reliability.py           # results/reliability.md",
+            "python leaderboard/build_leaderboard.py # leaderboard/results.json",
+            "python scripts/make_figures.py          # both figures",
+            "python scripts/make_release_manifest.py # this file, run last",
             "python -m pytest harness/tests -q",
         ],
-        "total_bytes": total,
-        "n_files": sum(len(v) for v in files.values()),
+        "regenerate_note": (
+            "Run in this order: the manifest hashes the outputs of everything above "
+            "it. Figures are written to a directory excluded from the public tree, so "
+            "they regenerate but are not hash-checked here."),
+        "total_bytes": _unique_bytes(files),
+        "n_files": len({e["path"] for v in files.values() for e in v}),
+        "n_file_entries": sum(len(v) for v in files.values()),
+        "file_count_note": (
+            "n_files counts unique paths. A file listed under two sections, such as "
+            "the name-panel summary, is one file and is counted once; n_file_entries "
+            "is the listing length."),
         "files": files,
         "missing": missing,
     }
