@@ -854,6 +854,49 @@
       }
     }
   },
+  "_perceived_origin": {
+    "llama31-8b": {
+      "pct_foreign_born_by_race": {
+        "white": 0.0,
+        "black": 0.0,
+        "hispanic": 70.0
+      },
+      "counts_by_race": {
+        "white": {
+          "US-born": 30
+        },
+        "black": {
+          "US-born": 30
+        },
+        "hispanic": {
+          "Foreign-born": 21,
+          "US-born": 9
+        }
+      },
+      "n_unparsed": 0
+    },
+    "qwen3-4b": {
+      "pct_foreign_born_by_race": {
+        "white": 10.0,
+        "black": 10.0,
+        "hispanic": 100.0
+      },
+      "counts_by_race": {
+        "white": {
+          "US-born": 27,
+          "Foreign-born": 3
+        },
+        "black": {
+          "US-born": 27,
+          "Foreign-born": 3
+        },
+        "hispanic": {
+          "Foreign-born": 30
+        }
+      },
+      "n_unparsed": 0
+    }
+  },
   "_panel_agreement": {
     "raters": [
       "haiku",

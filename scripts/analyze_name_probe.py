@@ -13,6 +13,7 @@ is a limitation rather than a reassurance, and they are reported with the same w
 Writes results/name_probe/summary.json and prints a readable digest.
 """
 import json
+import os
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -56,8 +57,48 @@ def intended_parts(cell: str):
     return RACE_OF[race], GENDER_OF[gender]
 
 
+
+def _origin_summary(directory):
+    """Perceived national origin, per rater and per intended race.
+
+    Reviewer 2 asked whether the name cue carries nativity as well as race. It does, and
+    only for one cell, so the number belongs in the paper rather than in a footnote about
+    what we did not measure.
+    """
+    import collections
+    import glob
+    import json as _json
+
+    out = {}
+    for path in sorted(glob.glob(os.path.join(directory, "*_origin.jsonl"))):
+        alias = os.path.basename(path)[:-len("_origin.jsonl")]
+        by_race = collections.defaultdict(collections.Counter)
+        unparsed = 0
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                row = _json.loads(line)
+                rating = row.get("rating")
+                if not isinstance(rating, dict) or rating.get("origin") is None:
+                    unparsed += 1
+                    continue
+                race = row["intended_cell"].split("_")[0]
+                by_race[race][rating["origin"]] += 1
+        rates, counts = {}, {}
+        for race, c in by_race.items():
+            n = sum(c.values())
+            rates[race] = round(100.0 * c.get("Foreign-born", 0) / n, 1) if n else None
+            counts[race] = dict(c)
+        out[alias] = {"pct_foreign_born_by_race": rates, "counts_by_race": counts,
+                      "n_unparsed": unparsed}
+    return out
+
+
 def main():
-    files = sorted(PROBE.glob("*.jsonl"))
+    # The origin probe writes into the same directory under its own suffix. It asks a
+    # different question with a different schema, so it must not be loaded as another
+    # perception rater: doing so silently moved the panel's gender kappa.
+    files = sorted(f for f in PROBE.glob("*.jsonl")
+                   if not f.name.endswith("_origin.jsonl"))
     if not files:
         raise SystemExit("no probe files; run the name-probe workflow first")
 
@@ -156,6 +197,7 @@ def main():
                                   ["White", "Black", "Hispanic", "Asian", "Unsure"]),
         "gender": panel_reliability(gender_by_rater, ["Male", "Female", "Unsure"]),
     }
+    summary["_perceived_origin"] = _origin_summary(str(PROBE))
     summary["_panel_agreement"] = panel
     print("\n=== cross-annotator agreement over", panel["n_raters"], "models ===")
     print(f"  race   : unanimous {100*panel['race']['unanimous_rate']:.0f}%  "

@@ -34,6 +34,11 @@ ap.add_argument("--reps", type=int, default=3, help="independent rating calls pe
 ap.add_argument("--base-url", default="http://localhost:11434/v1")
 ap.add_argument("--temperature", type=float, default=0.0)
 ap.add_argument("--timeout", type=float, default=120.0)
+ap.add_argument("--probe", default="perception",
+                choices=["perception", "origin"],
+                help="perception: race, gender, socioeconomic, familiarity. "
+                     "origin: perceived national origin, added because a reviewer "
+                     "asked whether the name cue carries nativity as well as race.")
 ARGS = ap.parse_args()
 
 PROMPT = (
@@ -45,6 +50,18 @@ PROMPT = (
     "Upper, Unsure), familiarity (an integer 1 to 5, where 1 is very rare and 5 is very "
     "common)."
 )
+
+
+ORIGIN_PROMPT = (
+    "Consider the personal name below. With no other information, what does the name most "
+    "likely signal about the person? Answer only about the name's typical associations in "
+    "the United States." '\\n\\n' "Name: {name}" '\\n\\n'
+    "Return ONLY a JSON object with keys: origin (one of US-born, Foreign-born, Unsure), "
+    "region (the world region the name is most associated with, or Unsure), confidence "
+    "(an integer 1 to 5)."
+)
+
+PROMPTS = {"perception": PROMPT, "origin": ORIGIN_PROMPT}
 
 
 def load_pools():
@@ -72,7 +89,8 @@ def chat(prompt):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    path = OUT / f"{ARGS.alias}.jsonl"
+    suffix = "" if ARGS.probe == "perception" else f"_{ARGS.probe}"
+    path = OUT / f"{ARGS.alias}{suffix}.jsonl"
     done = set()
     if path.exists():
         for line in path.read_text(encoding="utf-8").splitlines():
@@ -91,7 +109,7 @@ def main():
     with open(path, "a", encoding="utf-8", newline="\n") as fh:
         for i, (name, cell, rep) in enumerate(todo, 1):
             try:
-                rating = chat(PROMPT.format(name=name))
+                rating = chat(PROMPTS[ARGS.probe].format(name=name))
                 ok += 1
             except Exception as e:
                 rating = {"error": str(e)}

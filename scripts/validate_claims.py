@@ -635,6 +635,42 @@ def _c38(_text):
         f"canary in public split: {present}; published docs claim it embeds one: {claims}")
 
 
+@check("perceived national origin is reported, not conceded")
+def _c39(_text):
+    """Reviewer 2 asked whether the name cue carries nativity. It does, for the Hispanic
+    cell only, and the paper conceded the question as unmeasured for two revisions. This
+    check fails if the measurement disappears or if its numbers drift out of the prose."""
+    p = ROOT / "results" / "name_probe" / "summary.json"
+    if not p.exists():
+        return True, "no name probe summary"
+    origin = json.loads(p.read_text(encoding="utf-8")).get("_perceived_origin") or {}
+    if not origin:
+        return False, "the national-origin probe is missing from the summary"
+    body = " ".join(_text.split())
+    missing = []
+    for alias, block in sorted(origin.items()):
+        rate = (block.get("pct_foreign_born_by_race") or {}).get("hispanic")
+        if rate is not None and f"{rate:.0f}" not in body:
+            missing.append(f"{alias} hispanic {rate:.0f}%")
+    stale = "We did not ask raters about perceived national origin" in body
+    return (not missing and not stale,
+            f"origin probe over {len(origin)} raters; missing from prose: {missing}"
+            + ("; the old concession is still present" if stale else ""))
+
+
+@check("the origin probe is not counted as a perception rater")
+def _c40(_text):
+    """The origin probe writes into the same directory. Loading it as another perception
+    rater silently moved the panel's gender kappa from 0.926 to 0.935."""
+    p = ROOT / "results" / "name_probe" / "summary.json"
+    if not p.exists():
+        return True, "no name probe summary"
+    d = json.loads(p.read_text(encoding="utf-8"))
+    raters = (d.get("_panel_agreement") or {}).get("raters") or []
+    bad = [r for r in raters if r.endswith("_origin")]
+    return not bad, f"perception panel raters {raters}; contaminated by {bad}"
+
+
 def main():
     text = body()
     fails = []

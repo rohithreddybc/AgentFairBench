@@ -1,6 +1,6 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "aea10351b5d4164854d847bd5f136031cd0a349a",
+  "commit_at_generation": "579d2cc044fc7183ca2ef8a82bc0f072e9d69138",
   "resolve_via": "Check out the commit named in commit_at_generation below. That is the tree these hashes were computed against. The manifest is written before it is committed, so it records its parent commit rather than its own, and a tag name is deliberately not used here because tags have pointed at earlier collections than the manifest described.",
   "n_decisions": 7909,
   "models_evaluated": [
@@ -36,9 +36,9 @@
     "python -m pytest harness/tests -q"
   ],
   "regenerate_note": "Run in this order: the manifest hashes the outputs of everything above it. Figures are written to a directory excluded from the public tree, so they regenerate but are not hash-checked here.",
-  "total_bytes": 2478155,
-  "n_files": 60,
-  "n_file_entries": 61,
+  "total_bytes": 2521659,
+  "n_files": 62,
+  "n_file_entries": 63,
   "file_count_note": "n_files counts unique paths. A file listed under two sections, such as the name-panel summary, is one file and is counted once; n_file_entries is the listing length.",
   "files": {
     "public_split": [
@@ -160,8 +160,8 @@
       },
       {
         "path": "results/name_probe/summary.json",
-        "bytes": 21268,
-        "sha256": "89c85cae6fc7474b40f7965c5ab2330c26e40c48aa56a88319958922483a06b3"
+        "bytes": 22157,
+        "sha256": "2f0f3617854b8767b4d386075f53b2db805cfeb6adefe04159aa74c0f3f6c33e"
       }
     ],
     "analysis_scripts": [
@@ -197,18 +197,18 @@
       },
       {
         "path": "scripts/collect_name_annotations.py",
-        "bytes": 4535,
-        "sha256": "8b8ab490c59b6dbb2b46e798099d92a5dca481013cc761b5368524324fad61a3"
+        "bytes": 5500,
+        "sha256": "037d3b2daca17b12eac3df588a47db03930adf74839260a09655c8e1a0e0adc2"
       },
       {
         "path": "scripts/analyze_name_probe.py",
-        "bytes": 7222,
-        "sha256": "9ba7d672cdea3d2b6e23d21553ee376c1f82f2e0e3361d578f3ac4276125aa32"
+        "bytes": 9018,
+        "sha256": "d692b7fe932ae4f3fc6782359c4832b3f79b324e9d11d91cc1ccea560dd51843"
       },
       {
         "path": "scripts/validate_claims.py",
-        "bytes": 27748,
-        "sha256": "d5a175c9c31ae552ad8e08f8248f154d638105040153f9ca4aef73e226d187b3"
+        "bytes": 29598,
+        "sha256": "1116fd8bdaa45ae1b37657353c55afc265f3b94aa9328942ea9581bd0d05ab54"
       }
     ],
     "name_perception_panel": [
@@ -223,9 +223,19 @@
         "sha256": "757ee0ebda0e30a1762747e357956393519ce65bcaf2122b98c40fca96a9d89a"
       },
       {
+        "path": "results/name_probe/llama31-8b_origin.jsonl",
+        "bytes": 18936,
+        "sha256": "a27d37fa59915ce4991ac579d655f9f612d924ddb511939178b3de098d9a2f8b"
+      },
+      {
         "path": "results/name_probe/qwen3-4b.jsonl",
         "bytes": 20445,
         "sha256": "0638012e81863e231f729ba13faf54387dcbf4d7f3455b53ed005da9540bc07f"
+      },
+      {
+        "path": "results/name_probe/qwen3-4b_origin.jsonl",
+        "bytes": 19068,
+        "sha256": "0ec5f79d689ecb487951dcde23ea4ef7384826ece8b3734ff381b1f672f7e41d"
       },
       {
         "path": "results/name_probe/sonnet.jsonl",
@@ -234,8 +244,8 @@
       },
       {
         "path": "results/name_probe/summary.json",
-        "bytes": 21268,
-        "sha256": "89c85cae6fc7474b40f7965c5ab2330c26e40c48aa56a88319958922483a06b3"
+        "bytes": 22157,
+        "sha256": "2f0f3617854b8767b4d386075f53b2db805cfeb6adefe04159aa74c0f3f6c33e"
       }
     ],
     "harness": [
