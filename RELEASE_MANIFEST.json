@@ -1,7 +1,7 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "9f711d2f61d73c45cbbc694fc2c4eaaf69043533",
-  "resolve_via": "Check out the commit named in commit_at_generation below. That is the tree these hashes were computed against. The manifest is written before it is committed, so it records its parent commit rather than its own, and a tag name is deliberately not used here because tags have pointed at earlier collections than the manifest described.",
+  "commit_at_generation": "1c06629b253d473c204e28cd874067e8f007977b",
+  "resolve_via": "Check out the commit named in commit_at_generation below. That is the tree these hashes were computed against. The manifest is written before it is committed, so it records its parent commit rather than its own. Tag v1.2.0 marks this release. Earlier tags point at earlier collections and do not contain this manifest, which is why the commit hash rather than a tag is the authoritative pointer.",
   "n_decisions": 7909,
   "models_evaluated": [
     "fable",
@@ -351,7 +351,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "da7d2e9bb1a6cb6b44fc53baec4c9117810d37239fa9e36cd5a37c11a9d93c0a"
+        "sha256": "16e3f87ca0d03f96a11574128186dd27955ff6cab0f390e255d4e901f7a9e62a"
       }
     ],
     "model_provenance": [

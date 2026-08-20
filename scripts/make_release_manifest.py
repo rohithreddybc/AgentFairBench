@@ -120,9 +120,10 @@ def main():
         "resolve_via": (
             "Check out the commit named in commit_at_generation below. That is the "
             "tree these hashes were computed against. The manifest is written before "
-            "it is committed, so it records its parent commit rather than its own, "
-            "and a tag name is deliberately not used here because tags have pointed "
-            "at earlier collections than the manifest described."),
+            "it is committed, so it records its parent commit rather than its own. "
+            "Tag v1.2.0 marks this release. Earlier tags point at earlier collections "
+            "and do not contain this manifest, which is why the commit hash rather than "
+            "a tag is the authoritative pointer."),
         "n_decisions": analysis.get("n_decisions"),
         "models_evaluated": analysis.get("models"),
         "model_identifier_note": (
