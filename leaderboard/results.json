@@ -2,7 +2,7 @@
   "benchmark": "AgentFairBench",
   "version": "1.1",
   "generated_from": "results/v11/analysis.json",
-  "n_decisions": 6469,
+  "n_decisions": 7909,
   "models": [
     "fable",
     "haiku",

@@ -1,8 +1,8 @@
 {
   "release": "v1.1.1",
-  "commit_at_generation": "14616f8d9b519aadd0c87cb162a476d8683a983f",
+  "commit_at_generation": "6090ba66e7c33983e429be75d66f3290b92bf197",
   "resolve_via": "git tag v1.1.1, which points at the commit containing this manifest",
-  "n_decisions": 6469,
+  "n_decisions": 7909,
   "models_evaluated": [
     "fable",
     "haiku",
@@ -12,10 +12,10 @@
   "model_identifier_note": "The June 2026 run recorded the versioned string claude-haiku-4-5 on every call. The August 2026 replicates were collected through a client that accepts a model tier and does not return the resolved version, so those records carry the tier. We record what was observed rather than back-filling an identifier.",
   "api_parameters_note": "The collection client exposes neither temperature nor a sampling seed, so decoding was not pinned and this is not recoverable from the traces. The released OpenAI-compatible adapter sends the identical prompt and schema and does expose temperature, defaulting to 0, for a decoding-pinned replication.",
   "headline": {
-    "cells_reported": 34,
-    "cells_with_ratio_interval_above_one": 1,
+    "cells_reported": 40,
+    "cells_with_ratio_interval_above_one": 2,
     "cells_with_ratio_interval_above_one_note": "Counted over the stable-floor cells. Cells whose noise floor is degenerate are excluded, because their ratio is uninformative.",
-    "randomization_tests": 24,
+    "randomization_tests": 34,
     "significant_after_bh": 4,
     "significant_cells": [
       "sonnet/hiring/C0+expanded",
@@ -29,7 +29,7 @@
     "python scripts/make_figures.py   # both figures",
     "python -m pytest harness/tests -q"
   ],
-  "total_bytes": 2155939,
+  "total_bytes": 2490071,
   "n_files": 60,
   "files": {
     "public_split": [
@@ -104,13 +104,13 @@
       },
       {
         "path": "results/raw/v11/llama31-8b_r1.jsonl",
-        "bytes": 142642,
-        "sha256": "568b68ddc3b2a7cabc18cb2afe698e34d9b4811c8fd892180128f1992a6d3d0c"
+        "bytes": 287646,
+        "sha256": "d226abb3ac16567160a5322a2e2d36ccf9eb5378155e449c82ac88590510c96b"
       },
       {
         "path": "results/raw/v11/llama31-8b_r2.jsonl",
-        "bytes": 142641,
-        "sha256": "50baa94bc9ca1054f739a496475841a68cbbca9975bc99b1b95edc82101c8bdd"
+        "bytes": 287645,
+        "sha256": "3300d692d0618032a3cb709208ce83dbc311134956c78f33f1e2bf97c52363f8"
       },
       {
         "path": "results/raw/v11/qwen3-4b_r1.jsonl",
@@ -131,13 +131,13 @@
     "analysis_outputs": [
       {
         "path": "results/v11/analysis.json",
-        "bytes": 189979,
-        "sha256": "9f186ecf550d4f6bdf41c850469f072c64f3d4c60291f99b7d22d06534f09ca6"
+        "bytes": 231387,
+        "sha256": "fd9d1957e99521373f6ccf5f551dbbc31e34771168e61751d0ef5dc2058adba5"
       },
       {
         "path": "results/v11/tables.md",
-        "bytes": 9141,
-        "sha256": "47e1298044d3a1446914326ef873bf13571c1f506f21ac636796f6aa1d708ad1"
+        "bytes": 10590,
+        "sha256": "b50d16975d040a201d40e94a92502066b82d9014ad56a0807485d95ee698cc11"
       },
       {
         "path": "results/v11/profile_standards_check.md",
@@ -198,8 +198,8 @@
       },
       {
         "path": "scripts/validate_claims.py",
-        "bytes": 22571,
-        "sha256": "3363905e49241940cc5ec1154cd7e166812aad599d2fe0f2a17dcb627e0ef1be"
+        "bytes": 23981,
+        "sha256": "22f4b60924bd09d78414ad53f70f9b31692a7914bcbefa9eb923fd6884a43041"
       }
     ],
     "name_perception_panel": [
@@ -327,7 +327,7 @@
       {
         "path": "ENVIRONMENT.md",
         "bytes": 1020,
-        "sha256": "ade81fce733014de1b932259f65d257a79f659848031e7c266d5030bf09e68ba"
+        "sha256": "db418e16565fcda153da4b24755f930acfefd32e79d6fd202c908e8d7a9a6510"
       }
     ],
     "model_provenance": [
@@ -345,8 +345,8 @@
     "leaderboard": [
       {
         "path": "leaderboard/results.json",
-        "bytes": 5588,
-        "sha256": "25e3c273a172ddcd143043f106b8de42ac67bc438bc92f683762669feff71145"
+        "bytes": 5445,
+        "sha256": "a9c10ef756f75b76793f174464e6bcf8a7537793ca210300861374c2d7ee7922"
       },
       {
         "path": "leaderboard/build_leaderboard.py",

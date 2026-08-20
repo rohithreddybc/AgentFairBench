@@ -517,6 +517,37 @@ def _c24(text):
     return not wrong, f"analysis has {n} decisions; prose also states {wrong or 'nothing else'}"
 
 
+@check("no superseded decision count survives anywhere")
+def _c33(text):
+    """Presence is not absence. When the collection grew, every section that quoted the old
+    total still quoted it, and the checks that look for the new total all passed."""
+    n = A["n_decisions"]
+    flat = " ".join(text.split())
+    stale = set()
+    for m in re.finditer(r"(?<![\d.])(\d{4,6}) (?:replicated )?decisions", flat):
+        if int(m.group(1)) != n:
+            stale.add(m.group(1))
+    return not stale, f"analysis has {n} decisions; prose also claims {sorted(stale)}"
+
+
+@check("leaderboard agrees with the analysis")
+def _c34(text):
+    """The published leaderboard is a separate artifact that quotes the same numbers. It
+    was a full collection behind and nothing compared the two."""
+    p = ROOT / "leaderboard" / "results.json"
+    if not p.exists():
+        return True, "no leaderboard to check"
+    lb = json.loads(p.read_text(encoding="utf-8"))
+    bad = []
+    if lb.get("n_decisions") not in (None, A["n_decisions"]):
+        bad.append(f"n_decisions {lb.get('n_decisions')} != {A['n_decisions']}")
+    models = lb.get("models")
+    if isinstance(models, list) and models and all(isinstance(x, str) for x in models):
+        if sorted(models) != sorted(A["models"]):
+            bad.append(f"models {sorted(models)} != {sorted(A['models'])}")
+    return not bad, f"leaderboard: {bad or 'consistent'}"
+
+
 def main():
     text = body()
     fails = []
