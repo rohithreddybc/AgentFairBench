@@ -120,4 +120,4 @@ Code is released under **Apache-2.0** ([`LICENSE`](LICENSE)); the public-split d
 
 ## Maintainer
 
-Rohith Reddy Bellibaltu.
+Rohith Reddy Bellibatlu.

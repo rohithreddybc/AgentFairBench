@@ -10,7 +10,7 @@ repository-code: "https://github.com/rohithreddybc/AgentFairBench"
 url: "https://rohithreddybc.github.io/AgentFairBench/"
 authors:
   - given-names: Rohith Reddy
-    family-names: Bellibaltu
+    family-names: Bellibatlu
 keywords:
   - fairness
   - LLM agents
